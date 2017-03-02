@@ -4,285 +4,167 @@ using System.Collections.Generic;
 
 public class UnityChanMovement : MonoBehaviour
 {
-
+    public CharacterController controller;
     private Animator anim;
-    private Rigidbody rgb;
+    private bool stop;
+    private float dushSpeed = 1200f;
+    private short direction = 1;
 
-    bool stop;
-
-    bool grounded = false;
-    bool walled = false;
-    Collider[] groundCollisions;
-    float groundCheckRadius = 0.2f;
-    public LayerMask groundLayer;
-    public Transform groundCheck;
-    public float jumpHieght;
-
-    // ダッシュ速度
-    public const float forwardRightDushSpeed = 14.0f;
-    public const float forwardLeftDushSpeed = -14.0f;
-    // 移動速度
-    public float speed;
-
-    // 歩く時のフラグ
-    private bool walkFlag;
-    // ダッシュするときのフラグ
-    private bool dushFlag;
-    // ジャンプフラグ
-    private bool jumpFlag;
-    // 壁とのあたり判定フラグ
-    private bool collisionWallFlag;
-
-    private int direction;
-
-    //  private bool notLeftWalkFlag;
-    //  private bool notRightWalkFlag;
-
-
-   // private CharacterController controller;
-   // private float gravity = 25f;
+    //---------------------------------------------------------------------
+    private Vector3 velocity;
+    private Vector3 moveVector;
+    private Vector3 lastMove;
+    public float speed = 8;
+    public float jumpForce = 20;
+    private float gravity = 25;
+    public float verticalVelocity;
+    private float currentDelay = 0;
+    public float delay = 0.2f;
+    private bool walljump = false;
+    int dushDirection = 0; // 0 = no dush, 1 = right, -1 = left
+    float dushTimer = 0;
+    float dushDuration = 0.2f;
+    //---------------------------------------------------------------------
 
 
 
     // Use this for initialization
     void Start()
     {
+        controller = GetComponent<CharacterController>();
         anim = GetComponent<Animator>();
-        rgb = GetComponent<Rigidbody>();
-        //    moveState     = 0;
-        //    timeer        = 0;
-        walkFlag = false;
-        dushFlag = false;
-        jumpFlag = false;
-        direction = 0;
-        collisionWallFlag = false;
-
-        //     notLeftWalkFlag  = false;
-        //     notRightWalkFlag = false;
-
-     //   controller = GetComponent<CharacterController>();
     }
-
-
-
-
 
     void Update()
     {
-        if (Input.GetKey(KeyCode.LeftArrow)/* && !notLeftWalkFlag*/)
-        { 
-            walkFlag = true;
-            Debug.Log("左向き");
-        }
-        if (Input.GetKey(KeyCode.RightArrow)/* && !notRightWalkFlag*/)
+        moveVector = Vector3.zero;
+
+        // Run---------------------------------------------------------
+        if (Input.GetKeyDown(KeyCode.C) && dushDirection == 0)
         {
-            walkFlag = true;
-            Debug.Log("右向き");
-        }
-
-       // if (collisionWallFlag && direction == 1/*left*/)
-       //     notLeftWalkFlag = true;
-       //
-       // if (collisionWallFlag && direction == 0/*right*/)
-       //     notRightWalkFlag = true;
-
-
-
-
-        // ダッシュ
-        if (Input.GetKey(KeyCode.C))
-        {
+            dushTimer = 0;
             if (direction == 0)
-            {
-                rgb.AddForce(Vector3.right * 15, ForceMode.Impulse);
-                Debug.Log("RightDush");
-            }
+                dushDirection = -1;
             if (direction == 1)
+                dushDirection = 1;
+            //dushDirection += dushSpeed * speed * 400;
+        }
+        else
+        {
+            if (dushDirection == 0)
             {
-                rgb.AddForce(Vector3.left * 15, ForceMode.Impulse);
-                Debug.Log("LeftDush");
+                moveVector.x += Input.GetAxis("Horizontal")/* * speed * 4*/;
+            }
+            else if (dushDirection == 1)
+            {
+                dushTimer += Time.deltaTime;
+                moveVector.x += dushSpeed * speed * 800;
+                verticalVelocity = 0;
+                lastMove = moveVector;
+            }
+            else if (dushDirection == -1)
+            {
+                dushTimer += Time.deltaTime;
+                moveVector.x -= dushSpeed * speed * 800;
+                verticalVelocity = 0;
+                lastMove = moveVector;
+            }
+
+            if (dushTimer > dushDuration)
+            {
+                dushDirection = 0;
             }
         }
-
-        // ジャンプ
-        if (Input.GetKey(KeyCode.X) && grounded)
+        if (controller.isGrounded)
         {
-            grounded = false;
-            jumpFlag = true;
-            anim.SetBool("grounded", false);
-            //rgb.AddForce(new Vector3(0, jumpHieght, 0));
-            rgb.AddForce(Vector3.up * 2.5f, ForceMode.Impulse);
-            Debug.Log("Normal_Jump");
+            // Jump--------------------------------------------------------
+            if (Input.GetKeyDown(KeyCode.X))
+            {
+                verticalVelocity = jumpForce;
+                moveVector.x += Input.GetAxis("Horizontal")/* * speed * 4*/;
+            }
+            else
+            {
+                verticalVelocity = -1;  // Normalize
+            }
         }
-
-        // 壁ジャンプ
-        // 左入力右飛び
-        if (Input.GetKey(KeyCode.X) && collisionWallFlag && Input.GetKey(KeyCode.LeftArrow))
+        
+        // WallJump----------------------------------------------------
+        else if (walljump == true)
         {
-            grounded = false;
-            jumpFlag = true;
-            anim.SetBool("grounded", false);
-            //rgb.AddForce(Vector3.up * 100, ForceMode.Impulse);
-            //rgb.AddForce(Vector3.right * 70, ForceMode.Impulse);
-            Debug.Log("wall jump    Left -> Right");
+            verticalVelocity -= gravity * Time.deltaTime;
+            moveVector = lastMove;
+            currentDelay += Time.deltaTime;
 
-            Vector3 forwardMovement = new Vector3(-100.0f, 0f, 0.0f);
-            rgb.velocity = forwardMovement * speed;
+            if (currentDelay > delay)
+                walljump = false;
         }
-        // 右入力左飛び
-        if (Input.GetKey(KeyCode.X) && collisionWallFlag && Input.GetKey(KeyCode.RightArrow))
+        
+        // Move for Jump on the way------------------------------------
+        else
         {
-            grounded = false;
-            jumpFlag = true;
-            anim.SetBool("grounded", false);
-            //rgb.AddForce(Vector3.up * 100, ForceMode.Impulse);
-            //rgb.AddForce(Vector3.left * 70, ForceMode.Impulse);
-
-            Debug.Log("wall jump    Left <- Right");
-
-            Vector3 forwardMovement = new Vector3(100.0f, 0f, 0.0f);
-            rgb.velocity = forwardMovement * speed;
-
-
-            //    GetComponent<Rigidbody2D>().velocity = new Vector2(speed * hit.normal.x, speed);
-            //    movement.BaseSpeed = speed * hit.normal.x;
-            //    transform.localScale = transform.localScale.x == 1 ? new Vector2(-1, 1) : Vector2.one;
-            //}
-            //else if (hit.collider != null && walljumpFlag)
-            //    walljumpFlag=false;
+            moveVector = lastMove;
+            verticalVelocity -= gravity * Time.deltaTime;
+            moveVector.x += Input.GetAxis("Horizontal") * speed * 4;
         }
+      
+        // Normalization-----------------------------------------------
+        moveVector.y = 0;
+        moveVector.Normalize();
+        moveVector *= speed;
+        moveVector.y = verticalVelocity;
+        velocity += moveVector;
+        velocity.Normalize();
+        controller.Move(velocity * speed * Time.deltaTime);
+        lastMove = moveVector;
+        //-------------------------------------------------------------
+    }
 
-        // 歩くのをやめる
-        if (Input.GetKeyUp(KeyCode.LeftArrow) && Input.GetKeyUp(KeyCode.RightArrow))
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        if (!controller.isGrounded && hit.normal.y < 0.1f)
         {
-            walkFlag = false;
-            dushFlag = false;
+            if (Input.GetKeyDown(KeyCode.X))
+            {   // WallJump
+                currentDelay = 0.0f;
+                walljump = true;
+                verticalVelocity = jumpForce;
+                moveVector = hit.normal * speed;
+                lastMove = moveVector;
+                Debug.DrawRay(hit.point, hit.normal, Color.red, 1.25f);
+                Debug.DrawRay(transform.position, hit.normal * 2, Color.green, 1);
+            }
         }
-        // ダッシュやめる
-        if (Input.GetKeyUp(KeyCode.C))
-        {
-            walkFlag = false;
-            dushFlag = false;
-        }
-
-
-        groundCollisions = Physics.OverlapSphere(groundCheck.position, groundCheckRadius, groundLayer);
-        if (groundCollisions.Length > 0) grounded = true;
-        else grounded = false;
-
-
-
     }
 
 
-    // FixedUpdate is called once per frame
     void FixedUpdate()
     {
-
         if (!stop)
         {
             float move = Input.GetAxis("Horizontal");
             anim.SetFloat("Speed", Mathf.Abs(move));
 
-            // 通常移動
-            if (walkFlag /*&& !collisionWallFlag*/)
-            {
-                GetComponent<Rigidbody>().velocity = new Vector2(move * speed, GetComponent<Rigidbody>().velocity.y);
-                Debug.Log("Walk");
-            }
-
             // Charcter direction
             if (move < 0)
             { // Left
                 transform.rotation = Quaternion.Euler(new Vector3(0, transform.rotation.y + 270, 0));
-                direction = 1;
+                direction = 0;
             }
             if (move > 0)
             { // Right
                 transform.rotation = Quaternion.Euler(new Vector3(0, transform.rotation.y - 270, 0));
-                direction = 0;
+                direction = 1;
             }
         }
 
-
         if (stop)
             anim.SetFloat("Speed", Mathf.Abs(0));
-
-
-        groundCollisions = Physics.OverlapSphere(groundCheck.position, groundCheckRadius, groundLayer);
-        if (groundCollisions.Length > 0)
-        {
-            grounded = true;
-            jumpFlag = false;
-        }
-        else grounded = false;
-
-
-        anim.SetBool("grounded", grounded);
-
     }
-
-
 
     public void setStop(bool aa)
     {
         stop = aa;
     }
 
-
-    /*-------------------------------------------------------------------------*/
-    void OnCollisionEnter(UnityEngine.Collision collision)
-    {
-       // Debug.Log("CollisionEnter2_1");
-        if (collision.gameObject.tag == "Wall")
-        {
-            collisionWallFlag = true;
-            jumpFlag          = false;
-       //     Debug.Log("CollisionEnter2_2");
-        }
-    }
-    void OnCollisionExit(UnityEngine.Collision collision)
-    {
-        //Debug.Log("CollisionExit2_1");
-
-        if (collision.gameObject.tag == "Wall")
-        {
-            collisionWallFlag = false;
-            //   Debug.Log("CollisionExit2_2");
-            //     notLeftWalkFlag = false;
-            //     notRightWalkFlag = false;
-            // 重力を上書き
-            Physics.gravity = new Vector3(0, -9.81f, 0);
-        }
-    }
-    void OnCollisionStay(UnityEngine.Collision collision)
-    {
-        //Debug.Log("CollisionStay_1");
-
-        if (collision.gameObject.tag == "Wall")
-        {
-            collisionWallFlag = true;
-
-            // 物体の停止
-            //rgb.velocity = Vector3.zero; // 3Dの場合
-            // 重力の影響も受けない
-            //rgb.isKinematic = true;
-
-            // 落下速度を遅くする
-            // Vector3 forwardMovement = new Vector3(0.0f, -1.5f, 0.0f);
-            // rgb.velocity = forwardMovement * speed;
-
-            // 重力を上書き
-            Physics.gravity = new Vector3(0, -2.81f, 0);
-
-            //   Debug.Log("CollisionStay_2");
-
-
-        }
-    }
-
-    //private void OnControllerColliderHit(ControllerColliderHit hit)
-    //{
-    //    Debug.DrawRay(hit.point, hit.normal,Color.red, 1.25f);
-    //}
 }
