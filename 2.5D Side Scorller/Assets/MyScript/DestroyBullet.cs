@@ -23,9 +23,8 @@ public class DestroyBullet : MonoBehaviour {
     {
 		
 	}
-    void OnCollisionEnter()
+    void OnCollisionEnter(Collision col)
     {
-
 
         Destroy(this.gameObject);
     }

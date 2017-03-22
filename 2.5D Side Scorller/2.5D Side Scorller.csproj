@@ -76,6 +76,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\MyScript\DestroyBullet.cs" />
+    <Compile Include="Assets\MyScript\Enemy.cs" />
     <Compile Include="Assets\MyScript\FollowPlayer.cs" />
     <Compile Include="Assets\MyScript\Shooting.cs" />
     <Compile Include="Assets\MyScript\UnityChanMovement.cs" />

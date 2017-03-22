@@ -97,6 +97,7 @@ public class Shooting : MonoBehaviour {
             BulletShot.GetComponent<Rigidbody>().AddForce(targetDir * BulletSpeed, ForceMode.VelocityChange);
             BulletShot.AddComponent<DestroyBullet>().time = bulletLenght;
             BulletShot.GetComponent<DestroyBullet>().thespawnpoint = bullet;
+            BulletShot.GetComponent<CapsuleCollider>().enabled = true;
         }
        
         shoot = false;
