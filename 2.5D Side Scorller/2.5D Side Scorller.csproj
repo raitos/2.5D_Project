@@ -79,6 +79,7 @@
     <Compile Include="Assets\MyScript\Enemy.cs" />
     <Compile Include="Assets\MyScript\FollowPlayer.cs" />
     <Compile Include="Assets\MyScript\Shooting.cs" />
+    <Compile Include="Assets\MyScript\SlashAttack.cs" />
     <Compile Include="Assets\MyScript\UnityChanMovement.cs" />
     <Compile Include="Assets\MyScript\ZeroMovement.cs" />
     <Compile Include="Assets\UnityChan\SplashScreen\Scripts\SplashScreen.cs" />
