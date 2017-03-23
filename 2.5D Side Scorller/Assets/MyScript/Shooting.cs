@@ -15,6 +15,7 @@ public class Shooting : MonoBehaviour {
     public float AimingSpeed;
     public float BulletSpeed;
     public float bulletLenght;
+    public float BulletSpreadLimit;
     
     bool shoot;
     public float timeToShoot;
@@ -94,7 +95,7 @@ public class Shooting : MonoBehaviour {
             BulletShot = Instantiate(bullet);
 
             BulletShot.GetComponent<Rigidbody>().isKinematic = false;
-            BulletShot.GetComponent<Rigidbody>().AddForce((targetDir + new Vector3(Random.Range(0.05f, -0.05f), Random.Range(0.05f, -0.05f),0)) * BulletSpeed, ForceMode.VelocityChange);
+            BulletShot.GetComponent<Rigidbody>().AddForce((targetDir + new Vector3(Random.Range(BulletSpreadLimit, -BulletSpreadLimit), Random.Range(BulletSpreadLimit, -BulletSpreadLimit),0)) * BulletSpeed, ForceMode.VelocityChange);
             BulletShot.AddComponent<DestroyBullet>().time = bulletLenght;
             BulletShot.GetComponent<DestroyBullet>().thespawnpoint = bullet;
             BulletShot.GetComponent<CapsuleCollider>().enabled = true;
