@@ -94,10 +94,13 @@ public class Shooting : MonoBehaviour {
             BulletShot = Instantiate(bullet);
 
             BulletShot.GetComponent<Rigidbody>().isKinematic = false;
-            BulletShot.GetComponent<Rigidbody>().AddForce(targetDir * BulletSpeed, ForceMode.VelocityChange);
+            BulletShot.GetComponent<Rigidbody>().AddForce((targetDir + new Vector3(Random.Range(0.05f, -0.05f), Random.Range(0.05f, -0.05f),0)) * BulletSpeed, ForceMode.VelocityChange);
             BulletShot.AddComponent<DestroyBullet>().time = bulletLenght;
             BulletShot.GetComponent<DestroyBullet>().thespawnpoint = bullet;
             BulletShot.GetComponent<CapsuleCollider>().enabled = true;
+            BulletShot.GetComponent<MeshRenderer>().material.color = new Color(1f, 1f, 0.16f, 1f);
+            BulletShot.AddComponent<Light>().areaSize = new Vector2(bullet.GetComponent<CapsuleCollider>().bounds.size.x, bullet.GetComponent<CapsuleCollider>().bounds.size.y);
+            BulletShot.GetComponent<Light>().color = new Color(1f,0.68f, 0.16f, 1f);
         }
        
         shoot = false;
