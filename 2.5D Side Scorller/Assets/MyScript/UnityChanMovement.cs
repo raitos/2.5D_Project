@@ -7,7 +7,7 @@ public class UnityChanMovement : MonoBehaviour
     public CharacterController controller;
     private Animator anim;
     private bool stop;
-    private float dushSpeed = 1200f;
+    private float dashSpeed = 12000f;
     private short direction = 1;
 
     //---------------------------------------------------------------------
@@ -21,9 +21,9 @@ public class UnityChanMovement : MonoBehaviour
     private float currentDelay = 0;
     public float delay = 0.2f;
     private bool walljump = false;
-    int dushDirection = 0; // 0 = no dush, 1 = right, -1 = left
-    float dushTimer = 0;
-    float dushDuration = 0.2f;
+    int dashDirection = 0; // 0 = no dash, 1 = right, -1 = left
+    float dashTimer = 0;
+    float dashDuration = 0.2f;
     //---------------------------------------------------------------------
 
 
@@ -40,39 +40,39 @@ public class UnityChanMovement : MonoBehaviour
         moveVector = Vector3.zero;
 
         // Run---------------------------------------------------------
-        if (Input.GetKeyDown(KeyCode.C) && dushDirection == 0)
+        if (Input.GetKeyDown(KeyCode.C) && dashDirection == 0)
         {
-            dushTimer = 0;
+            dashTimer = -200;
             if (direction == 0)
-                dushDirection = -1;
+                dashDirection = -1;
             if (direction == 1)
-                dushDirection = 1;
-            //dushDirection += dushSpeed * speed * 400;
+                dashDirection = 1;
+            //dashDirection += dashSpeed * speed * 400;
         }
         else
         {
-            if (dushDirection == 0)
+            if (dashDirection == 0)
             {
                 moveVector.x += Input.GetAxis("Horizontal")/* * speed * 4*/;
             }
-            else if (dushDirection == 1)
+            else if (dashDirection == 1)
             {
-                dushTimer += Time.deltaTime;
-                moveVector.x += dushSpeed * speed * 800;
+                dashTimer += Time.deltaTime;
+                moveVector.x += dashSpeed * speed * 1800;
                 verticalVelocity = 0;
                 lastMove = moveVector;
             }
-            else if (dushDirection == -1)
+            else if (dashDirection == -1)
             {
-                dushTimer += Time.deltaTime;
-                moveVector.x -= dushSpeed * speed * 800;
+                dashTimer += Time.deltaTime;
+                moveVector.x -= dashSpeed * speed * 1800;
                 verticalVelocity = 0;
                 lastMove = moveVector;
             }
 
-            if (dushTimer > dushDuration)
+            if (dashTimer > dashDuration)
             {
-                dushDirection = 0;
+                dashDirection = 0;
             }
         }
         if (controller.isGrounded)
@@ -85,7 +85,7 @@ public class UnityChanMovement : MonoBehaviour
             }
             else
             {
-                verticalVelocity = -1;  // Normalize
+                verticalVelocity = -5;  // Normalize
             }
         }
         
