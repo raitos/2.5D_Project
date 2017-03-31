@@ -1,12 +1,4 @@
 sceneSetups:
-<<<<<<< HEAD
-<<<<<<< HEAD
-- path: Assets/Scene/Prototype - Factory 2.unity
-=======
-- path: Assets/Scene/Shooting.unity
->>>>>>> refs/remotes/origin/master
-=======
 - path: Assets/Scene/Main.unity
->>>>>>> refs/remotes/origin/oma
   isLoaded: 1
   isActive: 1

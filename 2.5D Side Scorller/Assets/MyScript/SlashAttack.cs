@@ -35,7 +35,7 @@ public class SlashAttack : MonoBehaviour {
     {
 
         TheEnemys = enemySpawner.GetComponent<EnemySpawner>().ListOfEnemies;
-        enemyCount = TheEnemys.Length;
+        enemyCount = GameObject.FindGameObjectsWithTag("Enemy").Length;
         EnemyOnZone = false;
         boxSet = false;
         Animator.SetFloat("Speed", AnimSpeed);
@@ -173,24 +173,28 @@ public class SlashAttack : MonoBehaviour {
         {
             enemyCount--;
             Debug.Log("tänne päästiin");
-            Debug.Log("Vihollisten määrä: " + TheEnemys.Length);
+            
             if (enemyCount > -1)
             {
                 if (FoundObjects != null && TheEnemys != null && FoundObjects[0] != null)
                 {
                     Debug.Log("Palikoita etsitään");
-                    if (CurrentObjects[ObjectCount] == TheEnemys[enemyCount])
+                    for (int i = 0; i < CurrentObjects.Length; i++)
                     {
-                        Debug.Log("Object Found on zone");
-                        chosenEnemy = enemyCount;
-                        EnemyOnZone = true;
-                        FoundObject = true;
-                    }
-                    else if (FoundObject == false)
-                    {
-                        Debug.Log("Object notFound");
-                        chosenEnemy = -1;
-                        EnemyOnZone = false;
+                        if (CurrentObjects[i] == TheEnemys[enemyCount])
+                        {
+                            Debug.Log("Object Found on zone");
+                            chosenEnemy = enemyCount;
+                            EnemyOnZone = true;
+                            FoundObject = true;
+                            break;
+                        }
+                        else if (FoundObject == false)
+                        {
+                            Debug.Log("Object notFound");
+                            chosenEnemy = -1;
+                            EnemyOnZone = false;
+                        }
                     }
                 }
             }
@@ -242,4 +246,5 @@ public class SlashAttack : MonoBehaviour {
        
 
 	}
+    
 }

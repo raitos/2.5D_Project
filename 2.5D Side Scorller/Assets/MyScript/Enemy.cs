@@ -20,7 +20,7 @@ public class Enemy : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
-       
+        this.gameObject.tag = "Enemy";
 	}
 	
 	// Update is called once per frame
@@ -28,7 +28,7 @@ public class Enemy : MonoBehaviour {
     {
 		if(Health <= 0)
         {
-            Destroy(enemy.gameObject);
+            DestroyImmediate(enemy.gameObject,true);
             enemy = null;
         }
         if (Health < 75 && Health >= 25)
