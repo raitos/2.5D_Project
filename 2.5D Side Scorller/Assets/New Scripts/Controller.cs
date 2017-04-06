@@ -9,20 +9,17 @@ public class Controller : MonoBehaviour {
 
     public float gravity;
     public float speed;
-    public float acceleration;
+    //public float acceleration;
     public float jumpHeight;
     int dir = 1;
     int i = 1;
 
     GameObject animatedObj;
-<<<<<<< HEAD
+
     Animator anim;
 
     public float DashForce;
     public float dashEnergy = 1;
-=======
-    public Animator anim;
->>>>>>> 08fbf77c3ff2f8a509225eab2b668ec65c1123be
 
     private float curSpeed;
     private float tarSpeed;
@@ -97,11 +94,11 @@ public class Controller : MonoBehaviour {
         }
         //--------------
         tarSpeed = Input.GetAxis("Horizontal") * speed;
-        curSpeed = IncrementTowards(curSpeed, tarSpeed, acceleration);
+        //curSpeed = IncrementTowards(curSpeed, tarSpeed, acceleration);
 
-<<<<<<< HEAD
+
         amountToMove.x = tarSpeed * i; //For acceleration use "curSpeed" instead of "tarSpeed"
-=======
+
         //Animator things
         anim.SetFloat("Speed", Mathf.Abs(tarSpeed));
         if (Mathf.Sign(tarSpeed) < 0)
@@ -115,7 +112,7 @@ public class Controller : MonoBehaviour {
         //---------------
 
         amountToMove.x = tarSpeed;
->>>>>>> 08fbf77c3ff2f8a509225eab2b668ec65c1123be
+
 
         if (playerPhysics.Roofed)
         {
