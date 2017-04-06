@@ -21,6 +21,10 @@ public class PlayerPhysics : MonoBehaviour {
     public bool FacingWall = false;
     public bool sloped = false;
 
+    public float f;
+    public float d;
+    public float t = 1;
+
     public float angle; //SLOPE
 
     Ray ray;
@@ -55,6 +59,9 @@ public class PlayerPhysics : MonoBehaviour {
         Vector2 p = transform.position;
         float dirX = Mathf.Sign(moveAmount.x);
         float dirY = Mathf.Sign(moveAmount.y);
+
+        //DASHING
+
 
 
         //RAYCASTING FOR OBSTACLES
@@ -94,7 +101,7 @@ public class PlayerPhysics : MonoBehaviour {
         
 
 
-        Vector2 finalTransform = new Vector2(deltaX, deltaY);
+        Vector2 finalTransform = new Vector2(deltaX + (f * d), deltaY * t);
         transform.Translate(finalTransform);
     }
 }
