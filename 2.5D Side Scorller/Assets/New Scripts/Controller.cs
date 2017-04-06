@@ -12,7 +12,8 @@ public class Controller : MonoBehaviour {
     public float acceleration;
     public float jumpHeight;
 
-    private Animator anim;
+    GameObject animatedObj;
+    public Animator anim;
 
     private float curSpeed;
     private float tarSpeed;
@@ -22,8 +23,9 @@ public class Controller : MonoBehaviour {
 
     void Start()
     {
+        animatedObj = GameObject.Find("ToonShader_SD_unitychan_humanoid");
         playerPhysics = GetComponent<PlayerPhysics>();
-        anim = GetComponent<Animator>();
+        anim = animatedObj.GetComponent<Animator>();
     }
 
     void Update()
@@ -49,9 +51,17 @@ public class Controller : MonoBehaviour {
 
         //Animator things
         anim.SetFloat("Speed", Mathf.Abs(tarSpeed));
+        if (Mathf.Sign(tarSpeed) < 0)
+        { // Left
+            animatedObj.transform.rotation = Quaternion.Euler(new Vector3(0, transform.rotation.y + 270, 0));
+        }
+        if (Mathf.Sign(tarSpeed) > 0)
+        { // Right
+            animatedObj.transform.rotation = Quaternion.Euler(new Vector3(0, transform.rotation.y - 270, 0));
+        }
         //---------------
 
-        amountToMove.x = curSpeed;
+        amountToMove.x = tarSpeed;
 
         if (playerPhysics.Roofed)
         {
