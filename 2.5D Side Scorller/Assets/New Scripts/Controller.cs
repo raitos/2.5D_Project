@@ -12,23 +12,21 @@ public class Controller : MonoBehaviour {
     public float acceleration;
     public float jumpHeight;
     int dir = 1;
-    int i = 1;
+    int MoveNull = 1;
 
     GameObject animatedObj;
-<<<<<<< HEAD
-    Animator anim;
 
     public float DashForce;
     public float dashEnergy = 1;
-=======
     public Animator anim;
->>>>>>> 08fbf77c3ff2f8a509225eab2b668ec65c1123be
 
     private float curSpeed;
     private float tarSpeed;
     private Vector2 amountToMove;
 
     bool Dashing = false;
+    bool DashAvailable = true;
+    bool DashCD = false;
 
     PlayerPhysics playerPhysics;
 
@@ -70,52 +68,49 @@ public class Controller : MonoBehaviour {
             curSpeed = 0;
         }
 
-        //Dashing things
-        if (Input.GetKeyDown(KeyCode.C) && !playerPhysics.FacingWall && dashEnergy > 1)
+
+        //Dashing things----------
+
+        if ((Input.GetKey(KeyCode.C) && DashAvailable))
         {
-            if (Input.GetKey(KeyCode.C))
+            playerPhysics.DashForce = DashForce * Time.deltaTime;
+            playerPhysics.DashDirection = dir;
+            playerPhysics.MovementNullifier = 0;
+            MoveNull = 0;
+            Dashing = true;
+            amountToMove.y = 0;
+            dashEnergy -= Time.deltaTime;
+            if (dashEnergy < 1)
             {
-                playerPhysics.f = DashForce * Time.deltaTime;
-                playerPhysics.d = dir;
-                playerPhysics.t = 0;
-                i = 0;
-                Dashing = true;
-                amountToMove.y = 0;
+                DashAvailable = false;
             }
-            dashEnergy--;
         }
-        else if (Input.GetKeyUp(KeyCode.C))
+        else if (dashEnergy < 1.32F)
         {
-            playerPhysics.f = 0;
-            playerPhysics.t = 1;
-            i = 1;
+            playerPhysics.DashForce = 0;
+            playerPhysics.MovementNullifier = 1;
+            MoveNull = 1;
             Dashing = false;
-        }
-        if (!Dashing && dashEnergy < 2)
-        {
+            DashCD = false;
             dashEnergy += Time.deltaTime;
+            if (dashEnergy > 1.2)
+            {
+                DashCD = true;
+            }
         }
-        //--------------
+        if (DashCD && (playerPhysics.Grounded || playerPhysics.sloped))
+        {
+            DashAvailable = true;
+        }
+        //------------------------
+
+
         tarSpeed = Input.GetAxis("Horizontal") * speed;
         curSpeed = IncrementTowards(curSpeed, tarSpeed, acceleration);
 
-<<<<<<< HEAD
-        amountToMove.x = tarSpeed * i; //For acceleration use "curSpeed" instead of "tarSpeed"
-=======
-        //Animator things
-        anim.SetFloat("Speed", Mathf.Abs(tarSpeed));
-        if (Mathf.Sign(tarSpeed) < 0)
-        { // Left
-            animatedObj.transform.rotation = Quaternion.Euler(new Vector3(0, transform.rotation.y + 270, 0));
-        }
-        if (Mathf.Sign(tarSpeed) > 0)
-        { // Right
-            animatedObj.transform.rotation = Quaternion.Euler(new Vector3(0, transform.rotation.y - 270, 0));
-        }
-        //---------------
+        amountToMove.x = tarSpeed * MoveNull; //For acceleration use "curSpeed" instead of "tarSpeed"
 
         amountToMove.x = tarSpeed;
->>>>>>> 08fbf77c3ff2f8a509225eab2b668ec65c1123be
 
         if (playerPhysics.Roofed)
         {

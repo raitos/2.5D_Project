@@ -21,9 +21,9 @@ public class PlayerPhysics : MonoBehaviour {
     public bool FacingWall = false;
     public bool sloped = false;
 
-    public float f;
-    public float d;
-    public float t = 1;
+    public float DashForce;
+    public float DashDirection;
+    public float MovementNullifier = 1;
 
     public float angle; //SLOPE
 
@@ -101,7 +101,7 @@ public class PlayerPhysics : MonoBehaviour {
         
 
 
-        Vector2 finalTransform = new Vector2(deltaX + (f * d), deltaY * t);
+        Vector2 finalTransform = new Vector2(deltaX + (DashForce * DashDirection), deltaY * MovementNullifier);
         transform.Translate(finalTransform);
     }
 }
