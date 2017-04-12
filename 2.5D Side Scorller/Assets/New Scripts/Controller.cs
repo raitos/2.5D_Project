@@ -12,21 +12,18 @@ public class Controller : MonoBehaviour {
     public float acceleration;
     public float jumpHeight;
     int dir = 1;
-    int MoveNull = 1;
 
     GameObject animatedObj;
 
-    public float DashForce;
-    public float dashEnergy = 1;
     public Animator anim;
 
     private float curSpeed;
     private float tarSpeed;
     private Vector2 amountToMove;
 
-    bool Dashing = false;
-    bool DashAvailable = true;
+    public float DashCoolDown = 1;
     bool DashCD = false;
+    float dashT = 0;
 
     PlayerPhysics playerPhysics;
 
@@ -39,7 +36,7 @@ public class Controller : MonoBehaviour {
 
     void Update()
     {
-        //Animator things
+        //Animator things and direction detection
         anim.SetFloat("Speed", Mathf.Abs(tarSpeed));
         if (tarSpeed < 0)
         { // Left
@@ -53,74 +50,67 @@ public class Controller : MonoBehaviour {
         }
         //---------------
 
-        if (playerPhysics.Grounded || playerPhysics.sloped)
+
+        //Dash-------------
+
+        if (Input.GetKey(KeyCode.C) && !DashCD)
         {
-            amountToMove.y = 0;
-            if (Input.GetKeyDown(KeyCode.X))
-            {
-                amountToMove.y = jumpHeight;
-            }
-        }
-
-        if (playerPhysics.FacingWall)
-        {
-            tarSpeed = 0;
-            curSpeed = 0;
-        }
-
-
-        //Dashing things----------
-
-        if ((Input.GetKey(KeyCode.C) && DashAvailable))
-        {
-            playerPhysics.DashForce = DashForce * Time.deltaTime;
+            playerPhysics.Dash = true;
+            DashCD = true;
+            dashT = 0;
             playerPhysics.DashDirection = dir;
-            playerPhysics.MovementNullifier = 0;
-            MoveNull = 0;
-            Dashing = true;
             amountToMove.y = 0;
-            dashEnergy -= Time.deltaTime;
-            if (dashEnergy < 1)
-            {
-                DashAvailable = false;
-            }
         }
-        else if (dashEnergy < 1.32F)
+        if (DashCD)
         {
-            playerPhysics.DashForce = 0;
-            playerPhysics.MovementNullifier = 1;
-            MoveNull = 1;
-            Dashing = false;
-            DashCD = false;
-            dashEnergy += Time.deltaTime;
-            if (dashEnergy > 1.2)
+            dashT += Time.deltaTime;
+            if (dashT > DashCoolDown)
             {
-                DashCD = true;
+                DashCD = false;
             }
+
         }
-        if (DashCD && (playerPhysics.Grounded || playerPhysics.sloped))
-        {
-            DashAvailable = true;
-        }
-        //------------------------
+        //-----------------
 
 
         tarSpeed = Input.GetAxis("Horizontal") * speed;
-        curSpeed = IncrementTowards(curSpeed, tarSpeed, acceleration);
+        //curSpeed = IncrementTowards(curSpeed, tarSpeed, acceleration);
 
-        amountToMove.x = tarSpeed * MoveNull; //For acceleration use "curSpeed" instead of "tarSpeed"
 
-        amountToMove.x = tarSpeed;
+        amountToMove.x = tarSpeed; //For acceleration use "curSpeed" instead of "tarSpeed"
 
         if (playerPhysics.Roofed)
         {
             amountToMove.y = 0;
         }
 
-        if ((!playerPhysics.Grounded || !playerPhysics.sloped) && !Dashing) //!!!!!!!!!?????????
+        if ((playerPhysics.Grounded || playerPhysics.sloped)) //!!!!!!!!!?????????
+        {
+            amountToMove.y = -0.01F;
+            if (Input.GetKeyDown(KeyCode.X))
+            {
+                amountToMove.y = jumpHeight;
+            }
+        }
+        else
         {
             amountToMove.y -= gravity * Time.deltaTime;
         }
+        if (playerPhysics.FacingWall)
+        {
+            if (Input.GetKeyDown(KeyCode.X) && amountToMove.y < 0)
+            {
+                amountToMove.y = jumpHeight;
+            }
+            else if (amountToMove.y < 0)
+            {
+                amountToMove.y = -gravity * 6 * Time.deltaTime;
+            }
+            tarSpeed = 0;
+            curSpeed = 0;
+        }
+
+
         playerPhysics.Move(amountToMove * Time.deltaTime);
     }
 

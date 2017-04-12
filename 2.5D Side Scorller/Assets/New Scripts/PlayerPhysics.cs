@@ -6,7 +6,6 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerPhysics : MonoBehaviour {
 
-    private BoxCollider collider;
     private Vector3 s;
     private Vector3 c;
 
@@ -23,18 +22,15 @@ public class PlayerPhysics : MonoBehaviour {
 
     public float DashForce;
     public float DashDirection;
-    public float MovementNullifier = 1;
+    public bool Dash;
+    float DashMax = 0;
 
     public float angle; //SLOPE
-
-    Ray ray;
 
 
     void Start()
     {
-        collider = GetComponent<BoxCollider>();
-        s = collider.size;
-        c = collider.center;
+
     }
 
     public void Move(Vector2 moveAmount)
@@ -59,11 +55,7 @@ public class PlayerPhysics : MonoBehaviour {
         Vector2 p = transform.position;
         float dirX = Mathf.Sign(moveAmount.x);
         float dirY = Mathf.Sign(moveAmount.y);
-
-        //DASHING
-
-
-
+        
         //RAYCASTING FOR OBSTACLES
 
         if (Physics.Raycast(transform.position, Vector2.down, -dirY * 0.15F, colMask) || Physics.Raycast(transform.position + transform.right / 2, Vector2.down, -dirY * 0.15F, colMask) || Physics.Raycast(transform.position - transform.right / 2, Vector2.down, -dirY * 0.15F, colMask))
@@ -93,15 +85,29 @@ public class PlayerPhysics : MonoBehaviour {
             deltaX = 0;
         }
         
-        if ((deltaX > 0 || deltaX < 0) && sloped)
+        if ((deltaX > 0 || deltaX < 0) && sloped) //Slope angle must be 26.5  :/
         {
             float angleDir = Mathf.Sign(angle);
             deltaY = 0.5F * -angleDir * moveAmount.x;
         }
         
 
+        if (Dash) //Dash stuff
+        {
+            if (DashMax < 0.2F && !Physics.Raycast(transform.position, Vector2.right * DashDirection, 0.5F))
+            {
+                deltaX = DashForce * DashDirection * Time.deltaTime;
+                deltaY = 0;
+                DashMax += Time.deltaTime;
+            }
+            else
+            {
+                Dash = false;
+                DashMax = 0;
+            }
+        }
 
-        Vector2 finalTransform = new Vector2(deltaX + (DashForce * DashDirection), deltaY * MovementNullifier);
+        Vector2 finalTransform = new Vector2(deltaX, deltaY);
         transform.Translate(finalTransform);
     }
 }
