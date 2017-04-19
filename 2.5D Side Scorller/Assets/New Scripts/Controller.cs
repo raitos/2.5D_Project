@@ -53,22 +53,24 @@ public class Controller : MonoBehaviour {
 
         //Dash-------------
 
-        if (Input.GetKey(KeyCode.C) && !DashCD)
-        {
-            playerPhysics.Dash = true;
-            DashCD = true;
-            dashT = 0;
-            playerPhysics.DashDirection = dir;
-            amountToMove.y = 0;
-        }
         if (DashCD)
         {
             dashT += Time.deltaTime;
             if (dashT > DashCoolDown)
             {
                 DashCD = false;
+                playerPhysics.DashMax = 0;
             }
 
+        }
+        else if ((Input.GetKeyDown(KeyCode.C) && !DashCD && !playerPhysics.FacingWall) && !playerPhysics.MidAirDashUsed)
+        {
+            playerPhysics.Dash = true;
+            DashCD = true;
+            playerPhysics.MidAirDashUsed = true;
+            dashT = 0;
+            playerPhysics.DashDirection = dir;
+            amountToMove.y = 0;
         }
         //-----------------
 
@@ -84,30 +86,47 @@ public class Controller : MonoBehaviour {
             amountToMove.y = 0;
         }
 
-        if ((playerPhysics.Grounded || playerPhysics.sloped)) //!!!!!!!!!?????????
+        if ((playerPhysics.Grounded || playerPhysics.sloped)) //Wierd things happen here
         {
             amountToMove.y = -0.01F;
-            if (Input.GetKeyDown(KeyCode.X))
+            if (Input.GetKeyDown(KeyCode.X) && !playerPhysics.Dash)
             {
+                transform.Translate(Vector2.up * 0.2F);
                 amountToMove.y = jumpHeight;
             }
         }
-        else
+        else if (!playerPhysics.Dash)
         {
             amountToMove.y -= gravity * Time.deltaTime;
         }
         if (playerPhysics.FacingWall)
         {
-            if (Input.GetKeyDown(KeyCode.X) && amountToMove.y < 0)
+            if ((Input.GetKeyDown(KeyCode.X) && amountToMove.y < 0) && (tarSpeed > 0 || tarSpeed < 0)) //Walljump
             {
-                amountToMove.y = jumpHeight;
+                amountToMove.y = jumpHeight * 0.75F;
             }
-            else if (amountToMove.y < 0)
+            else if (amountToMove.y < 0 && (tarSpeed > 0 || tarSpeed < 0))
             {
                 amountToMove.y = -gravity * 6 * Time.deltaTime;
             }
             tarSpeed = 0;
             curSpeed = 0;
+        }
+        else if (playerPhysics.DashJumping)
+        {
+            if (dir != playerPhysics.DashDirection)
+            {
+                playerPhysics.DashJumping = false;
+            }
+            amountToMove.x = playerPhysics.DashForce * playerPhysics.DashDirection;
+        }
+        else if (Input.GetKeyDown(KeyCode.X) && (playerPhysics.Grounded || playerPhysics.sloped) && playerPhysics.Dash)
+        {
+            transform.Translate(Vector2.up * 0.2F);
+            playerPhysics.Dash = false;
+            playerPhysics.DashJumping = true;
+            playerPhysics.MidAirDashUsed = true;
+            amountToMove.y = jumpHeight;
         }
 
 

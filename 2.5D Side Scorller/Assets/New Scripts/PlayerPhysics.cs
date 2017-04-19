@@ -15,22 +15,34 @@ public class PlayerPhysics : MonoBehaviour {
     public LayerMask colMask;
     public LayerMask slopeMask;
 
+    Controller ctrl;
+
+    BoxCollider collider;
+    Vector2 ColSize;
+    Vector3 ColHalf; //To reduce needles calultions
+
     public bool Grounded;
     public bool Roofed = false;
     public bool FacingWall = false;
     public bool sloped = false;
 
+    float angleDir;
+
     public float DashForce;
     public float DashDirection;
     public bool Dash;
-    float DashMax = 0;
+    public float DashMax = 0;
+    public bool DashJumping = false;
+    public bool MidAirDashUsed = false;
 
     public float angle; //SLOPE
 
 
     void Start()
     {
-
+        collider = GetComponent<BoxCollider>();
+        ColSize = collider.size;
+        ColHalf = transform.right / 2;
     }
 
     public void Move(Vector2 moveAmount)
@@ -41,64 +53,67 @@ public class PlayerPhysics : MonoBehaviour {
         Roofed = false;
         sloped = false;
 
-        //SLOPES ARE CALCULATED HERE
-        RaycastHit hit1;
-        RaycastHit hit2;
-        if (Physics.Raycast(transform.position, Vector2.down, out hit1) && Physics.Raycast(transform.position +  Vector3.right * 0.1F, Vector2.down, out hit2))
-        {
-            angle = Mathf.Atan2(hit1.normal.x, hit2.normal.y) * Mathf.Rad2Deg;
-        }
-
         //MOVEMENT
         deltaY = moveAmount.y;
         deltaX = moveAmount.x;
-        Vector2 p = transform.position;
         float dirX = Mathf.Sign(moveAmount.x);
         float dirY = Mathf.Sign(moveAmount.y);
-        
+
         //RAYCASTING FOR OBSTACLES
 
-        if (Physics.Raycast(transform.position, Vector2.down, -dirY * 0.15F, colMask) || Physics.Raycast(transform.position + transform.right / 2, Vector2.down, -dirY * 0.15F, colMask) || Physics.Raycast(transform.position - transform.right / 2, Vector2.down, -dirY * 0.15F, colMask))
+        if (Physics.Raycast(transform.position, Vector2.down, dirY * -0.15F, colMask) || Physics.Raycast(transform.position + ColHalf, Vector2.down, dirY * -0.15F, colMask) || Physics.Raycast(transform.position - ColHalf, Vector2.down, dirY * -0.15F, colMask))
         {
             Grounded = true;
+            DashJumping = false;
+            MidAirDashUsed = false;
             deltaY = 0;
         }
-        else if (Physics.Raycast(transform.position, Vector2.down, -dirY * 0.15F, slopeMask) || Physics.Raycast(transform.position + transform.right / 2, Vector2.down, -dirY * 0.15F, slopeMask) || Physics.Raycast(transform.position - transform.right / 2, Vector2.down, -dirY * 0.15F, slopeMask))
+        else if (Physics.Raycast(transform.position, Vector2.down, 0.15F, slopeMask) || Physics.Raycast(transform.position + ColHalf, Vector2.down, 0.15F, slopeMask) || Physics.Raycast(transform.position - ColHalf, Vector2.down, 0.15F, slopeMask))
         {
             sloped = true;
-            deltaY = 0;
+            DashJumping = false;
+            MidAirDashUsed = false;
+            angle = CalculateAngle();
+            angleDir = Mathf.Sign(angle);
+            deltaY = 0.5F * -angleDir * moveAmount.x; //Slope angle must 26.5, because im bad at math
         }
-        else if (Physics.Raycast(transform.position, Vector2.up, dirY * 1.2F, colMask) || Physics.Raycast(transform.position + transform.right / 2, Vector2.up, dirY * 1.2F, colMask) || Physics.Raycast(transform.position - transform.right / 2, Vector2.up, dirY * 1.2F, colMask))
+        else if (Physics.Raycast(transform.position, Vector2.up, dirY * 1.2F, colMask) || Physics.Raycast(transform.position + ColHalf, Vector2.up, dirY * 1.2F, colMask) || Physics.Raycast(transform.position - ColHalf, Vector2.up, dirY * 1.2F, colMask))
         {
             Roofed = true;
             deltaY = 0;
         }
 
-        if (Physics.Raycast(transform.position, Vector2.right, dirX / 2, colMask) || Physics.Raycast(transform.position + transform.up, Vector2.right, dirX / 2, colMask) || Physics.Raycast(transform.position - transform.up * 0.001F, Vector2.right, dirX / 2, colMask))
+        if (Physics.Raycast(transform.position, dirX * Vector2.right, 0.5F, colMask) || Physics.Raycast(transform.position + transform.up, dirX * Vector2.right, 0.5F, colMask) || Physics.Raycast(transform.position - transform.up * 0.001F, dirX * Vector2.right, 0.5F, colMask))
         {
+            MidAirDashUsed = false;
             FacingWall = true;
+            DashJumping = false;
             deltaX = 0;
         }
-        else if (Physics.Raycast(transform.position, Vector2.left, -dirX / 2, colMask) || Physics.Raycast(transform.position + transform.up, Vector2.left, -dirX / 2, colMask) || Physics.Raycast(transform.position - transform.up * 0.001F, Vector2.left, -dirX / 2, colMask))
+
+
+        //fix position if falling below ground
+        if (Physics.Raycast(transform.up, Vector2.down, ColSize.y, colMask) || Physics.Raycast(transform.up, Vector2.down, ColSize.y, slopeMask))
         {
-            FacingWall = true;
-            deltaX = 0;
+            transform.Translate(Vector2.up);
         }
-        
-        if ((deltaX > 0 || deltaX < 0) && sloped) //Slope angle must be 26.5  :/
-        {
-            float angleDir = Mathf.Sign(angle);
-            deltaY = 0.5F * -angleDir * moveAmount.x;
-        }
-        
+
 
         if (Dash) //Dash stuff
         {
-            if (DashMax < 0.2F && !Physics.Raycast(transform.position, Vector2.right * DashDirection, 0.5F))
+            if (Input.GetKeyUp(KeyCode.C))
+            {
+                Dash = false;
+            }
+            else if (DashMax < 0.5F && !Physics.Raycast(transform.position, Vector2.right * DashDirection, 0.5F))
             {
                 deltaX = DashForce * DashDirection * Time.deltaTime;
                 deltaY = 0;
                 DashMax += Time.deltaTime;
+                if (sloped)
+                {
+                    deltaY = 0.5F * -angleDir * DashDirection * DashForce * Time.deltaTime;
+                }
             }
             else
             {
@@ -109,5 +124,20 @@ public class PlayerPhysics : MonoBehaviour {
 
         Vector2 finalTransform = new Vector2(deltaX, deltaY);
         transform.Translate(finalTransform);
+    }
+
+    float CalculateAngle()//SLOPES ARE CALCULATED HERE
+    {
+        RaycastHit hit1;
+        RaycastHit hit2;
+        if (Physics.Raycast(transform.position, Vector2.down, out hit1) && Physics.Raycast(transform.position + Vector3.right * 0.1F, Vector2.down, out hit2))
+        {
+            float a = Mathf.Atan2(hit1.normal.x, hit2.normal.y) * Mathf.Rad2Deg;
+            return a;
+        }
+        else
+        {
+            return 0;
+        }
     }
 }
