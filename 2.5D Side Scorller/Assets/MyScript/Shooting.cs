@@ -45,7 +45,7 @@ public class Shooting : MonoBehaviour {
         //Rotate Arm
         if(Input.GetAxis("MoveAim") == 1)
         {
-            Debug.Log("Nappi1");
+            Debug.Log("Button1");
            
             Arm.GetComponent<Rigidbody>().isKinematic = false;
             
@@ -56,7 +56,7 @@ public class Shooting : MonoBehaviour {
         }
         else if(Input.GetAxis("MoveAim") == -1)
         {
-            Debug.Log("Nappi0");
+            Debug.Log("Button0");
          
             Arm.GetComponent<Rigidbody>().isKinematic = false;
             
