@@ -33,11 +33,9 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
-2.5D Side Scorller/Library/metadata/00/*
 2.5D Side Scorller/Library/ScriptAssemblies/Assembly-CSharp-Editor.dll.mdb
 *.dll
 2.5D Side Scorller/Library/ScriptAssemblies/Assembly-CSharp.dll.mdb
-2.5D Side Scorller/Library/metadata/53/539f4a5022e924c4b9aea8e968f8f79f
 2.5D Side Scorller/Library/ScriptAssemblies/Assembly-CSharp-Editor.dll.mdb
-2.5D Side Scorller/Library/metadata/f4/f48df919adea4fa095a7407e773e5aa4
 2.5D Side Scorller/Library/assetDatabase3
+2.5D Side Scorller/Library/metadata/*

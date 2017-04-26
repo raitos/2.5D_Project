@@ -1,4 +1,8 @@
 sceneSetups:
+<<<<<<< HEAD
+- path: Assets/Scene/Prototype - Factory 1.unity
+=======
 - path: Assets/Scene/Main.unity
+>>>>>>> origin/master
   isLoaded: 1
   isActive: 1
