@@ -8,6 +8,7 @@ public class SlashAttack : MonoBehaviour {
     public GameObject Player;
     public GameObject enemySpawner;
     public Animator Animator;
+    Animation Slash;
     GameObject[] TheEnemys;
 
     public Vector3 hitboxOffset;
@@ -33,7 +34,8 @@ public class SlashAttack : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
-
+       
+        
         TheEnemys = enemySpawner.GetComponent<EnemySpawner>().ListOfEnemies;
         enemyCount = GameObject.FindGameObjectsWithTag("Enemy").Length;
         EnemyOnZone = false;

@@ -7,7 +7,7 @@ public class Enemy : MonoBehaviour {
     public GameObject enemy;
     public float Health;
     public float hitdamage;
-
+    public bool Destroyed;
     void OnCollisionEnter(Collision col)
     {
         if (col.gameObject.Equals(GameObject.Find("Bullet(Clone)")))
@@ -20,6 +20,7 @@ public class Enemy : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
+        Destroyed = false;
         this.gameObject.tag = "Enemy";
 	}
 	
@@ -39,5 +40,9 @@ public class Enemy : MonoBehaviour {
         {
             enemy.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
         }
+    }
+     ~Enemy()
+    {
+        Destroyed = true;
     }
 }
