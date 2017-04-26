@@ -31,6 +31,22 @@ public class WEAwaking : MonoBehaviour {
                 {
                     E.GetComponent<WeakEnemy>().enabled = false;
                 }
+                if (GeometryUtility.TestPlanesAABB(planes, E.GetComponent<Collider>().bounds) && E.GetComponent<Attacker>() != null)
+                {
+                    E.GetComponent<Attacker>().enabled = true;
+                }
+                else if (E.GetComponent<Attacker>() != null)
+                {
+                    E.GetComponent<Attacker>().enabled = false;
+                }
+                if (GeometryUtility.TestPlanesAABB(planes, E.GetComponent<Collider>().bounds) && E.GetComponent<Defender>() != null)
+                {
+                    E.GetComponent<Defender>().enabled = true;
+                }
+                else if (E.GetComponent<Defender>() != null)
+                {
+                    E.GetComponent<Defender>().enabled = false;
+                }
             }
         }
        

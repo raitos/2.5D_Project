@@ -77,7 +77,7 @@ public class Attacker : Enemy {
 
             TimeToTurn = 0.25f;
             TimeToFall = 1f;
-            TimeToShoot = 1f;
+            TimeToShoot = 0.5f;
             EnemySpeed = 0.04f;
             JumpSpeed = 0.12f;
             BulletSpeed = 20f;
