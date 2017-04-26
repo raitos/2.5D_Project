@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-
 [ExecuteInEditMode]
-public class Defender : MonoBehaviour {
-
+public class Defender : Enemy {
 
     GameObject TheEnemy;
     GameObject Player;
@@ -67,8 +65,7 @@ public class Defender : MonoBehaviour {
     int hitCounter1;
     int hitCounter3;
 
-    // Use this for initialization
-    void Start ()
+    public void Awake()
     {
 #if UNITY_EDITOR
 
@@ -90,13 +87,40 @@ public class Defender : MonoBehaviour {
 
 #endif
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+    // Use this for initialization
+    void Start () {
+        Hits0Run = false;
+        Hits1Run = false;
+        Hits3Run = false;
+        hitCounter0 = 0;
+        hitCounter1 = 0;
+        hitCounter3 = 0;
+        SetDirectionHits = true;
+        ValuesNotNull = false;
+        TheListOfEnemies = EnemyList.ListOfEnemies;
+        ResetFall = TimeToFall;
+        ResetTurn = TimeToTurn;
+        ResetShoot = TimeToShoot;
+        time = Time.deltaTime;
+        shoot = false;
+        flipped = false;
+        jumpLeft = false;
+        jumpRight = false;
+        grounded = false;
+        moveTowardsPlayerPos = false;
+        moveTowardsPlayerNeg = false;
+        TheEnemy = this.gameObject;
+        Directions = new Ray[4];
+        Values = new float[8];
+        Player = GameObject.FindWithTag("Player");
+        hitdamage = DamageTaken;
+    }
+	
+	// Update is called once per frame
+	void Update () {
         if (EditorApplication.isPlaying)
         {
+
 
             Hits0 = Physics.RaycastAll(Directions[0], 2f);
             Hits3 = Physics.RaycastAll(Directions[3], 5f);
@@ -152,7 +176,7 @@ public class Defender : MonoBehaviour {
                 {
 
 
-                    if (Hits0 != null && Hits0[hitCounter0].collider != null)
+                    if (CurrentHits0[hitCounter0].transform.gameObject != null)
                     {
 
                         if (CurrentHits0[hitCounter0].transform.gameObject == Player && flipped == false)
@@ -189,9 +213,10 @@ public class Defender : MonoBehaviour {
                     Hits0Run = true;
                 }
 
+
+
                 Debug.Log(" Hits3: " + CurrentHits3.Length);
                 //Hits Direction 3
-
 
                 hitCounter3--;
                 if (hitCounter3 > -1 && CurrentHits3 != null && TheEnemy != null)
@@ -240,28 +265,7 @@ public class Defender : MonoBehaviour {
                         move = true;
 
                     }
-                    if (TheEnemy != null)
-                    {
-                        /* if (CurrentHits3[hitCounter3].transform.gameObject == Player && Player.transform.position.x < TheEnemy.transform.position.x && flipped == true && TheEnemy != null)
-                         {
-                             moveTowardsPlayerNeg = true;
-                             move = false;
-                         }
-                         else if (CurrentHits3[hitCounter3].transform.gameObject == Player && Player.transform.position.x > TheEnemy.transform.position.x && flipped == false && TheEnemy != null)
-                         {
-                             moveTowardsPlayerPos = true;
-                             move = false;
-                         }
-                         else
-                         {
-                             Hits3Run = true;
-                             PlayerLeft = false;
-                             PlayerRight = false;
-                             moveTowardsPlayerNeg = false;
-                             moveTowardsPlayerPos = false;
-                             move = true;
-                         }*/
-                    }
+
 
                 }
                 else
@@ -494,8 +498,5 @@ public class Defender : MonoBehaviour {
                 turn = false;
             }
         }
-       
     }
 }
-
-

@@ -38,8 +38,10 @@ public class Shooting : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-       if(Player != null) 
-        Arm.transform.position = Player.transform.position;
+        if (Player != null)
+        {
+            Arm.transform.position = Player.transform.position;
+        }
 
         bullet.GetComponent<Rigidbody>().isKinematic = true;
 
@@ -50,7 +52,6 @@ public class Shooting : MonoBehaviour {
         //Rotate Arm
         if(Input.GetAxis("MoveAim") == 1)
         {
-            Debug.Log("Button1");
             Debug.Log("Nappi1");
 
             bullet.GetComponent<Rigidbody>().isKinematic = false;
@@ -63,7 +64,6 @@ public class Shooting : MonoBehaviour {
         }
         else if(Input.GetAxis("MoveAim") == -1)
         {
-            Debug.Log("Button0");
             Debug.Log("Nappi0");
             bullet.GetComponent<Rigidbody>().isKinematic = false;
             Arm.GetComponent<Rigidbody>().isKinematic = false;

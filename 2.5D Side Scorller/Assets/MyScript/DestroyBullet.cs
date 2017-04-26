@@ -22,10 +22,8 @@ public class DestroyBullet : MonoBehaviour {
                 Physics.IgnoreCollision(this.gameObject.GetComponent<Collider>(), playerCols[i]);
             }
         }
-        if (thespawnpoint != null)
-        {
-            Physics.IgnoreCollision(this.gameObject.GetComponent<Collider>(), thespawnpoint.GetComponent<Collider>(), true);
-        }
+        Physics.IgnoreCollision(this.gameObject.GetComponent<Collider>(), thespawnpoint.GetComponent<Collider>(), true);
+
         Destroy(this.gameObject,time);
 	}
 	

@@ -15,7 +15,7 @@ public class SlashAttack : MonoBehaviour {
     public float AnimSpeed;
     public float Damage;
     public float TimeToStrike;
-    public float ResetTime;
+    float ResetTime;
     GameObject DamageArea;
     float time;
     bool boxSet;
@@ -40,7 +40,7 @@ public class SlashAttack : MonoBehaviour {
         enemyCount = GameObject.FindGameObjectsWithTag("Enemy").Length;
         EnemyOnZone = false;
         boxSet = false;
-        //Animator.SetFloat("Speed", AnimSpeed);
+        Animator.SetFloat("Speed", AnimSpeed);
         chosenEnemy = -1;
         ObjectSend = false;
         FoundObject = false;
@@ -49,11 +49,10 @@ public class SlashAttack : MonoBehaviour {
         DamageArea.transform.position = Player.transform.position + new Vector3(0,1,0);
         DamageArea.GetComponent<BoxCollider>().isTrigger = true;
         DamageArea.name = "Damage Area";
-        Physics.IgnoreCollision(DamageArea.GetComponent<BoxCollider>(), this.gameObject.GetComponent<Collider>());
 
 
 
-        //ResetTime = TimeToStrike;
+        ResetTime = TimeToStrike;
     }
 
     void FixedUpdate()
