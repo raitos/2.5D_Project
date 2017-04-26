@@ -102,6 +102,10 @@
     <Compile Include="Assets\MyScript\WEAwaking.cs" />
     <Compile Include="Assets\MyScript\WEeditorSc.cs" />
     <Compile Include="Assets\MyScript\WeakEnemy.cs" />
+<<<<<<< HEAD
+=======
+    <Compile Include="Assets\MyScript\ZeroMovement.cs" />
+>>>>>>> origin/master
     <Compile Include="Assets\New Scripts\Controller.cs" />
     <Compile Include="Assets\New Scripts\PlayerPhysics.cs" />
     <Compile Include="Assets\UnityChan\SplashScreen\Scripts\SplashScreen.cs" />
