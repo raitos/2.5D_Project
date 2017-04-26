@@ -14,6 +14,7 @@ public class WeakEnemy : Enemy {
     public GameObject ObstacleWall;
     public EnemySpawner EnemyList;
     GameObject[] TheListOfEnemies;
+    GameObject DamageArea;
    
 
    
@@ -45,6 +46,7 @@ public class WeakEnemy : Enemy {
     bool Hits1Run;
     bool Hits3Run;
     bool[] EnemiesDestroyed;
+    bool setDamageBox;
 
 
 
@@ -60,6 +62,7 @@ public class WeakEnemy : Enemy {
     public float BulletSpeed;
     public float bulletLength;
     public float SpaceToFire;
+    public float DamageDoneToPlayer;
     float[] Values;
     int hitCounter0;
     int hitCounter1;
@@ -80,7 +83,8 @@ public class WeakEnemy : Enemy {
             JumpSpeed = 0.12f;
             BulletSpeed = 20f;
             bulletLength = 0.5f;
-            SpaceToFire = 5;
+            SpaceToFire = 1f;
+            DamageDoneToPlayer = 10;
             
             
         }
@@ -90,7 +94,7 @@ public class WeakEnemy : Enemy {
     // Use this for initialization
     void Start ()
     {
-        
+        setDamageBox = true;
         Hits0Run = false;
         Hits1Run = false;
         Hits3Run = false;
@@ -116,7 +120,8 @@ public class WeakEnemy : Enemy {
         Values = new float[8];
         Player = GameObject.FindWithTag("Player");
         hitdamage = DamageTaken;
-	}
+       
+    }
 
     // Update is called once per frame
     void FixedUpdate()
@@ -135,8 +140,14 @@ public class WeakEnemy : Enemy {
     {
         if (EditorApplication.isPlaying)
         {
-
-            
+            if (setDamageBox)
+            {
+                DamageArea = Instantiate(new GameObject(), TheEnemy.transform);
+                DamageArea.AddComponent<BoxCollider>().size = new Vector3(0.5f, 1, 1);
+                DamageArea.transform.position = TheEnemy.transform.position;
+                DamageArea.name = "Enemy Damage Area";
+                setDamageBox = false;
+            }
             Hits0 = Physics.RaycastAll(Directions[0], 2f);
             Hits3 = Physics.RaycastAll(Directions[3], 5f);
             Hits1 = Physics.RaycastAll(Directions[1], 1.5f);
@@ -155,7 +166,7 @@ public class WeakEnemy : Enemy {
                 hitCounter3 = Hits3.Length;
                 SetDirectionHits = false;
             }
-            if (flipped == false)
+            if (flipped == false && Player != null)
             {
 
                 Directions[0].origin = TheEnemy.transform.position;
@@ -168,7 +179,7 @@ public class WeakEnemy : Enemy {
                 Directions[3].direction = (-TheEnemy.transform.position + Player.transform.position).normalized;
 
             }
-            else if (flipped == true)
+            else if (flipped == true && Player != null)
             {
                 Directions[0].origin = TheEnemy.transform.position;
                 Directions[0].direction = new Vector3(1, 0, 0);
@@ -234,7 +245,7 @@ public class WeakEnemy : Enemy {
                 //Hits Direction 3
                 
                     hitCounter3--;
-                    if (hitCounter3 > -1 && CurrentHits3 != null && TheEnemy != null)
+                    if (hitCounter3 > -1 && CurrentHits3 != null && TheEnemy != null && Player != null)
                     {
                         
                         
@@ -280,28 +291,7 @@ public class WeakEnemy : Enemy {
                                   move = true;
                                   
                             }
-                            if (TheEnemy != null)
-                            { 
-                                 /* if (CurrentHits3[hitCounter3].transform.gameObject == Player && Player.transform.position.x < TheEnemy.transform.position.x && flipped == true && TheEnemy != null)
-                                  {
-                                      moveTowardsPlayerNeg = true;
-                                      move = false;
-                                  }
-                                  else if (CurrentHits3[hitCounter3].transform.gameObject == Player && Player.transform.position.x > TheEnemy.transform.position.x && flipped == false && TheEnemy != null)
-                                  {
-                                      moveTowardsPlayerPos = true;
-                                      move = false;
-                                  }
-                                  else
-                                  {
-                                      Hits3Run = true;
-                                      PlayerLeft = false;
-                                      PlayerRight = false;
-                                      moveTowardsPlayerNeg = false;
-                                      moveTowardsPlayerPos = false;
-                                      move = true;
-                                  }*/
-                            }
+                            
 
                     }
                     else
@@ -437,32 +427,42 @@ public class WeakEnemy : Enemy {
             //------------------------------ Execute Part ---------------------------------
             if (shoot)
             {
-                GameObject Bullet;
-
-
-                Vector3 TargetDir = (-TheEnemy.transform.position + Player.transform.position).normalized;
-                float rotzi = Mathf.Acos(TargetDir.x / TargetDir.magnitude) * Mathf.Rad2Deg;
-                Bullet = GameObject.CreatePrimitive(PrimitiveType.Capsule);
-                Bullet.AddComponent<Rigidbody>().isKinematic = false;
-                Bullet.transform.localScale = new Vector3(0.25f, 0.25f, 0.25f);
-
-                Bullet.transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, rotzi + 90));
-                Bullet.transform.position = TheEnemy.transform.position;
-                Bullet.AddComponent<DestroyBullet>();
-                Bullet.GetComponent<DestroyBullet>().thespawnpoint = TheEnemy;
-                Bullet.GetComponent<DestroyBullet>().time = bulletLength;
-                Bullet.GetComponent<DestroyBullet>().EnemyBullet = true;
-                
-                for (int i = 0; i < TheListOfEnemies.Length; i++)
+               
+                if (flipped == true)
                 {
-                    if (TheListOfEnemies[i] != null)
+                    RaycastHit[] hits = Physics.BoxCastAll(DamageArea.GetComponent<BoxCollider>().transform.position - new Vector3(0.5f,0,0),
+              new Vector3(DamageArea.GetComponent<BoxCollider>().size.x / 2, DamageArea.GetComponent<BoxCollider>().size.y / 2, DamageArea.GetComponent<BoxCollider>().size.z / 2), new Vector3(-1, 0, 0), DamageArea.transform.rotation, DamageArea.GetComponent<BoxCollider>().size.x / 2);
+                    
+                    for (int i = 0; i < hits.Length; i++)
                     {
-                        Physics.IgnoreCollision(Bullet.GetComponent<CapsuleCollider>(), TheListOfEnemies[i].GetComponent<CapsuleCollider>());
+                        if (hits[i].collider != null)
+                        {
+                            if (hits[i].transform.gameObject == Player)
+                            {
+                                Player.GetComponent<PlayerHealth>().Health = Player.GetComponent<PlayerHealth>().Health - DamageDoneToPlayer;
+                            }
+                        }
                     }
                 }
+                else if (flipped == false)
+                {
+                    RaycastHit[] hits = Physics.BoxCastAll(DamageArea.GetComponent<BoxCollider>().transform.position + new Vector3(0.5f, 0, 0),
+              new Vector3(DamageArea.GetComponent<BoxCollider>().size.x / 2, DamageArea.GetComponent<BoxCollider>().size.y / 2, DamageArea.GetComponent<BoxCollider>().size.z / 2), new Vector3(1, 0, 0), DamageArea.transform.rotation, DamageArea.GetComponent<BoxCollider>().size.x / 2);
 
-                Bullet.GetComponent<Rigidbody>().AddForce((TargetDir + new Vector3(0, 0.25f, 0)) * BulletSpeed, ForceMode.VelocityChange);
+                    for (int i = 0; i < hits.Length; i++)
+                    {
+                        if (hits[i].collider != null)
+                        {
+                            if (hits[i].transform.gameObject == Player)
+                            {
+                                Player.GetComponent<PlayerHealth>().Health = Player.GetComponent<PlayerHealth>().Health - DamageDoneToPlayer;
+                            }
+                        }
+                    }
 
+                }
+                Debug.Log("Enemy Hitted");
+                
                 shoot = false;
             }
 

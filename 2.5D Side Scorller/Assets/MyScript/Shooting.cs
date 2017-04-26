@@ -38,8 +38,10 @@ public class Shooting : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        
-        Arm.transform.position = Player.transform.position;
+        if (Player != null)
+        {
+            Arm.transform.position = Player.transform.position;
+        }
 
         bullet.GetComponent<Rigidbody>().isKinematic = true;
 
