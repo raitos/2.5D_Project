@@ -17,7 +17,11 @@ public class PlayerHealth : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update ()
-    {
+    {   
+        if(Health < 100)
+        {
+            Debug.Log("PlayerOsuma");
+        }
 		if(Health <= 0)
         {
             Destroy(this.gameObject);

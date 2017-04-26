@@ -87,6 +87,7 @@
     <Compile Include="Assets\MyScript\Shooting.cs" />
     <Compile Include="Assets\MyScript\SlashAttack.cs" />
     <Compile Include="Assets\MyScript\UnityChanMovement.cs" />
+    <Compile Include="Assets\MyScript\WEAwaking.cs" />
     <Compile Include="Assets\MyScript\WEeditorSc.cs" />
     <Compile Include="Assets\MyScript\WeakEnemy.cs" />
     <Compile Include="Assets\MyScript\ZeroMovement.cs" />
