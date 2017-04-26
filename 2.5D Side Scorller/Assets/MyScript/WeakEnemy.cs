@@ -8,13 +8,13 @@ public class WeakEnemy : Enemy {
 
     GameObject TheEnemy;
     GameObject Player;
-    GameObject DamageArea;
     public float DamageTaken;
     public Animator EnemyAnimator;
     public GameObject ObstacleBox;
     public GameObject ObstacleWall;
     public EnemySpawner EnemyList;
     GameObject[] TheListOfEnemies;
+    GameObject DamageArea;
    
 
    
@@ -46,6 +46,7 @@ public class WeakEnemy : Enemy {
     bool Hits1Run;
     bool Hits3Run;
     bool[] EnemiesDestroyed;
+    bool setDamageBox;
 
 
 
@@ -61,6 +62,7 @@ public class WeakEnemy : Enemy {
     public float BulletSpeed;
     public float bulletLength;
     public float SpaceToFire;
+    public float DamageDoneToPlayer;
     float[] Values;
     int hitCounter0;
     int hitCounter1;
@@ -81,7 +83,8 @@ public class WeakEnemy : Enemy {
             JumpSpeed = 0.12f;
             BulletSpeed = 20f;
             bulletLength = 0.5f;
-            SpaceToFire = 5;
+            SpaceToFire = 1f;
+            DamageDoneToPlayer = 10;
             
             
         }
@@ -91,7 +94,7 @@ public class WeakEnemy : Enemy {
     // Use this for initialization
     void Start ()
     {
-        
+        setDamageBox = true;
         Hits0Run = false;
         Hits1Run = false;
         Hits3Run = false;
@@ -117,11 +120,7 @@ public class WeakEnemy : Enemy {
         Values = new float[8];
         Player = GameObject.FindWithTag("Player");
         hitdamage = DamageTaken;
-        DamageArea = Instantiate(new GameObject(), TheEnemy.transform);
-        DamageArea.AddComponent<BoxCollider>().size = new Vector3(0.5f, 1, 1);
-        DamageArea.transform.position = TheEnemy.transform.position;
-        DamageArea.GetComponent<BoxCollider>().isTrigger = true;
-        DamageArea.name = "Damage Area";
+       
     }
 
     // Update is called once per frame
@@ -139,11 +138,16 @@ public class WeakEnemy : Enemy {
     // Let's Do them things
     void Update()
     {
-       
         if (EditorApplication.isPlaying)
         {
-
-            
+            if (setDamageBox)
+            {
+                DamageArea = Instantiate(new GameObject(), TheEnemy.transform);
+                DamageArea.AddComponent<BoxCollider>().size = new Vector3(0.5f, 1, 1);
+                DamageArea.transform.position = TheEnemy.transform.position;
+                DamageArea.name = "Enemy Damage Area";
+                setDamageBox = false;
+            }
             Hits0 = Physics.RaycastAll(Directions[0], 2f);
             Hits3 = Physics.RaycastAll(Directions[3], 5f);
             Hits1 = Physics.RaycastAll(Directions[1], 1.5f);
@@ -198,7 +202,7 @@ public class WeakEnemy : Enemy {
                 {
 
 
-                    if (Hits0 != null && Hits0[hitCounter0].collider != null)
+                    if (CurrentHits0[hitCounter0].transform.gameObject != null)
                     {
 
                         if (CurrentHits0[hitCounter0].transform.gameObject == Player && flipped == false)
@@ -249,19 +253,31 @@ public class WeakEnemy : Enemy {
                             if (Player.transform.position.x <= TheEnemy.transform.position.x + SpaceToFire && Player.transform.position.x >= TheEnemy.transform.position.x && flipped == false && TheEnemy != null)
                             {
                                 move = false;
-                                moveTowardsPlayerPos = true;
+                                moveTowardsPlayerPos = false;
                                 PlayerLeft = false;
                                 PlayerRight = true;
-                               
+                                TimeToShoot = TimeToShoot - time;
+
+                                if (TimeToShoot < 0)
+                                {
+                                    shoot = true;
+                                    TimeToShoot = ResetShoot;
+                                }
                                   Hits3Run = true;
                              }
                             else if (Player.transform.position.x <= TheEnemy.transform.position.x && Player.transform.position.x >= TheEnemy.transform.position.x - SpaceToFire && flipped == true && TheEnemy != null)
                             {
                                 move = false;
-                                moveTowardsPlayerNeg = true;
+                                moveTowardsPlayerNeg = false;
                                 PlayerRight = false;
                                 PlayerLeft = true;
-                                
+                                TimeToShoot = TimeToShoot - time;
+
+                                if (TimeToShoot < 0)
+                                {
+                                    shoot = true;
+                                    TimeToShoot = ResetShoot;
+                                }
                                  Hits3Run = true;
                             }
                             else
@@ -275,7 +291,7 @@ public class WeakEnemy : Enemy {
                                   move = true;
                                   
                             }
-                           
+                            
 
                     }
                     else
@@ -329,15 +345,7 @@ public class WeakEnemy : Enemy {
 
                         }
 
-                        if(CurrentHits1[hitCounter1].transform.gameObject == Player)
-                        {
-                            TimeToShoot = TimeToShoot - time;
-                            if(TimeToShoot < 0)
-                            {
-                                shoot = true;
-                                TimeToShoot = ResetShoot;
-                            }
-                        }
+
 
 
                         GameObject[] findEnemy = GameObject.FindGameObjectsWithTag("Enemy");
@@ -419,39 +427,42 @@ public class WeakEnemy : Enemy {
             //------------------------------ Execute Part ---------------------------------
             if (shoot)
             {
+               
                 if (flipped == true)
                 {
-                    RaycastHit[] hits = Physics.BoxCastAll(DamageArea.GetComponent<BoxCollider>().transform.position,
+                    RaycastHit[] hits = Physics.BoxCastAll(DamageArea.GetComponent<BoxCollider>().transform.position - new Vector3(0.5f,0,0),
               new Vector3(DamageArea.GetComponent<BoxCollider>().size.x / 2, DamageArea.GetComponent<BoxCollider>().size.y / 2, DamageArea.GetComponent<BoxCollider>().size.z / 2), new Vector3(-1, 0, 0), DamageArea.transform.rotation, DamageArea.GetComponent<BoxCollider>().size.x / 2);
-
-                    
                     
                     for (int i = 0; i < hits.Length; i++)
                     {
-                       if( hits[i].collider != null && hits[i].transform.gameObject == Player)
+                        if (hits[i].collider != null)
                         {
-                            Player.GetComponent<PlayerHealth>().Health = Player.GetComponent<PlayerHealth>().Health - Player.GetComponent<PlayerHealth>().Damage;
+                            if (hits[i].transform.gameObject == Player)
+                            {
+                                Player.GetComponent<PlayerHealth>().Health = Player.GetComponent<PlayerHealth>().Health - DamageDoneToPlayer;
+                            }
                         }
-                        
                     }
                 }
                 else if (flipped == false)
                 {
-                    RaycastHit[] hits = Physics.BoxCastAll(DamageArea.GetComponent<BoxCollider>().transform.position,
+                    RaycastHit[] hits = Physics.BoxCastAll(DamageArea.GetComponent<BoxCollider>().transform.position + new Vector3(0.5f, 0, 0),
               new Vector3(DamageArea.GetComponent<BoxCollider>().size.x / 2, DamageArea.GetComponent<BoxCollider>().size.y / 2, DamageArea.GetComponent<BoxCollider>().size.z / 2), new Vector3(1, 0, 0), DamageArea.transform.rotation, DamageArea.GetComponent<BoxCollider>().size.x / 2);
-                    
 
                     for (int i = 0; i < hits.Length; i++)
                     {
-                         if(hits[i].collider != null && hits[i].transform.gameObject == Player)
+                        if (hits[i].collider != null)
                         {
-                            Player.GetComponent<PlayerHealth>().Health = Player.GetComponent<PlayerHealth>().Health - Player.GetComponent<PlayerHealth>().Damage;
+                            if (hits[i].transform.gameObject == Player)
+                            {
+                                Player.GetComponent<PlayerHealth>().Health = Player.GetComponent<PlayerHealth>().Health - DamageDoneToPlayer;
+                            }
                         }
-                        
                     }
 
                 }
-
+                Debug.Log("Enemy Hitted");
+                
                 shoot = false;
             }
 
@@ -469,12 +480,12 @@ public class WeakEnemy : Enemy {
             }
             if (moveTowardsPlayerNeg)
             {
-                TheEnemy.transform.position = new Vector3(TheEnemy.transform.position.x - EnemySpeed * 1.25f, TheEnemy.transform.position.y, TheEnemy.transform.position.z);
+                TheEnemy.transform.position = new Vector3(TheEnemy.transform.position.x - EnemySpeed, TheEnemy.transform.position.y, TheEnemy.transform.position.z);
             }
             if (moveTowardsPlayerPos)
             {
 
-                TheEnemy.transform.position = new Vector3(TheEnemy.transform.position.x + EnemySpeed * 1.25f, TheEnemy.transform.position.y, TheEnemy.transform.position.z);
+                TheEnemy.transform.position = new Vector3(TheEnemy.transform.position.x + EnemySpeed, TheEnemy.transform.position.y, TheEnemy.transform.position.z);
 
             }
             if (jumpLeft)
