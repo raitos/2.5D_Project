@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Shooting : MonoBehaviour {
 
-    public GameObject Player;
     public GameObject bullet;
     public GameObject Arm;
   //  public ConfigurableJoint playerBullet;
@@ -28,7 +27,7 @@ public class Shooting : MonoBehaviour {
     {
         resetTime = timeToShoot;
         shoot = false;
-       
+        
     
         bullettransf = bullet.GetComponent<Transform>();
         playertransf = Arm.GetComponent<Transform>();
@@ -38,13 +37,7 @@ public class Shooting : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        if (Player != null)
-        {
-            Arm.transform.position = Player.transform.position;
-        }
-
-        bullet.GetComponent<Rigidbody>().isKinematic = true;
-
+       
         Vector3 targetDir = (-Arm.transform.position + bullet.transform.position).normalized;
         float rotzi = Mathf.Acos(targetDir.x / targetDir.magnitude) * Mathf.Rad2Deg;
 
@@ -52,9 +45,8 @@ public class Shooting : MonoBehaviour {
         //Rotate Arm
         if(Input.GetAxis("MoveAim") == 1)
         {
-            Debug.Log("Nappi1");
-
-            bullet.GetComponent<Rigidbody>().isKinematic = false;
+            Debug.Log("Button1");
+           
             Arm.GetComponent<Rigidbody>().isKinematic = false;
             
 
@@ -64,8 +56,8 @@ public class Shooting : MonoBehaviour {
         }
         else if(Input.GetAxis("MoveAim") == -1)
         {
-            Debug.Log("Nappi0");
-            bullet.GetComponent<Rigidbody>().isKinematic = false;
+            Debug.Log("Button0");
+         
             Arm.GetComponent<Rigidbody>().isKinematic = false;
             
 
@@ -74,7 +66,7 @@ public class Shooting : MonoBehaviour {
         }
         else
         {
-            bullet.GetComponent<Rigidbody>().isKinematic = true;
+            
             Arm.GetComponent<Rigidbody>().isKinematic = true;
           
         }
@@ -105,8 +97,6 @@ public class Shooting : MonoBehaviour {
             BulletShot.GetComponent<Rigidbody>().AddForce((targetDir + new Vector3(Random.Range(BulletSpreadLimit, -BulletSpreadLimit), Random.Range(BulletSpreadLimit, -BulletSpreadLimit),0)) * BulletSpeed, ForceMode.VelocityChange);
             BulletShot.AddComponent<DestroyBullet>().time = bulletLenght;
             BulletShot.GetComponent<DestroyBullet>().thespawnpoint = bullet;
-            BulletShot.GetComponent<DestroyBullet>().Player = Player;
-            BulletShot.GetComponent<DestroyBullet>().EnemyBullet = false;
 
         }
        
