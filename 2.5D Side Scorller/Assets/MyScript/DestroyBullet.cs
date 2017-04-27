@@ -7,6 +7,7 @@ public class DestroyBullet : MonoBehaviour {
 
     public GameObject thespawnpoint;
     public float time;
+    public bool isEnemyBullet;
 
     // Use this for initialization
     void Start ()
