@@ -75,15 +75,22 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\MyScript\Attacker.cs" />
+    <Compile Include="Assets\MyScript\Boss.cs" />
+    <Compile Include="Assets\MyScript\Defender.cs" />
     <Compile Include="Assets\MyScript\DestroyBullet.cs" />
     <Compile Include="Assets\MyScript\EditorScript.cs" />
     <Compile Include="Assets\MyScript\Enemy.cs" />
     <Compile Include="Assets\MyScript\EnemySpawner.cs" />
     <Compile Include="Assets\MyScript\FollowPlayer.cs" />
+    <Compile Include="Assets\MyScript\PlayerHealth.cs" />
     <Compile Include="Assets\MyScript\Shooting.cs" />
     <Compile Include="Assets\MyScript\SlashAttack.cs" />
     <Compile Include="Assets\MyScript\UnityChanMovement.cs" />
+    <Compile Include="Assets\MyScript\WEAwaking.cs" />
+    <Compile Include="Assets\MyScript\WEeditorSc.cs" />
     <Compile Include="Assets\MyScript\WeakEnemy.cs" />
+    <Compile Include="Assets\MyScript\ZeroMovement.cs" />
     <Compile Include="Assets\New Scripts\Controller.cs" />
     <Compile Include="Assets\New Scripts\PlayerPhysics.cs" />
     <Compile Include="Assets\UnityChan\SplashScreen\Scripts\SplashScreen.cs" />
