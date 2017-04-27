@@ -8,15 +8,13 @@ public class SlashAttack : MonoBehaviour {
     public GameObject Player;
     public GameObject enemySpawner;
     public Animator Animator;
-    Animation Slash;
     GameObject[] TheEnemys;
 
     public Vector3 hitboxOffset;
     public float AnimSpeed;
     public float Damage;
     public float TimeToStrike;
-    int strikeCount;
-    float ResetTime;
+    public float ResetTime;
     GameObject DamageArea;
     float time;
     bool boxSet;
@@ -35,26 +33,25 @@ public class SlashAttack : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
-       
-        
+
         TheEnemys = enemySpawner.GetComponent<EnemySpawner>().ListOfEnemies;
         enemyCount = GameObject.FindGameObjectsWithTag("Enemy").Length;
         EnemyOnZone = false;
         boxSet = false;
-        Animator.SetFloat("Speed", AnimSpeed);
+        //Animator.SetFloat("Speed", AnimSpeed);
         chosenEnemy = -1;
         ObjectSend = false;
         FoundObject = false;
-        strikeCount = 0;
         DamageArea = Instantiate(new GameObject(), Player.transform);
         DamageArea.AddComponent<BoxCollider>().size = new Vector3(0.5f,1,1);
         DamageArea.transform.position = Player.transform.position + new Vector3(0,1,0);
         DamageArea.GetComponent<BoxCollider>().isTrigger = true;
         DamageArea.name = "Damage Area";
+        Physics.IgnoreCollision(DamageArea.GetComponent<BoxCollider>(), this.gameObject.GetComponent<Collider>());
 
 
 
-        ResetTime = TimeToStrike;
+        //ResetTime = TimeToStrike;
     }
 
     void FixedUpdate()
@@ -218,8 +215,7 @@ public class SlashAttack : MonoBehaviour {
         //look for slash attack input
         if (Input.GetAxis("SlashAtc") == 1)
         {
-
-            if (TimeToStrike < 0 && strikeCount == 0)
+            if (TimeToStrike < 0)
             {
                 Animator.SetFloat("Slash", 2);
 
@@ -236,50 +232,7 @@ public class SlashAttack : MonoBehaviour {
                     }
                 }
                 
-                TimeToStrike = ResetTime/4;
-                strikeCount++;
-            }
-            else
-            if (TimeToStrike < 0 && strikeCount == 1)
-            {
-                Animator.SetFloat("Slash", 2);
-
-                if (chosenEnemy != -1)
-                {
-                    Debug.Log("Lyötiin");
-                    if (TheEnemys[chosenEnemy] != null)
-                    {
-                        Debug.Log("Lyötiin myös");
-                        if (EnemyOnZone)
-                        {
-                            TheEnemys[chosenEnemy].GetComponent<Enemy>().Health = TheEnemys[chosenEnemy].GetComponent<Enemy>().Health - Damage;
-                        }
-                    }
-                }
-
-                TimeToStrike = ResetTime/4;
-                strikeCount++;
-            }
-            else
-            if (TimeToStrike < 0 && strikeCount == 2)
-            {
-                Animator.SetFloat("Slash", 2);
-
-                if (chosenEnemy != -1)
-                {
-                    Debug.Log("Lyötiin");
-                    if (TheEnemys[chosenEnemy] != null)
-                    {
-                        Debug.Log("Lyötiin myös");
-                        if (EnemyOnZone)
-                        {
-                            TheEnemys[chosenEnemy].GetComponent<Enemy>().Health = TheEnemys[chosenEnemy].GetComponent<Enemy>().Health - Damage;
-                        }
-                    }
-                }
-
                 TimeToStrike = ResetTime;
-                strikeCount = 0;
             }
             else
             {

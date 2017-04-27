@@ -52,24 +52,22 @@ public class EnemySpawner : MonoBehaviour {
         }
         if (!EditorApplication.isPlaying)
         {
-
-            /*  if (once == false)
-              {
-                  ListOfEnemies = new GameObject[AmountOfEnemies];
-                  PositionsOfEnemies = new Vector3[AmountOfEnemies];
-
-                  once = true;
-              }*/
-            if (ListOfEnemies != null)
+            
+          /*  if (once == false)
             {
-                for (int i = 0; i < ListOfEnemies.Length; i++)
+                ListOfEnemies = new GameObject[AmountOfEnemies];
+                PositionsOfEnemies = new Vector3[AmountOfEnemies];
+                
+                once = true;
+            }*/
+            for (int i = 0; i < ListOfEnemies.Length; i++)
+            {
+                if (ListOfEnemies[i] == null)
                 {
-                    if (ListOfEnemies[i] == null)
-                    {
-                        ListOfEnemies[i] = currentList[i];
-                    }
+                    ListOfEnemies[i] = currentList[i];
                 }
             }
+
             if (AmountOfEnemies < ListOfEnemies.Length && (AmountOfEnemies != ListOfEnemies.Length || AmountOfEnemies != PositionsOfEnemies.Length))
             {
                 for (int i = ListOfEnemies.Length - 1; i > AmountOfEnemies - 1; i--)
