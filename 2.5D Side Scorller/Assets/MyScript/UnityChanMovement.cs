@@ -21,7 +21,7 @@ public class UnityChanMovement : MonoBehaviour
     private float currentDelay = 0;
     public float delay = 0.2f;
     private bool walljump = false;
-    int dushDirection = 0; // 0 = no dush, 1 = right, -1 = left
+    int dushDirection = 0; // 0 = no dush, 1 = right, -1 = left WHY IS THERE STILL TAKUMI CODE HERE!?
     float dushTimer = 0;
     float dushDuration = 0.2f;
     //---------------------------------------------------------------------
