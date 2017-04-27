@@ -8,6 +8,8 @@ public class Enemy : MonoBehaviour {
     public float Health;
     public float hitdamage;
     public bool Destroyed;
+    float TimeToDie;
+    float thetime;
     void OnCollisionEnter(Collision col)
     {
         if (col.gameObject.Equals(GameObject.Find("Bullet(Clone)")))
@@ -20,6 +22,8 @@ public class Enemy : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
+        TimeToDie = 1f;
+        thetime = Time.deltaTime;
         Destroyed = false;
         this.gameObject.tag = "Enemy";
 	}
@@ -29,8 +33,12 @@ public class Enemy : MonoBehaviour {
     {
 		if(Health <= 0)
         {
-            DestroyImmediate(enemy.gameObject,true);
-            enemy = null;
+            TimeToDie = TimeToDie - thetime;
+            if (TimeToDie < 0)
+            {
+                DestroyImmediate(enemy.gameObject, true);
+                enemy = null;
+            }
         }
         if (Health < 75 && Health >= 25)
         {

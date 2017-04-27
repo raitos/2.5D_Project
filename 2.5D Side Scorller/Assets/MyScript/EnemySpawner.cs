@@ -8,6 +8,7 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour {
 
     public GameObject EnemyTemplate;
+    
     public int AmountOfEnemies;
     public Vector3[] PositionsOfEnemies;
     public GameObject[] ListOfEnemies;
