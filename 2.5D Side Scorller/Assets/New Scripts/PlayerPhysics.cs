@@ -15,6 +15,8 @@ public class PlayerPhysics : MonoBehaviour {
     public LayerMask colMask;
     public LayerMask slopeMask;
 
+    public float timeScale = 1;
+
     Controller ctrl;
 
     BoxCollider collider;
@@ -92,13 +94,6 @@ public class PlayerPhysics : MonoBehaviour {
         }
 
 
-        //fix position if falling below ground
-        if (Physics.Raycast(transform.up, Vector2.down, ColSize.y, colMask) || Physics.Raycast(transform.up, Vector2.down, ColSize.y, slopeMask))
-        {
-            transform.Translate(Vector2.up);
-        }
-
-
         if (Dash) //Dash stuff
         {
             if (Input.GetKeyUp(KeyCode.C))
@@ -123,7 +118,7 @@ public class PlayerPhysics : MonoBehaviour {
         }
 
         Vector2 finalTransform = new Vector2(deltaX, deltaY);
-        transform.Translate(finalTransform);
+        transform.Translate(finalTransform * timeScale);
     }
 
     float CalculateAngle()//SLOPES ARE CALCULATED HERE

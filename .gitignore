@@ -22,6 +22,7 @@ ExportedObj/
 *.booproj
 *.svd
 *.pdb
+*.suo
 
 
 # Unity3D generated meta files
@@ -42,3 +43,4 @@ sysinfo.txt
 2.5D Side Scorller/Library/assetDatabase3
 2.5D Side Scorller/Library/CurrentLayout.dwlt
 2.5D Side Scorller/Library/expandedItems
+2.5D Side Scorller/.vs/2.5D Side Scorller/v14/.suo
