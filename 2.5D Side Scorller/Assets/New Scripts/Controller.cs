@@ -11,7 +11,7 @@ public class Controller : MonoBehaviour {
     public float speed;
     public float acceleration;
     public float jumpHeight;
-    int dir = 1;
+    public int dir = 1;
 
     GameObject animatedObj;
 
