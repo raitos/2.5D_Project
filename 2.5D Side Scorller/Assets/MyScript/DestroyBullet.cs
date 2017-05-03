@@ -6,13 +6,17 @@ public class DestroyBullet : MonoBehaviour {
 
 
     public GameObject thespawnpoint;
+    
     public float time;
+    public bool isEnemyBullet;
 
     // Use this for initialization
     void Start ()
     {
 
         Physics.IgnoreCollision(this.gameObject.GetComponent<Collider>(), thespawnpoint.GetComponent<Collider>(), true);
+
+        
 
         Destroy(this.gameObject,time);
 	}
@@ -21,11 +25,18 @@ public class DestroyBullet : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-		
+        
 	}
     void OnCollisionEnter(Collision col)
     {
+        if(col.gameObject == thespawnpoint.gameObject)
+        {
 
-        Destroy(this.gameObject);
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
+        
     }
 }
