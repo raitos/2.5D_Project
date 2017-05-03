@@ -97,6 +97,7 @@ public class Shooting : MonoBehaviour {
             BulletShot.GetComponent<Rigidbody>().AddForce((targetDir + new Vector3(Random.Range(BulletSpreadLimit, -BulletSpreadLimit), Random.Range(BulletSpreadLimit, -BulletSpreadLimit),0)) * BulletSpeed, ForceMode.VelocityChange);
             BulletShot.AddComponent<DestroyBullet>().time = bulletLenght;
             BulletShot.GetComponent<DestroyBullet>().thespawnpoint = bullet;
+            
 
         }
        

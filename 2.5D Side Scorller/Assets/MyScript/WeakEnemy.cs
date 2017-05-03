@@ -76,6 +76,7 @@ public class WeakEnemy : Enemy {
         {
             EnemyList = GameObject.Find("Spawner").GetComponent<EnemySpawner>();
 
+            EnemyAnimator = this.gameObject.GetComponent<Animator>();
             TimeToTurn = 0.25f;
             TimeToFall = 1f;
             TimeToShoot = 1f;
@@ -123,18 +124,7 @@ public class WeakEnemy : Enemy {
        
     }
 
-    // Update is called once per frame
-    void FixedUpdate()
-    {
-
-
-
-        if (EditorApplication.isPlaying)
-        {
-
-           
-        }
-    }
+    
     // Let's Do them things
     void Update()
     {
@@ -142,16 +132,49 @@ public class WeakEnemy : Enemy {
         {
             if (setDamageBox)
             {
-                DamageArea = Instantiate(new GameObject(), TheEnemy.transform);
-                DamageArea.AddComponent<BoxCollider>().size = new Vector3(0.5f, 1, 1);
+                
+                DamageArea = new GameObject();
                 DamageArea.transform.position = TheEnemy.transform.position;
+                DamageArea.AddComponent<BoxCollider>().size = new Vector3(0.5f, 1, 1);
+                DamageArea.GetComponent<BoxCollider>().enabled = false;
                 DamageArea.name = "Enemy Damage Area";
                 setDamageBox = false;
             }
+
+
+            DamageArea.transform.position = new Vector3(TheEnemy.transform.position.x, TheEnemy.transform.position.y, TheEnemy.transform.position.z);
+            if (flipped == false && Player != null)
+            {
+               
+                Directions[0].origin = TheEnemy.transform.position;
+                Directions[0].direction = new Vector3(-1, 0, 0);
+                Directions[1].origin = TheEnemy.transform.position;
+                Directions[1].direction = new Vector3(1, 0, 0);
+                Directions[2].origin = new Vector3(TheEnemy.transform.position.x, TheEnemy.transform.position.y - TheEnemy.GetComponent<CapsuleCollider>().bounds.extents.y, TheEnemy.transform.position.z);
+                Directions[2].direction = new Vector3(0, -1, 0);
+                Directions[3].origin = TheEnemy.transform.position;
+                Directions[3].direction = (-TheEnemy.transform.position + Player.transform.position).normalized;
+
+            }
+            else if (flipped == true && Player != null)
+            {
+                
+                Directions[0].origin = TheEnemy.transform.position;
+                Directions[0].direction = new Vector3(1, 0, 0);
+                Directions[1].origin = TheEnemy.transform.position;
+                Directions[1].direction = new Vector3(-1, 0, 0);
+                Directions[2].origin = new Vector3(TheEnemy.transform.position.x, TheEnemy.transform.position.y - TheEnemy.GetComponent<CapsuleCollider>().bounds.extents.y, TheEnemy.transform.position.z);
+                Directions[2].direction = new Vector3(0, -1, 0);
+                Directions[3].origin = TheEnemy.transform.position;
+                Directions[3].direction = (-TheEnemy.transform.position + Player.transform.position).normalized;
+
+            }
+
             Hits0 = Physics.RaycastAll(Directions[0], 2f);
             Hits3 = Physics.RaycastAll(Directions[3], 5f);
             Hits1 = Physics.RaycastAll(Directions[1], 1.5f);
 
+           
             if (SetDirectionHits)
             {
 
@@ -166,78 +189,49 @@ public class WeakEnemy : Enemy {
                 hitCounter3 = Hits3.Length;
                 SetDirectionHits = false;
             }
-            if (flipped == false && Player != null)
-            {
-
-                Directions[0].origin = TheEnemy.transform.position;
-                Directions[0].direction = new Vector3(-1, 0, 0);
-                Directions[1].origin = TheEnemy.transform.position;
-                Directions[1].direction = new Vector3(1, 0, 0);
-                Directions[2].origin = new Vector3(TheEnemy.transform.position.x, TheEnemy.transform.position.y - TheEnemy.GetComponent<CapsuleCollider>().bounds.extents.y, TheEnemy.transform.position.z);
-                Directions[2].direction = new Vector3(0, -1, 0);
-                Directions[3].origin = TheEnemy.transform.position;
-                Directions[3].direction = (-TheEnemy.transform.position + Player.transform.position).normalized;
-
-            }
-            else if (flipped == true && Player != null)
-            {
-                Directions[0].origin = TheEnemy.transform.position;
-                Directions[0].direction = new Vector3(1, 0, 0);
-                Directions[1].origin = TheEnemy.transform.position;
-                Directions[1].direction = new Vector3(-1, 0, 0);
-                Directions[2].origin = new Vector3(TheEnemy.transform.position.x, TheEnemy.transform.position.y - TheEnemy.GetComponent<CapsuleCollider>().bounds.extents.y, TheEnemy.transform.position.z);
-                Directions[2].direction = new Vector3(0, -1, 0);
-                Directions[3].origin = TheEnemy.transform.position;
-                Directions[3].direction = (-TheEnemy.transform.position + Player.transform.position).normalized;
-
-            }
-
-            if (SetDirectionHits == false && !Hits0Run && !Hits1Run && !Hits3Run)
+            if (SetDirectionHits == false)
             {
                 //Hits Direction 0
                 Debug.Log(" Hits0: " + Hits0.Length);
                 hitCounter0--;
 
-                if (hitCounter0 > -1 && CurrentHits0 != null && TheEnemy != null && CurrentHits0[hitCounter0].transform.gameObject != TheEnemy)
+                if (hitCounter0 > -1 && CurrentHits0 != null && TheEnemy != null)
                 {
 
 
                     if (CurrentHits0[hitCounter0].transform.gameObject != null)
                     {
-
-                        if (CurrentHits0[hitCounter0].transform.gameObject == Player && flipped == false)
+                        if (CurrentHits0[hitCounter0].transform.gameObject != TheEnemy)
                         {
-                            TheEnemy.transform.rotation = Quaternion.Euler(new Vector3(0, Player.transform.rotation.eulerAngles.y - 270, 0));
-                            flipped = true;
-                            move = false;
-                            Hits0Run = true;
 
-                        }
-                        else if (CurrentHits0[hitCounter0].transform.gameObject == Player && flipped == true)
-                        {
-                            TheEnemy.transform.rotation = Quaternion.Euler(new Vector3(0, Player.transform.rotation.eulerAngles.y + 270, 0));
-                            flipped = false;
-                            move = false;
-                            Hits0Run = true;
+                            if (CurrentHits0[hitCounter0].transform.gameObject == Player && flipped == false)
+                            {
+                                TheEnemy.transform.rotation = Quaternion.Euler(new Vector3(0, TheEnemy.transform.rotation.eulerAngles.y - 270, 0));
+                                flipped = true;
+                                move = false;
 
+
+                            }
+                            else if (CurrentHits0[hitCounter0].transform.gameObject == Player && flipped == true)
+                            {
+                                TheEnemy.transform.rotation = Quaternion.Euler(new Vector3(0, TheEnemy.transform.rotation.eulerAngles.y + 270, 0));
+                                flipped = false;
+                                move = false;
+
+
+                            }
                         }
-                        else
-                        {
-                            Hits0Run = true;
-                        }
+                        
                     }
                     else
                     {
-                        Hits0Run = true;
+                        move = true;
+                        
                     }
                             
                    
                 }
-                else
-                {
-
-                    Hits0Run = true;
-                }
+                
 
 
 
@@ -252,6 +246,7 @@ public class WeakEnemy : Enemy {
                            
                             if (Player.transform.position.x <= TheEnemy.transform.position.x + SpaceToFire && Player.transform.position.x >= TheEnemy.transform.position.x && flipped == false && TheEnemy != null)
                             {
+                                EnemyAnimator.SetInteger("Movement", 0);
                                 move = false;
                                 moveTowardsPlayerPos = false;
                                 PlayerLeft = false;
@@ -263,10 +258,11 @@ public class WeakEnemy : Enemy {
                                     shoot = true;
                                     TimeToShoot = ResetShoot;
                                 }
-                                  Hits3Run = true;
+                                  
                              }
                             else if (Player.transform.position.x <= TheEnemy.transform.position.x && Player.transform.position.x >= TheEnemy.transform.position.x - SpaceToFire && flipped == true && TheEnemy != null)
                             {
+                                EnemyAnimator.SetInteger("Movement", 0);
                                 move = false;
                                 moveTowardsPlayerNeg = false;
                                 PlayerRight = false;
@@ -278,12 +274,12 @@ public class WeakEnemy : Enemy {
                                     shoot = true;
                                     TimeToShoot = ResetShoot;
                                 }
-                                 Hits3Run = true;
+                                
                             }
                             else
                             {
-
-                                  Hits3Run = true;
+                                EnemyAnimator.SetInteger("Attack", 0);
+                                
                                   PlayerLeft = false;
                                   PlayerRight = false;
                                   moveTowardsPlayerNeg = false;
@@ -296,7 +292,7 @@ public class WeakEnemy : Enemy {
                     }
                     else
                     {
-                        Hits3Run = true;
+                        
                         PlayerLeft = false;
                         PlayerRight = false;
                         moveTowardsPlayerNeg = false;
@@ -319,77 +315,79 @@ public class WeakEnemy : Enemy {
                 Debug.Log(" Hits1: " + CurrentHits1.Length);
                 //Hits direction 1
                 hitCounter1--;
-                if (hitCounter1 > -1 && CurrentHits1.Length != 0 && TheEnemy != null && ObstacleBox != null)
+                if (hitCounter1 > -1 && TheEnemy != null && ObstacleBox != null)
                 {
-                    if (Hits1 != null && Hits1[hitCounter1].collider != null)
+                    if (Hits1.Length > 0 )
                     {
-
-                        if (CurrentHits1[hitCounter1].transform.gameObject == ObstacleBox && !jumpLeft && !jumpRight)// && move == true)
+                        if (Hits1[hitCounter1].collider != null)
                         {
-                            Debug.Log("Boxi havaittu");
-                            if (flipped == true && grounded)
+                            if (CurrentHits1[hitCounter1].transform.gameObject == ObstacleBox && !jumpLeft && !jumpRight)// && move == true)
                             {
-                                Debug.Log("hypätty");
-                                jumpLeft = true;
-                                move = false;
-                                moveTowardsPlayerNeg = false;
-                                moveTowardsPlayerPos = false;
+                                Debug.Log("Boxi havaittu");
+                                if (flipped == true && grounded)
+                                {
+                                    Debug.Log("hypätty");
+                                    jumpLeft = true;
+                                    move = false;
+                                    moveTowardsPlayerNeg = false;
+                                    moveTowardsPlayerPos = false;
+                                }
+                                else if (flipped == false && grounded)
+                                {
+                                    jumpRight = true;
+                                    move = false;
+                                    moveTowardsPlayerNeg = false;
+                                    moveTowardsPlayerPos = false;
+                                }
+
                             }
-                            else if (flipped == false && grounded)
+
+
+
+
+
+                            Debug.Log("Turn start");
+                            for (int j = 0; j < EnemyList.ListOfEnemies.Length; j++)
                             {
-                                jumpRight = true;
-                                move = false;
-                                moveTowardsPlayerNeg = false;
-                                moveTowardsPlayerPos = false;
+                                if (EnemyList.ListOfEnemies[j] != null)
+                                {
+                                    if (CurrentHits1[hitCounter1].transform.gameObject == EnemyList.ListOfEnemies[j] && EnemyList.ListOfEnemies[j] != TheEnemy)
+                                    {
+                                        Debug.Log("Turn");
+                                        move = false;
+                                        turn = true;
+
+                                    }
+                                }
                             }
 
-                        }
 
 
 
-
-                        GameObject[] findEnemy = GameObject.FindGameObjectsWithTag("Enemy");
-
-                        for (int j = 0; j < findEnemy.Length; j++)
-                        {
-                            if (CurrentHits1[hitCounter1].transform.gameObject == findEnemy[j] && findEnemy[j] != TheEnemy )
+                            if (CurrentHits1[hitCounter1].transform.gameObject == ObstacleWall && flipped == true && ObstacleWall != null)
                             {
-                                Debug.Log("Turn");
                                 move = false;
                                 turn = true;
-                                Hits1Run = true;
+
                             }
-                        }
+                            else if ((PlayerLeft || PlayerRight) && grounded)
+                            {
+                                move = false;
 
+                            }
+                            else
+                            {
+                                move = true;
 
-
-                        if (CurrentHits1[hitCounter1].transform.gameObject == ObstacleWall && flipped == true && ObstacleWall != null)
-                        {
-                            move = false;
-                            turn = true;
-                            Hits1Run = true;
-                        }
-                        else if ((PlayerLeft || PlayerRight) && grounded)
-                        {
-                            move = false;
-                            Hits1Run = true;
-                        }
-                        else
-                        {
-                            move = true;
-                            Hits1Run = true;
+                            }
                         }
                     }
                         
                 }
-                else
-                {
+            
 
-                    Hits1Run = true;
-                }
-
-                Debug.Log("Hits RUN: " + Hits0Run + " , " + Hits1Run + " , " + Hits3Run);
-                if (Hits0Run && Hits1Run && Hits3Run)
+                
+                if (hitCounter0 < 0 && hitCounter1 < 0 && hitCounter3 < 0)
                 {
                     Debug.Log("Directions reset");
                     SetDirectionHits = true;
@@ -427,7 +425,7 @@ public class WeakEnemy : Enemy {
             //------------------------------ Execute Part ---------------------------------
             if (shoot)
             {
-               
+                EnemyAnimator.SetInteger("Attack", 1);
                 if (flipped == true)
                 {
                     RaycastHit[] hits = Physics.BoxCastAll(DamageArea.GetComponent<BoxCollider>().transform.position - new Vector3(0.5f,0,0),
@@ -468,6 +466,7 @@ public class WeakEnemy : Enemy {
 
             if (move)
             {
+                EnemyAnimator.SetInteger("Movement",1);
                 if (flipped == false)
                 {
                     TheEnemy.transform.position = new Vector3(TheEnemy.transform.position.x + EnemySpeed, TheEnemy.transform.position.y, TheEnemy.transform.position.z);

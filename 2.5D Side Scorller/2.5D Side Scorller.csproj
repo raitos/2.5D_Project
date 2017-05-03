@@ -85,6 +85,7 @@
     <Compile Include="Assets\MyScript\FollowPlayer.cs" />
     <Compile Include="Assets\MyScript\PlayerHealth.cs" />
     <Compile Include="Assets\MyScript\Shooting.cs" />
+    <Compile Include="Assets\MyScript\ShootingTwo.cs" />
     <Compile Include="Assets\MyScript\SlashAttack.cs" />
     <Compile Include="Assets\MyScript\UnityChanMovement.cs" />
     <Compile Include="Assets\MyScript\WEAwaking.cs" />
