@@ -21,6 +21,7 @@ public class Controller : MonoBehaviour {
     private float tarSpeed;
     private Vector2 amountToMove;
 
+
     public float DashCoolDown = 1;
     bool DashCD = false;
     float dashT = 0;
@@ -91,7 +92,7 @@ public class Controller : MonoBehaviour {
             amountToMove.y = -0.01F;
             if (Input.GetKeyDown(KeyCode.X) && !playerPhysics.Dash)
             {
-                transform.Translate(Vector2.up * 0.2F);
+                transform.Translate(Vector2.up * 0.2F * playerPhysics.timeScale);
                 amountToMove.y = jumpHeight;
             }
         }
