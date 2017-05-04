@@ -67,11 +67,11 @@ public class Defender : Enemy {
 
     public void Awake()
     {
+   
 #if UNITY_EDITOR
-
         if (!EditorApplication.isPlaying && Autoconfigure == true)
         {
-            EnemyList = GameObject.Find("Spawner").GetComponent<EnemySpawner>();
+            EnemyList = GameObject.Find("DEFSpawner").GetComponent<EnemySpawner>();
 
             TimeToTurn = 0.25f;
             TimeToFall = 1f;
@@ -84,8 +84,8 @@ public class Defender : Enemy {
 
 
         }
-
 #endif
+
     }
     // Use this for initialization
     void Start () {
@@ -122,24 +122,7 @@ public class Defender : Enemy {
         {
 
 
-            Hits0 = Physics.RaycastAll(Directions[0], 2f);
-            Hits3 = Physics.RaycastAll(Directions[3], 5f);
-            Hits1 = Physics.RaycastAll(Directions[1], 1.5f);
-
-            if (SetDirectionHits)
-            {
-
-                CurrentHits0 = Hits0;
-                CurrentHits1 = Hits1;
-                CurrentHits3 = Hits3;
-                Hits0Run = false;
-                Hits1Run = false;
-                Hits3Run = false;
-                hitCounter0 = Hits0.Length;
-                hitCounter1 = Hits1.Length;
-                hitCounter3 = Hits3.Length;
-                SetDirectionHits = false;
-            }
+            
             if (flipped == false)
             {
 
@@ -165,53 +148,61 @@ public class Defender : Enemy {
                 Directions[3].direction = (-TheEnemy.transform.position + Player.transform.position).normalized;
 
             }
+            Hits0 = Physics.RaycastAll(Directions[0], 2f);
+            Hits3 = Physics.RaycastAll(Directions[3], 5f);
+            Hits1 = Physics.RaycastAll(Directions[1], 1.5f);
 
+            if (SetDirectionHits)
+            {
+
+                CurrentHits0 = Hits0;
+                CurrentHits1 = Hits1;
+                CurrentHits3 = Hits3;
+                Hits0Run = false;
+                Hits1Run = false;
+                Hits3Run = false;
+                hitCounter0 = Hits0.Length;
+                hitCounter1 = Hits1.Length;
+                hitCounter3 = Hits3.Length;
+                SetDirectionHits = false;
+            }
             if (SetDirectionHits == false && !Hits0Run && !Hits1Run && !Hits3Run)
             {
                 //Hits Direction 0
                 Debug.Log(" Hits0: " + Hits0.Length);
                 hitCounter0--;
 
-                if (hitCounter0 > -1 && CurrentHits0 != null && TheEnemy != null && CurrentHits0[hitCounter0].transform.gameObject != TheEnemy)
+                if (hitCounter0 > -1 && CurrentHits0 != null && TheEnemy != null )
                 {
 
 
                     if (CurrentHits0[hitCounter0].transform.gameObject != null)
                     {
-
-                        if (CurrentHits0[hitCounter0].transform.gameObject == Player && flipped == false)
+                        if (CurrentHits0[hitCounter0].transform.gameObject != TheEnemy)
                         {
-                            TheEnemy.transform.rotation = Quaternion.Euler(new Vector3(0, Player.transform.rotation.eulerAngles.y - 270, 0));
-                            flipped = true;
-                            move = false;
-                            Hits0Run = true;
 
-                        }
-                        else if (CurrentHits0[hitCounter0].transform.gameObject == Player && flipped == true)
-                        {
-                            TheEnemy.transform.rotation = Quaternion.Euler(new Vector3(0, Player.transform.rotation.eulerAngles.y + 270, 0));
-                            flipped = false;
-                            move = false;
-                            Hits0Run = true;
+                            if (CurrentHits0[hitCounter0].transform.gameObject == Player && flipped == false)
+                            {
+                                TheEnemy.transform.rotation = Quaternion.Euler(new Vector3(0, Player.transform.rotation.eulerAngles.y - 270, 0));
+                                flipped = true;
+                                move = false;
+                               
 
-                        }
-                        else
-                        {
-                            Hits0Run = true;
+                            }
+                            else if (CurrentHits0[hitCounter0].transform.gameObject == Player && flipped == true)
+                            {
+                                TheEnemy.transform.rotation = Quaternion.Euler(new Vector3(0, Player.transform.rotation.eulerAngles.y + 270, 0));
+                                flipped = false;
+                                move = false;
+                                
+
+                            }
+                           
                         }
                     }
-                    else
-                    {
-                        Hits0Run = true;
-                    }
-
-
+                    
                 }
-                else
-                {
-
-                    Hits0Run = true;
-                }
+               
 
 
 
@@ -237,7 +228,7 @@ public class Defender : Enemy {
                             shoot = true;
                             TimeToShoot = ResetShoot;
                         }
-                        Hits3Run = true;
+                        
                     }
                     else if (Player.transform.position.x <= TheEnemy.transform.position.x && Player.transform.position.x >= TheEnemy.transform.position.x - SpaceToFire && flipped == true && TheEnemy != null)
                     {
@@ -252,12 +243,12 @@ public class Defender : Enemy {
                             shoot = true;
                             TimeToShoot = ResetShoot;
                         }
-                        Hits3Run = true;
+                        
                     }
                     else
                     {
 
-                        Hits3Run = true;
+                        
                         PlayerLeft = false;
                         PlayerRight = false;
                         moveTowardsPlayerNeg = false;
@@ -270,7 +261,7 @@ public class Defender : Enemy {
                 }
                 else
                 {
-                    Hits3Run = true;
+                    
                     PlayerLeft = false;
                     PlayerRight = false;
                     moveTowardsPlayerNeg = false;
@@ -295,75 +286,73 @@ public class Defender : Enemy {
                 hitCounter1--;
                 if (hitCounter1 > -1 && CurrentHits1.Length != 0 && TheEnemy != null && ObstacleBox != null)
                 {
-                    if (Hits1 != null && Hits1[hitCounter1].collider != null)
+                    if (Hits1 != null)
                     {
-
-                        if (CurrentHits1[hitCounter1].transform.gameObject == ObstacleBox && !jumpLeft && !jumpRight)// && move == true)
+                        if (Hits1[hitCounter1].collider != null)
                         {
-                            Debug.Log("Boxi havaittu");
-                            if (flipped == true && grounded)
+                            if (CurrentHits1[hitCounter1].transform.gameObject == ObstacleBox && !jumpLeft && !jumpRight)// && move == true)
                             {
-                                Debug.Log("hypätty");
-                                jumpLeft = true;
-                                move = false;
-                                moveTowardsPlayerNeg = false;
-                                moveTowardsPlayerPos = false;
+                                Debug.Log("Boxi havaittu");
+                                if (flipped == true && grounded)
+                                {
+                                    Debug.Log("hypätty");
+                                    jumpLeft = true;
+                                    move = false;
+                                    moveTowardsPlayerNeg = false;
+                                    moveTowardsPlayerPos = false;
+                                }
+                                else if (flipped == false && grounded)
+                                {
+                                    jumpRight = true;
+                                    move = false;
+                                    moveTowardsPlayerNeg = false;
+                                    moveTowardsPlayerPos = false;
+                                }
+
                             }
-                            else if (flipped == false && grounded)
+
+
+
+
+
+                            GameObject[] findEnemy = GameObject.FindGameObjectsWithTag("Enemy");
+
+                            for (int j = 0; j < findEnemy.Length; j++)
                             {
-                                jumpRight = true;
-                                move = false;
-                                moveTowardsPlayerNeg = false;
-                                moveTowardsPlayerPos = false;
+                                if (CurrentHits1[hitCounter1].transform.gameObject == findEnemy[j] && findEnemy[j] != TheEnemy)
+                                {
+                                    Debug.Log("Turn");
+                                    move = false;
+                                    turn = true;
+
+                                }
                             }
 
-                        }
 
 
-
-
-                        GameObject[] findEnemy = GameObject.FindGameObjectsWithTag("Enemy");
-
-                        for (int j = 0; j < findEnemy.Length; j++)
-                        {
-                            if (CurrentHits1[hitCounter1].transform.gameObject == findEnemy[j] && findEnemy[j] != TheEnemy)
+                            if (CurrentHits1[hitCounter1].transform.gameObject == ObstacleWall && flipped == true && ObstacleWall != null)
                             {
-                                Debug.Log("Turn");
                                 move = false;
                                 turn = true;
-                                Hits1Run = true;
+
                             }
-                        }
+                            else if ((PlayerLeft || PlayerRight) && grounded)
+                            {
+                                move = false;
 
+                            }
+                            else
+                            {
+                                move = true;
 
-
-                        if (CurrentHits1[hitCounter1].transform.gameObject == ObstacleWall && flipped == true && ObstacleWall != null)
-                        {
-                            move = false;
-                            turn = true;
-                            Hits1Run = true;
-                        }
-                        else if ((PlayerLeft || PlayerRight) && grounded)
-                        {
-                            move = false;
-                            Hits1Run = true;
-                        }
-                        else
-                        {
-                            move = true;
-                            Hits1Run = true;
+                            }
                         }
                     }
 
                 }
-                else
-                {
+              
 
-                    Hits1Run = true;
-                }
-
-                Debug.Log("Hits RUN: " + Hits0Run + " , " + Hits1Run + " , " + Hits3Run);
-                if (Hits0Run && Hits1Run && Hits3Run)
+                if (hitCounter0 < 0 && hitCounter1 < 0 && hitCounter3 < 0)
                 {
                     Debug.Log("Directions reset");
                     SetDirectionHits = true;
