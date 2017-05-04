@@ -43,11 +43,31 @@ public class Controller : MonoBehaviour {
         { // Left
             animatedObj.transform.rotation = Quaternion.Euler(new Vector3(0, transform.rotation.y - 90, 0));
             dir = -1;
+            if (playerPhysics.Grounded)
+            {
+                anim.SetBool("IsWalk", true); //WAAAAAAAAAAALK
+            }
+            else
+            {
+                anim.SetBool("IsWalk", false);
+            }
         }
         else if (tarSpeed > 0)
         { // Right
             animatedObj.transform.rotation = Quaternion.Euler(new Vector3(0, transform.rotation.y + 90, 0));
             dir = 1;
+            if (playerPhysics.Grounded)
+            {
+                anim.SetBool("IsWalk", true); //WAAAAAAAAAAALK
+            }
+            else
+            {
+                anim.SetBool("IsWalk", false);
+            }
+        }
+        else
+        {
+            anim.SetBool("IsWalk", false);
         }
         //---------------
 
@@ -66,12 +86,19 @@ public class Controller : MonoBehaviour {
         }
         else if ((Input.GetKeyDown(KeyCode.C) && !DashCD && !playerPhysics.FacingWall) && !playerPhysics.MidAirDashUsed)
         {
+            anim.SetBool("IsWalk", false);
+            anim.SetBool("IsJump", false);
+            anim.SetBool("IsDash", true);
             playerPhysics.Dash = true;
             DashCD = true;
             playerPhysics.MidAirDashUsed = true;
             dashT = 0;
             playerPhysics.DashDirection = dir;
             amountToMove.y = 0;
+        }
+        if (!playerPhysics.Dash)
+        {
+            anim.SetBool("IsDash", false);
         }
         //-----------------
 
@@ -89,9 +116,11 @@ public class Controller : MonoBehaviour {
 
         if ((playerPhysics.Grounded || playerPhysics.sloped)) //Wierd things happen here
         {
+            anim.SetBool("IsJump", false);
             amountToMove.y = -0.01F;
             if (Input.GetKeyDown(KeyCode.X) && !playerPhysics.Dash)
             {
+                anim.SetBool("IsJump", true);
                 transform.Translate(Vector2.up * 0.2F * playerPhysics.timeScale);
                 amountToMove.y = jumpHeight;
             }
