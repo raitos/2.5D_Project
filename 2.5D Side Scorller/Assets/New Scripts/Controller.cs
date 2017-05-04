@@ -30,7 +30,7 @@ public class Controller : MonoBehaviour {
 
     void Start()
     {
-        animatedObj = GameObject.Find("ToonShader_SD_unitychan_humanoid");
+        animatedObj = GameObject.Find("model_character_main_05_03_animation_all");
         playerPhysics = GetComponent<PlayerPhysics>();
         anim = animatedObj.GetComponent<Animator>();
     }
@@ -38,7 +38,7 @@ public class Controller : MonoBehaviour {
     void Update()
     {
         //Animator things and direction detection
-        anim.SetFloat("Speed", Mathf.Abs(tarSpeed));
+        anim.SetFloat("WalkSpeed", Mathf.Abs(tarSpeed));
         if (tarSpeed < 0)
         { // Left
             animatedObj.transform.rotation = Quaternion.Euler(new Vector3(0, transform.rotation.y - 90, 0));

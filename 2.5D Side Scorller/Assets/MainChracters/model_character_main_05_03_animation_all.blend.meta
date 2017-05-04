@@ -1,0 +1,2557 @@
+fileFormatVersion: 2
+guid: 7002ef1b2f1e3b9489c4d2fc7426cf64
+timeCreated: 1493812886
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Armature_001
+    100002: Bone_001
+    100004: Cube_000
+    100006: Cube_006
+    100008: Cylinder
+    100010: Cylinder_001
+    100012: Cylinder_004
+    100014: foot_L
+    100016: foot_R
+    100018: footCtrl_L
+    100020: footCtrl_R
+    100022: footIK_L
+    100024: footIK_R
+    100026: footRollCtrl_L
+    100028: footRollCtrl_R
+    100030: gun
+    100032: hand_L
+    100034: hand_R
+    100036: head
+    100038: heelRoll_L
+    100040: hipsCtrl
+    100042: kneeCtrl_L
+    100044: kneeCtrl_R
+    100046: lowerarm_L
+    100048: lowerarm_R
+    100050: lowerleg_L
+    100052: lowerleg_R
+    100054: mid_L
+    100056: mid_R
+    100058: //RootNode
+    100060: neck
+    100062: root
+    100064: sheath
+    100066: shoulder_L
+    100068: shoulder_R
+    100070: spine1
+    100072: spine2
+    100074: sword
+    100076: thumb_L
+    100078: thumb_R
+    100080: toe_L
+    100082: toe_R
+    100084: toeRoll_L
+    100086: toeRoll_R
+    100088: upperarm_L
+    100090: upperarm_R
+    100092: upperleg_L
+    100094: upperleg_R
+    400000: Armature_001
+    400002: Bone_001
+    400004: Cube_000
+    400006: Cube_006
+    400008: Cylinder
+    400010: Cylinder_001
+    400012: Cylinder_004
+    400014: foot_L
+    400016: foot_R
+    400018: footCtrl_L
+    400020: footCtrl_R
+    400022: footIK_L
+    400024: footIK_R
+    400026: footRollCtrl_L
+    400028: footRollCtrl_R
+    400030: gun
+    400032: hand_L
+    400034: hand_R
+    400036: head
+    400038: heelRoll_L
+    400040: hipsCtrl
+    400042: kneeCtrl_L
+    400044: kneeCtrl_R
+    400046: lowerarm_L
+    400048: lowerarm_R
+    400050: lowerleg_L
+    400052: lowerleg_R
+    400054: mid_L
+    400056: mid_R
+    400058: //RootNode
+    400060: neck
+    400062: root
+    400064: sheath
+    400066: shoulder_L
+    400068: shoulder_R
+    400070: spine1
+    400072: spine2
+    400074: sword
+    400076: thumb_L
+    400078: thumb_R
+    400080: toe_L
+    400082: toe_R
+    400084: toeRoll_L
+    400086: toeRoll_R
+    400088: upperarm_L
+    400090: upperarm_R
+    400092: upperleg_L
+    400094: upperleg_R
+    4300000: Cylinder_004
+    4300002: Cube_006
+    4300004: Cylinder_001
+    4300006: Cylinder
+    4300008: Cube_000
+    7400000: Default Take
+    7400002: '-----'
+    7400004: '------'
+    7400006: '-------'
+    7400008: '---------'
+    7400010: Armature_001Action
+    7400012: damage
+    7400014: dash_shoot
+    7400016: dash_slash
+    7400018: dash_final
+    7400020: idle
+    7400022: jump
+    7400024: shooting_final
+    7400026: slash1
+    7400028: slash2
+    7400030: slash3
+    7400032: walk
+    7400034: wall_slash
+    7400036: wall_final
+    9500000: //RootNode
+    13700000: Cube_000
+    13700002: Cube_006
+    13700004: Cylinder
+    13700006: Cylinder_001
+    13700008: Cylinder_004
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Default Take
+      takeName: Default Take
+      firstFrame: -1
+      lastFrame: 44
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature_001
+        weight: 1
+      - path: Armature_001/footCtrl_L
+        weight: 1
+      - path: Armature_001/footCtrl_L/footRollCtrl_L
+        weight: 1
+      - path: Armature_001/footCtrl_L/heelRoll_L
+        weight: 1
+      - path: Armature_001/footCtrl_L/heelRoll_L/toeRoll_L
+        weight: 1
+      - path: Armature_001/footCtrl_L/heelRoll_L/toeRoll_L/footIK_L
+        weight: 1
+      - path: Armature_001/footCtrl_L/kneeCtrl_L
+        weight: 1
+      - path: Armature_001/footCtrl_R
+        weight: 1
+      - path: Armature_001/footCtrl_R/Bone_001
+        weight: 1
+      - path: Armature_001/footCtrl_R/Bone_001/toeRoll_R
+        weight: 1
+      - path: Armature_001/footCtrl_R/Bone_001/toeRoll_R/footIK_R
+        weight: 1
+      - path: Armature_001/footCtrl_R/footRollCtrl_R
+        weight: 1
+      - path: Armature_001/footCtrl_R/kneeCtrl_R
+        weight: 1
+      - path: Armature_001/gun
+        weight: 1
+      - path: Armature_001/hipsCtrl
+        weight: 1
+      - path: Armature_001/hipsCtrl/root
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/neck
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/neck/head
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L/upperarm_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L/upperarm_L/lowerarm_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L/upperarm_L/lowerarm_L/hand_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L/upperarm_L/lowerarm_L/hand_L/mid_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L/upperarm_L/lowerarm_L/hand_L/thumb_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R/upperarm_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R/upperarm_R/lowerarm_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R/upperarm_R/lowerarm_R/hand_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R/upperarm_R/lowerarm_R/hand_R/mid_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R/upperarm_R/lowerarm_R/hand_R/thumb_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_L/lowerleg_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_L/lowerleg_L/foot_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_L/lowerleg_L/foot_L/toe_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_R/lowerleg_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_R/lowerleg_R/foot_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_R/lowerleg_R/foot_R/toe_R
+        weight: 1
+      - path: Armature_001/sheath
+        weight: 1
+      - path: Armature_001/sword
+        weight: 1
+      - path: Cube_000
+        weight: 1
+      - path: Cube_006
+        weight: 1
+      - path: Cylinder
+        weight: 1
+      - path: Cylinder_001
+        weight: 1
+      - path: Cylinder_004
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: '-----'
+      takeName: '-----'
+      firstFrame: -1
+      lastFrame: 9
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature_001
+        weight: 1
+      - path: Armature_001/footCtrl_L
+        weight: 1
+      - path: Armature_001/footCtrl_L/footRollCtrl_L
+        weight: 1
+      - path: Armature_001/footCtrl_L/heelRoll_L
+        weight: 1
+      - path: Armature_001/footCtrl_L/heelRoll_L/toeRoll_L
+        weight: 1
+      - path: Armature_001/footCtrl_L/heelRoll_L/toeRoll_L/footIK_L
+        weight: 1
+      - path: Armature_001/footCtrl_L/kneeCtrl_L
+        weight: 1
+      - path: Armature_001/footCtrl_R
+        weight: 1
+      - path: Armature_001/footCtrl_R/Bone_001
+        weight: 1
+      - path: Armature_001/footCtrl_R/Bone_001/toeRoll_R
+        weight: 1
+      - path: Armature_001/footCtrl_R/Bone_001/toeRoll_R/footIK_R
+        weight: 1
+      - path: Armature_001/footCtrl_R/footRollCtrl_R
+        weight: 1
+      - path: Armature_001/footCtrl_R/kneeCtrl_R
+        weight: 1
+      - path: Armature_001/gun
+        weight: 1
+      - path: Armature_001/hipsCtrl
+        weight: 1
+      - path: Armature_001/hipsCtrl/root
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/neck
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/neck/head
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L/upperarm_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L/upperarm_L/lowerarm_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L/upperarm_L/lowerarm_L/hand_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L/upperarm_L/lowerarm_L/hand_L/mid_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L/upperarm_L/lowerarm_L/hand_L/thumb_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R/upperarm_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R/upperarm_R/lowerarm_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R/upperarm_R/lowerarm_R/hand_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R/upperarm_R/lowerarm_R/hand_R/mid_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R/upperarm_R/lowerarm_R/hand_R/thumb_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_L/lowerleg_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_L/lowerleg_L/foot_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_L/lowerleg_L/foot_L/toe_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_R/lowerleg_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_R/lowerleg_R/foot_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_R/lowerleg_R/foot_R/toe_R
+        weight: 1
+      - path: Armature_001/sheath
+        weight: 1
+      - path: Armature_001/sword
+        weight: 1
+      - path: Cube_000
+        weight: 1
+      - path: Cube_006
+        weight: 1
+      - path: Cylinder
+        weight: 1
+      - path: Cylinder_001
+        weight: 1
+      - path: Cylinder_004
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: '------'
+      takeName: '------'
+      firstFrame: -1
+      lastFrame: 3
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature_001
+        weight: 1
+      - path: Armature_001/footCtrl_L
+        weight: 1
+      - path: Armature_001/footCtrl_L/footRollCtrl_L
+        weight: 1
+      - path: Armature_001/footCtrl_L/heelRoll_L
+        weight: 1
+      - path: Armature_001/footCtrl_L/heelRoll_L/toeRoll_L
+        weight: 1
+      - path: Armature_001/footCtrl_L/heelRoll_L/toeRoll_L/footIK_L
+        weight: 1
+      - path: Armature_001/footCtrl_L/kneeCtrl_L
+        weight: 1
+      - path: Armature_001/footCtrl_R
+        weight: 1
+      - path: Armature_001/footCtrl_R/Bone_001
+        weight: 1
+      - path: Armature_001/footCtrl_R/Bone_001/toeRoll_R
+        weight: 1
+      - path: Armature_001/footCtrl_R/Bone_001/toeRoll_R/footIK_R
+        weight: 1
+      - path: Armature_001/footCtrl_R/footRollCtrl_R
+        weight: 1
+      - path: Armature_001/footCtrl_R/kneeCtrl_R
+        weight: 1
+      - path: Armature_001/gun
+        weight: 1
+      - path: Armature_001/hipsCtrl
+        weight: 1
+      - path: Armature_001/hipsCtrl/root
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/neck
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/neck/head
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L/upperarm_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L/upperarm_L/lowerarm_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L/upperarm_L/lowerarm_L/hand_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L/upperarm_L/lowerarm_L/hand_L/mid_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L/upperarm_L/lowerarm_L/hand_L/thumb_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R/upperarm_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R/upperarm_R/lowerarm_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R/upperarm_R/lowerarm_R/hand_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R/upperarm_R/lowerarm_R/hand_R/mid_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R/upperarm_R/lowerarm_R/hand_R/thumb_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_L/lowerleg_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_L/lowerleg_L/foot_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_L/lowerleg_L/foot_L/toe_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_R/lowerleg_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_R/lowerleg_R/foot_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_R/lowerleg_R/foot_R/toe_R
+        weight: 1
+      - path: Armature_001/sheath
+        weight: 1
+      - path: Armature_001/sword
+        weight: 1
+      - path: Cube_000
+        weight: 1
+      - path: Cube_006
+        weight: 1
+      - path: Cylinder
+        weight: 1
+      - path: Cylinder_001
+        weight: 1
+      - path: Cylinder_004
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: '-------'
+      takeName: '-------'
+      firstFrame: -1
+      lastFrame: 8
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature_001
+        weight: 1
+      - path: Armature_001/footCtrl_L
+        weight: 1
+      - path: Armature_001/footCtrl_L/footRollCtrl_L
+        weight: 1
+      - path: Armature_001/footCtrl_L/heelRoll_L
+        weight: 1
+      - path: Armature_001/footCtrl_L/heelRoll_L/toeRoll_L
+        weight: 1
+      - path: Armature_001/footCtrl_L/heelRoll_L/toeRoll_L/footIK_L
+        weight: 1
+      - path: Armature_001/footCtrl_L/kneeCtrl_L
+        weight: 1
+      - path: Armature_001/footCtrl_R
+        weight: 1
+      - path: Armature_001/footCtrl_R/Bone_001
+        weight: 1
+      - path: Armature_001/footCtrl_R/Bone_001/toeRoll_R
+        weight: 1
+      - path: Armature_001/footCtrl_R/Bone_001/toeRoll_R/footIK_R
+        weight: 1
+      - path: Armature_001/footCtrl_R/footRollCtrl_R
+        weight: 1
+      - path: Armature_001/footCtrl_R/kneeCtrl_R
+        weight: 1
+      - path: Armature_001/gun
+        weight: 1
+      - path: Armature_001/hipsCtrl
+        weight: 1
+      - path: Armature_001/hipsCtrl/root
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/neck
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/neck/head
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L/upperarm_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L/upperarm_L/lowerarm_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L/upperarm_L/lowerarm_L/hand_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L/upperarm_L/lowerarm_L/hand_L/mid_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L/upperarm_L/lowerarm_L/hand_L/thumb_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R/upperarm_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R/upperarm_R/lowerarm_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R/upperarm_R/lowerarm_R/hand_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R/upperarm_R/lowerarm_R/hand_R/mid_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R/upperarm_R/lowerarm_R/hand_R/thumb_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_L/lowerleg_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_L/lowerleg_L/foot_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_L/lowerleg_L/foot_L/toe_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_R/lowerleg_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_R/lowerleg_R/foot_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_R/lowerleg_R/foot_R/toe_R
+        weight: 1
+      - path: Armature_001/sheath
+        weight: 1
+      - path: Armature_001/sword
+        weight: 1
+      - path: Cube_000
+        weight: 1
+      - path: Cube_006
+        weight: 1
+      - path: Cylinder
+        weight: 1
+      - path: Cylinder_001
+        weight: 1
+      - path: Cylinder_004
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: '---------'
+      takeName: '---------'
+      firstFrame: -1
+      lastFrame: 14
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature_001
+        weight: 1
+      - path: Armature_001/footCtrl_L
+        weight: 1
+      - path: Armature_001/footCtrl_L/footRollCtrl_L
+        weight: 1
+      - path: Armature_001/footCtrl_L/heelRoll_L
+        weight: 1
+      - path: Armature_001/footCtrl_L/heelRoll_L/toeRoll_L
+        weight: 1
+      - path: Armature_001/footCtrl_L/heelRoll_L/toeRoll_L/footIK_L
+        weight: 1
+      - path: Armature_001/footCtrl_L/kneeCtrl_L
+        weight: 1
+      - path: Armature_001/footCtrl_R
+        weight: 1
+      - path: Armature_001/footCtrl_R/Bone_001
+        weight: 1
+      - path: Armature_001/footCtrl_R/Bone_001/toeRoll_R
+        weight: 1
+      - path: Armature_001/footCtrl_R/Bone_001/toeRoll_R/footIK_R
+        weight: 1
+      - path: Armature_001/footCtrl_R/footRollCtrl_R
+        weight: 1
+      - path: Armature_001/footCtrl_R/kneeCtrl_R
+        weight: 1
+      - path: Armature_001/gun
+        weight: 1
+      - path: Armature_001/hipsCtrl
+        weight: 1
+      - path: Armature_001/hipsCtrl/root
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/neck
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/neck/head
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L/upperarm_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L/upperarm_L/lowerarm_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L/upperarm_L/lowerarm_L/hand_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L/upperarm_L/lowerarm_L/hand_L/mid_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L/upperarm_L/lowerarm_L/hand_L/thumb_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R/upperarm_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R/upperarm_R/lowerarm_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R/upperarm_R/lowerarm_R/hand_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R/upperarm_R/lowerarm_R/hand_R/mid_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R/upperarm_R/lowerarm_R/hand_R/thumb_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_L/lowerleg_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_L/lowerleg_L/foot_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_L/lowerleg_L/foot_L/toe_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_R/lowerleg_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_R/lowerleg_R/foot_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_R/lowerleg_R/foot_R/toe_R
+        weight: 1
+      - path: Armature_001/sheath
+        weight: 1
+      - path: Armature_001/sword
+        weight: 1
+      - path: Cube_000
+        weight: 1
+      - path: Cube_006
+        weight: 1
+      - path: Cylinder
+        weight: 1
+      - path: Cylinder_001
+        weight: 1
+      - path: Cylinder_004
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature_001Action
+      takeName: Armature_001Action
+      firstFrame: -1
+      lastFrame: 0
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature_001
+        weight: 1
+      - path: Armature_001/footCtrl_L
+        weight: 1
+      - path: Armature_001/footCtrl_L/footRollCtrl_L
+        weight: 1
+      - path: Armature_001/footCtrl_L/heelRoll_L
+        weight: 1
+      - path: Armature_001/footCtrl_L/heelRoll_L/toeRoll_L
+        weight: 1
+      - path: Armature_001/footCtrl_L/heelRoll_L/toeRoll_L/footIK_L
+        weight: 1
+      - path: Armature_001/footCtrl_L/kneeCtrl_L
+        weight: 1
+      - path: Armature_001/footCtrl_R
+        weight: 1
+      - path: Armature_001/footCtrl_R/Bone_001
+        weight: 1
+      - path: Armature_001/footCtrl_R/Bone_001/toeRoll_R
+        weight: 1
+      - path: Armature_001/footCtrl_R/Bone_001/toeRoll_R/footIK_R
+        weight: 1
+      - path: Armature_001/footCtrl_R/footRollCtrl_R
+        weight: 1
+      - path: Armature_001/footCtrl_R/kneeCtrl_R
+        weight: 1
+      - path: Armature_001/gun
+        weight: 1
+      - path: Armature_001/hipsCtrl
+        weight: 1
+      - path: Armature_001/hipsCtrl/root
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/neck
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/neck/head
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L/upperarm_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L/upperarm_L/lowerarm_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L/upperarm_L/lowerarm_L/hand_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L/upperarm_L/lowerarm_L/hand_L/mid_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L/upperarm_L/lowerarm_L/hand_L/thumb_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R/upperarm_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R/upperarm_R/lowerarm_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R/upperarm_R/lowerarm_R/hand_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R/upperarm_R/lowerarm_R/hand_R/mid_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R/upperarm_R/lowerarm_R/hand_R/thumb_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_L/lowerleg_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_L/lowerleg_L/foot_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_L/lowerleg_L/foot_L/toe_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_R/lowerleg_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_R/lowerleg_R/foot_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_R/lowerleg_R/foot_R/toe_R
+        weight: 1
+      - path: Armature_001/sheath
+        weight: 1
+      - path: Armature_001/sword
+        weight: 1
+      - path: Cube_000
+        weight: 1
+      - path: Cube_006
+        weight: 1
+      - path: Cylinder
+        weight: 1
+      - path: Cylinder_001
+        weight: 1
+      - path: Cylinder_004
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: damage
+      takeName: damage
+      firstFrame: -1
+      lastFrame: 9
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature_001
+        weight: 1
+      - path: Armature_001/footCtrl_L
+        weight: 1
+      - path: Armature_001/footCtrl_L/footRollCtrl_L
+        weight: 1
+      - path: Armature_001/footCtrl_L/heelRoll_L
+        weight: 1
+      - path: Armature_001/footCtrl_L/heelRoll_L/toeRoll_L
+        weight: 1
+      - path: Armature_001/footCtrl_L/heelRoll_L/toeRoll_L/footIK_L
+        weight: 1
+      - path: Armature_001/footCtrl_L/kneeCtrl_L
+        weight: 1
+      - path: Armature_001/footCtrl_R
+        weight: 1
+      - path: Armature_001/footCtrl_R/Bone_001
+        weight: 1
+      - path: Armature_001/footCtrl_R/Bone_001/toeRoll_R
+        weight: 1
+      - path: Armature_001/footCtrl_R/Bone_001/toeRoll_R/footIK_R
+        weight: 1
+      - path: Armature_001/footCtrl_R/footRollCtrl_R
+        weight: 1
+      - path: Armature_001/footCtrl_R/kneeCtrl_R
+        weight: 1
+      - path: Armature_001/gun
+        weight: 1
+      - path: Armature_001/hipsCtrl
+        weight: 1
+      - path: Armature_001/hipsCtrl/root
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/neck
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/neck/head
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L/upperarm_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L/upperarm_L/lowerarm_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L/upperarm_L/lowerarm_L/hand_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L/upperarm_L/lowerarm_L/hand_L/mid_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L/upperarm_L/lowerarm_L/hand_L/thumb_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R/upperarm_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R/upperarm_R/lowerarm_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R/upperarm_R/lowerarm_R/hand_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R/upperarm_R/lowerarm_R/hand_R/mid_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R/upperarm_R/lowerarm_R/hand_R/thumb_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_L/lowerleg_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_L/lowerleg_L/foot_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_L/lowerleg_L/foot_L/toe_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_R/lowerleg_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_R/lowerleg_R/foot_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_R/lowerleg_R/foot_R/toe_R
+        weight: 1
+      - path: Armature_001/sheath
+        weight: 1
+      - path: Armature_001/sword
+        weight: 1
+      - path: Cube_000
+        weight: 1
+      - path: Cube_006
+        weight: 1
+      - path: Cylinder
+        weight: 1
+      - path: Cylinder_001
+        weight: 1
+      - path: Cylinder_004
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: dash_shoot
+      takeName: dash_shoot
+      firstFrame: -1
+      lastFrame: 5
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature_001
+        weight: 1
+      - path: Armature_001/footCtrl_L
+        weight: 1
+      - path: Armature_001/footCtrl_L/footRollCtrl_L
+        weight: 1
+      - path: Armature_001/footCtrl_L/heelRoll_L
+        weight: 1
+      - path: Armature_001/footCtrl_L/heelRoll_L/toeRoll_L
+        weight: 1
+      - path: Armature_001/footCtrl_L/heelRoll_L/toeRoll_L/footIK_L
+        weight: 1
+      - path: Armature_001/footCtrl_L/kneeCtrl_L
+        weight: 1
+      - path: Armature_001/footCtrl_R
+        weight: 1
+      - path: Armature_001/footCtrl_R/Bone_001
+        weight: 1
+      - path: Armature_001/footCtrl_R/Bone_001/toeRoll_R
+        weight: 1
+      - path: Armature_001/footCtrl_R/Bone_001/toeRoll_R/footIK_R
+        weight: 1
+      - path: Armature_001/footCtrl_R/footRollCtrl_R
+        weight: 1
+      - path: Armature_001/footCtrl_R/kneeCtrl_R
+        weight: 1
+      - path: Armature_001/gun
+        weight: 1
+      - path: Armature_001/hipsCtrl
+        weight: 1
+      - path: Armature_001/hipsCtrl/root
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/neck
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/neck/head
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L/upperarm_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L/upperarm_L/lowerarm_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L/upperarm_L/lowerarm_L/hand_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L/upperarm_L/lowerarm_L/hand_L/mid_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L/upperarm_L/lowerarm_L/hand_L/thumb_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R/upperarm_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R/upperarm_R/lowerarm_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R/upperarm_R/lowerarm_R/hand_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R/upperarm_R/lowerarm_R/hand_R/mid_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R/upperarm_R/lowerarm_R/hand_R/thumb_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_L/lowerleg_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_L/lowerleg_L/foot_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_L/lowerleg_L/foot_L/toe_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_R/lowerleg_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_R/lowerleg_R/foot_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_R/lowerleg_R/foot_R/toe_R
+        weight: 1
+      - path: Armature_001/sheath
+        weight: 1
+      - path: Armature_001/sword
+        weight: 1
+      - path: Cube_000
+        weight: 1
+      - path: Cube_006
+        weight: 1
+      - path: Cylinder
+        weight: 1
+      - path: Cylinder_001
+        weight: 1
+      - path: Cylinder_004
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: dash_slash
+      takeName: dash_slash
+      firstFrame: -1
+      lastFrame: 10
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature_001
+        weight: 1
+      - path: Armature_001/footCtrl_L
+        weight: 1
+      - path: Armature_001/footCtrl_L/footRollCtrl_L
+        weight: 1
+      - path: Armature_001/footCtrl_L/heelRoll_L
+        weight: 1
+      - path: Armature_001/footCtrl_L/heelRoll_L/toeRoll_L
+        weight: 1
+      - path: Armature_001/footCtrl_L/heelRoll_L/toeRoll_L/footIK_L
+        weight: 1
+      - path: Armature_001/footCtrl_L/kneeCtrl_L
+        weight: 1
+      - path: Armature_001/footCtrl_R
+        weight: 1
+      - path: Armature_001/footCtrl_R/Bone_001
+        weight: 1
+      - path: Armature_001/footCtrl_R/Bone_001/toeRoll_R
+        weight: 1
+      - path: Armature_001/footCtrl_R/Bone_001/toeRoll_R/footIK_R
+        weight: 1
+      - path: Armature_001/footCtrl_R/footRollCtrl_R
+        weight: 1
+      - path: Armature_001/footCtrl_R/kneeCtrl_R
+        weight: 1
+      - path: Armature_001/gun
+        weight: 1
+      - path: Armature_001/hipsCtrl
+        weight: 1
+      - path: Armature_001/hipsCtrl/root
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/neck
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/neck/head
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L/upperarm_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L/upperarm_L/lowerarm_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L/upperarm_L/lowerarm_L/hand_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L/upperarm_L/lowerarm_L/hand_L/mid_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L/upperarm_L/lowerarm_L/hand_L/thumb_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R/upperarm_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R/upperarm_R/lowerarm_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R/upperarm_R/lowerarm_R/hand_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R/upperarm_R/lowerarm_R/hand_R/mid_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R/upperarm_R/lowerarm_R/hand_R/thumb_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_L/lowerleg_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_L/lowerleg_L/foot_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_L/lowerleg_L/foot_L/toe_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_R/lowerleg_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_R/lowerleg_R/foot_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_R/lowerleg_R/foot_R/toe_R
+        weight: 1
+      - path: Armature_001/sheath
+        weight: 1
+      - path: Armature_001/sword
+        weight: 1
+      - path: Cube_000
+        weight: 1
+      - path: Cube_006
+        weight: 1
+      - path: Cylinder
+        weight: 1
+      - path: Cylinder_001
+        weight: 1
+      - path: Cylinder_004
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: dash_final
+      takeName: dash_final
+      firstFrame: -1
+      lastFrame: 9
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature_001
+        weight: 1
+      - path: Armature_001/footCtrl_L
+        weight: 1
+      - path: Armature_001/footCtrl_L/footRollCtrl_L
+        weight: 1
+      - path: Armature_001/footCtrl_L/heelRoll_L
+        weight: 1
+      - path: Armature_001/footCtrl_L/heelRoll_L/toeRoll_L
+        weight: 1
+      - path: Armature_001/footCtrl_L/heelRoll_L/toeRoll_L/footIK_L
+        weight: 1
+      - path: Armature_001/footCtrl_L/kneeCtrl_L
+        weight: 1
+      - path: Armature_001/footCtrl_R
+        weight: 1
+      - path: Armature_001/footCtrl_R/Bone_001
+        weight: 1
+      - path: Armature_001/footCtrl_R/Bone_001/toeRoll_R
+        weight: 1
+      - path: Armature_001/footCtrl_R/Bone_001/toeRoll_R/footIK_R
+        weight: 1
+      - path: Armature_001/footCtrl_R/footRollCtrl_R
+        weight: 1
+      - path: Armature_001/footCtrl_R/kneeCtrl_R
+        weight: 1
+      - path: Armature_001/gun
+        weight: 1
+      - path: Armature_001/hipsCtrl
+        weight: 1
+      - path: Armature_001/hipsCtrl/root
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/neck
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/neck/head
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L/upperarm_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L/upperarm_L/lowerarm_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L/upperarm_L/lowerarm_L/hand_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L/upperarm_L/lowerarm_L/hand_L/mid_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L/upperarm_L/lowerarm_L/hand_L/thumb_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R/upperarm_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R/upperarm_R/lowerarm_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R/upperarm_R/lowerarm_R/hand_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R/upperarm_R/lowerarm_R/hand_R/mid_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R/upperarm_R/lowerarm_R/hand_R/thumb_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_L/lowerleg_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_L/lowerleg_L/foot_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_L/lowerleg_L/foot_L/toe_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_R/lowerleg_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_R/lowerleg_R/foot_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_R/lowerleg_R/foot_R/toe_R
+        weight: 1
+      - path: Armature_001/sheath
+        weight: 1
+      - path: Armature_001/sword
+        weight: 1
+      - path: Cube_000
+        weight: 1
+      - path: Cube_006
+        weight: 1
+      - path: Cylinder
+        weight: 1
+      - path: Cylinder_001
+        weight: 1
+      - path: Cylinder_004
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: idle
+      takeName: idle
+      firstFrame: -1
+      lastFrame: 39
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature_001
+        weight: 1
+      - path: Armature_001/footCtrl_L
+        weight: 1
+      - path: Armature_001/footCtrl_L/footRollCtrl_L
+        weight: 1
+      - path: Armature_001/footCtrl_L/heelRoll_L
+        weight: 1
+      - path: Armature_001/footCtrl_L/heelRoll_L/toeRoll_L
+        weight: 1
+      - path: Armature_001/footCtrl_L/heelRoll_L/toeRoll_L/footIK_L
+        weight: 1
+      - path: Armature_001/footCtrl_L/kneeCtrl_L
+        weight: 1
+      - path: Armature_001/footCtrl_R
+        weight: 1
+      - path: Armature_001/footCtrl_R/Bone_001
+        weight: 1
+      - path: Armature_001/footCtrl_R/Bone_001/toeRoll_R
+        weight: 1
+      - path: Armature_001/footCtrl_R/Bone_001/toeRoll_R/footIK_R
+        weight: 1
+      - path: Armature_001/footCtrl_R/footRollCtrl_R
+        weight: 1
+      - path: Armature_001/footCtrl_R/kneeCtrl_R
+        weight: 1
+      - path: Armature_001/gun
+        weight: 1
+      - path: Armature_001/hipsCtrl
+        weight: 1
+      - path: Armature_001/hipsCtrl/root
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/neck
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/neck/head
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L/upperarm_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L/upperarm_L/lowerarm_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L/upperarm_L/lowerarm_L/hand_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L/upperarm_L/lowerarm_L/hand_L/mid_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L/upperarm_L/lowerarm_L/hand_L/thumb_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R/upperarm_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R/upperarm_R/lowerarm_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R/upperarm_R/lowerarm_R/hand_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R/upperarm_R/lowerarm_R/hand_R/mid_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R/upperarm_R/lowerarm_R/hand_R/thumb_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_L/lowerleg_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_L/lowerleg_L/foot_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_L/lowerleg_L/foot_L/toe_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_R/lowerleg_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_R/lowerleg_R/foot_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_R/lowerleg_R/foot_R/toe_R
+        weight: 1
+      - path: Armature_001/sheath
+        weight: 1
+      - path: Armature_001/sword
+        weight: 1
+      - path: Cube_000
+        weight: 1
+      - path: Cube_006
+        weight: 1
+      - path: Cylinder
+        weight: 1
+      - path: Cylinder_001
+        weight: 1
+      - path: Cylinder_004
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: jump
+      takeName: jump
+      firstFrame: -1
+      lastFrame: 14
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature_001
+        weight: 1
+      - path: Armature_001/footCtrl_L
+        weight: 1
+      - path: Armature_001/footCtrl_L/footRollCtrl_L
+        weight: 1
+      - path: Armature_001/footCtrl_L/heelRoll_L
+        weight: 1
+      - path: Armature_001/footCtrl_L/heelRoll_L/toeRoll_L
+        weight: 1
+      - path: Armature_001/footCtrl_L/heelRoll_L/toeRoll_L/footIK_L
+        weight: 1
+      - path: Armature_001/footCtrl_L/kneeCtrl_L
+        weight: 1
+      - path: Armature_001/footCtrl_R
+        weight: 1
+      - path: Armature_001/footCtrl_R/Bone_001
+        weight: 1
+      - path: Armature_001/footCtrl_R/Bone_001/toeRoll_R
+        weight: 1
+      - path: Armature_001/footCtrl_R/Bone_001/toeRoll_R/footIK_R
+        weight: 1
+      - path: Armature_001/footCtrl_R/footRollCtrl_R
+        weight: 1
+      - path: Armature_001/footCtrl_R/kneeCtrl_R
+        weight: 1
+      - path: Armature_001/gun
+        weight: 1
+      - path: Armature_001/hipsCtrl
+        weight: 1
+      - path: Armature_001/hipsCtrl/root
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/neck
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/neck/head
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L/upperarm_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L/upperarm_L/lowerarm_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L/upperarm_L/lowerarm_L/hand_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L/upperarm_L/lowerarm_L/hand_L/mid_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L/upperarm_L/lowerarm_L/hand_L/thumb_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R/upperarm_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R/upperarm_R/lowerarm_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R/upperarm_R/lowerarm_R/hand_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R/upperarm_R/lowerarm_R/hand_R/mid_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R/upperarm_R/lowerarm_R/hand_R/thumb_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_L/lowerleg_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_L/lowerleg_L/foot_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_L/lowerleg_L/foot_L/toe_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_R/lowerleg_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_R/lowerleg_R/foot_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_R/lowerleg_R/foot_R/toe_R
+        weight: 1
+      - path: Armature_001/sheath
+        weight: 1
+      - path: Armature_001/sword
+        weight: 1
+      - path: Cube_000
+        weight: 1
+      - path: Cube_006
+        weight: 1
+      - path: Cylinder
+        weight: 1
+      - path: Cylinder_001
+        weight: 1
+      - path: Cylinder_004
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: shooting_final
+      takeName: shooting_final
+      firstFrame: -1
+      lastFrame: 3
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature_001
+        weight: 1
+      - path: Armature_001/footCtrl_L
+        weight: 1
+      - path: Armature_001/footCtrl_L/footRollCtrl_L
+        weight: 1
+      - path: Armature_001/footCtrl_L/heelRoll_L
+        weight: 1
+      - path: Armature_001/footCtrl_L/heelRoll_L/toeRoll_L
+        weight: 1
+      - path: Armature_001/footCtrl_L/heelRoll_L/toeRoll_L/footIK_L
+        weight: 1
+      - path: Armature_001/footCtrl_L/kneeCtrl_L
+        weight: 1
+      - path: Armature_001/footCtrl_R
+        weight: 1
+      - path: Armature_001/footCtrl_R/Bone_001
+        weight: 1
+      - path: Armature_001/footCtrl_R/Bone_001/toeRoll_R
+        weight: 1
+      - path: Armature_001/footCtrl_R/Bone_001/toeRoll_R/footIK_R
+        weight: 1
+      - path: Armature_001/footCtrl_R/footRollCtrl_R
+        weight: 1
+      - path: Armature_001/footCtrl_R/kneeCtrl_R
+        weight: 1
+      - path: Armature_001/gun
+        weight: 1
+      - path: Armature_001/hipsCtrl
+        weight: 1
+      - path: Armature_001/hipsCtrl/root
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/neck
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/neck/head
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L/upperarm_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L/upperarm_L/lowerarm_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L/upperarm_L/lowerarm_L/hand_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L/upperarm_L/lowerarm_L/hand_L/mid_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L/upperarm_L/lowerarm_L/hand_L/thumb_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R/upperarm_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R/upperarm_R/lowerarm_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R/upperarm_R/lowerarm_R/hand_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R/upperarm_R/lowerarm_R/hand_R/mid_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R/upperarm_R/lowerarm_R/hand_R/thumb_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_L/lowerleg_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_L/lowerleg_L/foot_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_L/lowerleg_L/foot_L/toe_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_R/lowerleg_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_R/lowerleg_R/foot_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_R/lowerleg_R/foot_R/toe_R
+        weight: 1
+      - path: Armature_001/sheath
+        weight: 1
+      - path: Armature_001/sword
+        weight: 1
+      - path: Cube_000
+        weight: 1
+      - path: Cube_006
+        weight: 1
+      - path: Cylinder
+        weight: 1
+      - path: Cylinder_001
+        weight: 1
+      - path: Cylinder_004
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: slash1
+      takeName: slash1
+      firstFrame: -1
+      lastFrame: 29
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature_001
+        weight: 1
+      - path: Armature_001/footCtrl_L
+        weight: 1
+      - path: Armature_001/footCtrl_L/footRollCtrl_L
+        weight: 1
+      - path: Armature_001/footCtrl_L/heelRoll_L
+        weight: 1
+      - path: Armature_001/footCtrl_L/heelRoll_L/toeRoll_L
+        weight: 1
+      - path: Armature_001/footCtrl_L/heelRoll_L/toeRoll_L/footIK_L
+        weight: 1
+      - path: Armature_001/footCtrl_L/kneeCtrl_L
+        weight: 1
+      - path: Armature_001/footCtrl_R
+        weight: 1
+      - path: Armature_001/footCtrl_R/Bone_001
+        weight: 1
+      - path: Armature_001/footCtrl_R/Bone_001/toeRoll_R
+        weight: 1
+      - path: Armature_001/footCtrl_R/Bone_001/toeRoll_R/footIK_R
+        weight: 1
+      - path: Armature_001/footCtrl_R/footRollCtrl_R
+        weight: 1
+      - path: Armature_001/footCtrl_R/kneeCtrl_R
+        weight: 1
+      - path: Armature_001/gun
+        weight: 1
+      - path: Armature_001/hipsCtrl
+        weight: 1
+      - path: Armature_001/hipsCtrl/root
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/neck
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/neck/head
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L/upperarm_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L/upperarm_L/lowerarm_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L/upperarm_L/lowerarm_L/hand_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L/upperarm_L/lowerarm_L/hand_L/mid_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L/upperarm_L/lowerarm_L/hand_L/thumb_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R/upperarm_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R/upperarm_R/lowerarm_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R/upperarm_R/lowerarm_R/hand_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R/upperarm_R/lowerarm_R/hand_R/mid_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R/upperarm_R/lowerarm_R/hand_R/thumb_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_L/lowerleg_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_L/lowerleg_L/foot_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_L/lowerleg_L/foot_L/toe_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_R/lowerleg_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_R/lowerleg_R/foot_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_R/lowerleg_R/foot_R/toe_R
+        weight: 1
+      - path: Armature_001/sheath
+        weight: 1
+      - path: Armature_001/sword
+        weight: 1
+      - path: Cube_000
+        weight: 1
+      - path: Cube_006
+        weight: 1
+      - path: Cylinder
+        weight: 1
+      - path: Cylinder_001
+        weight: 1
+      - path: Cylinder_004
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: slash2
+      takeName: slash2
+      firstFrame: -1
+      lastFrame: 39
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature_001
+        weight: 1
+      - path: Armature_001/footCtrl_L
+        weight: 1
+      - path: Armature_001/footCtrl_L/footRollCtrl_L
+        weight: 1
+      - path: Armature_001/footCtrl_L/heelRoll_L
+        weight: 1
+      - path: Armature_001/footCtrl_L/heelRoll_L/toeRoll_L
+        weight: 1
+      - path: Armature_001/footCtrl_L/heelRoll_L/toeRoll_L/footIK_L
+        weight: 1
+      - path: Armature_001/footCtrl_L/kneeCtrl_L
+        weight: 1
+      - path: Armature_001/footCtrl_R
+        weight: 1
+      - path: Armature_001/footCtrl_R/Bone_001
+        weight: 1
+      - path: Armature_001/footCtrl_R/Bone_001/toeRoll_R
+        weight: 1
+      - path: Armature_001/footCtrl_R/Bone_001/toeRoll_R/footIK_R
+        weight: 1
+      - path: Armature_001/footCtrl_R/footRollCtrl_R
+        weight: 1
+      - path: Armature_001/footCtrl_R/kneeCtrl_R
+        weight: 1
+      - path: Armature_001/gun
+        weight: 1
+      - path: Armature_001/hipsCtrl
+        weight: 1
+      - path: Armature_001/hipsCtrl/root
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/neck
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/neck/head
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L/upperarm_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L/upperarm_L/lowerarm_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L/upperarm_L/lowerarm_L/hand_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L/upperarm_L/lowerarm_L/hand_L/mid_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L/upperarm_L/lowerarm_L/hand_L/thumb_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R/upperarm_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R/upperarm_R/lowerarm_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R/upperarm_R/lowerarm_R/hand_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R/upperarm_R/lowerarm_R/hand_R/mid_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R/upperarm_R/lowerarm_R/hand_R/thumb_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_L/lowerleg_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_L/lowerleg_L/foot_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_L/lowerleg_L/foot_L/toe_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_R/lowerleg_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_R/lowerleg_R/foot_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_R/lowerleg_R/foot_R/toe_R
+        weight: 1
+      - path: Armature_001/sheath
+        weight: 1
+      - path: Armature_001/sword
+        weight: 1
+      - path: Cube_000
+        weight: 1
+      - path: Cube_006
+        weight: 1
+      - path: Cylinder
+        weight: 1
+      - path: Cylinder_001
+        weight: 1
+      - path: Cylinder_004
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: slash3
+      takeName: slash3
+      firstFrame: -1
+      lastFrame: 29
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature_001
+        weight: 1
+      - path: Armature_001/footCtrl_L
+        weight: 1
+      - path: Armature_001/footCtrl_L/footRollCtrl_L
+        weight: 1
+      - path: Armature_001/footCtrl_L/heelRoll_L
+        weight: 1
+      - path: Armature_001/footCtrl_L/heelRoll_L/toeRoll_L
+        weight: 1
+      - path: Armature_001/footCtrl_L/heelRoll_L/toeRoll_L/footIK_L
+        weight: 1
+      - path: Armature_001/footCtrl_L/kneeCtrl_L
+        weight: 1
+      - path: Armature_001/footCtrl_R
+        weight: 1
+      - path: Armature_001/footCtrl_R/Bone_001
+        weight: 1
+      - path: Armature_001/footCtrl_R/Bone_001/toeRoll_R
+        weight: 1
+      - path: Armature_001/footCtrl_R/Bone_001/toeRoll_R/footIK_R
+        weight: 1
+      - path: Armature_001/footCtrl_R/footRollCtrl_R
+        weight: 1
+      - path: Armature_001/footCtrl_R/kneeCtrl_R
+        weight: 1
+      - path: Armature_001/gun
+        weight: 1
+      - path: Armature_001/hipsCtrl
+        weight: 1
+      - path: Armature_001/hipsCtrl/root
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/neck
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/neck/head
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L/upperarm_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L/upperarm_L/lowerarm_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L/upperarm_L/lowerarm_L/hand_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L/upperarm_L/lowerarm_L/hand_L/mid_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L/upperarm_L/lowerarm_L/hand_L/thumb_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R/upperarm_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R/upperarm_R/lowerarm_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R/upperarm_R/lowerarm_R/hand_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R/upperarm_R/lowerarm_R/hand_R/mid_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R/upperarm_R/lowerarm_R/hand_R/thumb_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_L/lowerleg_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_L/lowerleg_L/foot_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_L/lowerleg_L/foot_L/toe_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_R/lowerleg_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_R/lowerleg_R/foot_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_R/lowerleg_R/foot_R/toe_R
+        weight: 1
+      - path: Armature_001/sheath
+        weight: 1
+      - path: Armature_001/sword
+        weight: 1
+      - path: Cube_000
+        weight: 1
+      - path: Cube_006
+        weight: 1
+      - path: Cylinder
+        weight: 1
+      - path: Cylinder_001
+        weight: 1
+      - path: Cylinder_004
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: walk
+      takeName: walk
+      firstFrame: -1
+      lastFrame: 24
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature_001
+        weight: 1
+      - path: Armature_001/footCtrl_L
+        weight: 1
+      - path: Armature_001/footCtrl_L/footRollCtrl_L
+        weight: 1
+      - path: Armature_001/footCtrl_L/heelRoll_L
+        weight: 1
+      - path: Armature_001/footCtrl_L/heelRoll_L/toeRoll_L
+        weight: 1
+      - path: Armature_001/footCtrl_L/heelRoll_L/toeRoll_L/footIK_L
+        weight: 1
+      - path: Armature_001/footCtrl_L/kneeCtrl_L
+        weight: 1
+      - path: Armature_001/footCtrl_R
+        weight: 1
+      - path: Armature_001/footCtrl_R/Bone_001
+        weight: 1
+      - path: Armature_001/footCtrl_R/Bone_001/toeRoll_R
+        weight: 1
+      - path: Armature_001/footCtrl_R/Bone_001/toeRoll_R/footIK_R
+        weight: 1
+      - path: Armature_001/footCtrl_R/footRollCtrl_R
+        weight: 1
+      - path: Armature_001/footCtrl_R/kneeCtrl_R
+        weight: 1
+      - path: Armature_001/gun
+        weight: 1
+      - path: Armature_001/hipsCtrl
+        weight: 1
+      - path: Armature_001/hipsCtrl/root
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/neck
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/neck/head
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L/upperarm_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L/upperarm_L/lowerarm_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L/upperarm_L/lowerarm_L/hand_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L/upperarm_L/lowerarm_L/hand_L/mid_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L/upperarm_L/lowerarm_L/hand_L/thumb_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R/upperarm_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R/upperarm_R/lowerarm_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R/upperarm_R/lowerarm_R/hand_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R/upperarm_R/lowerarm_R/hand_R/mid_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R/upperarm_R/lowerarm_R/hand_R/thumb_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_L/lowerleg_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_L/lowerleg_L/foot_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_L/lowerleg_L/foot_L/toe_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_R/lowerleg_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_R/lowerleg_R/foot_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_R/lowerleg_R/foot_R/toe_R
+        weight: 1
+      - path: Armature_001/sheath
+        weight: 1
+      - path: Armature_001/sword
+        weight: 1
+      - path: Cube_000
+        weight: 1
+      - path: Cube_006
+        weight: 1
+      - path: Cylinder
+        weight: 1
+      - path: Cylinder_001
+        weight: 1
+      - path: Cylinder_004
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: wall_slash
+      takeName: wall_slash
+      firstFrame: -1
+      lastFrame: 4
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature_001
+        weight: 1
+      - path: Armature_001/footCtrl_L
+        weight: 1
+      - path: Armature_001/footCtrl_L/footRollCtrl_L
+        weight: 1
+      - path: Armature_001/footCtrl_L/heelRoll_L
+        weight: 1
+      - path: Armature_001/footCtrl_L/heelRoll_L/toeRoll_L
+        weight: 1
+      - path: Armature_001/footCtrl_L/heelRoll_L/toeRoll_L/footIK_L
+        weight: 1
+      - path: Armature_001/footCtrl_L/kneeCtrl_L
+        weight: 1
+      - path: Armature_001/footCtrl_R
+        weight: 1
+      - path: Armature_001/footCtrl_R/Bone_001
+        weight: 1
+      - path: Armature_001/footCtrl_R/Bone_001/toeRoll_R
+        weight: 1
+      - path: Armature_001/footCtrl_R/Bone_001/toeRoll_R/footIK_R
+        weight: 1
+      - path: Armature_001/footCtrl_R/footRollCtrl_R
+        weight: 1
+      - path: Armature_001/footCtrl_R/kneeCtrl_R
+        weight: 1
+      - path: Armature_001/gun
+        weight: 1
+      - path: Armature_001/hipsCtrl
+        weight: 1
+      - path: Armature_001/hipsCtrl/root
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/neck
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/neck/head
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L/upperarm_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L/upperarm_L/lowerarm_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L/upperarm_L/lowerarm_L/hand_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L/upperarm_L/lowerarm_L/hand_L/mid_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L/upperarm_L/lowerarm_L/hand_L/thumb_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R/upperarm_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R/upperarm_R/lowerarm_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R/upperarm_R/lowerarm_R/hand_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R/upperarm_R/lowerarm_R/hand_R/mid_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R/upperarm_R/lowerarm_R/hand_R/thumb_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_L/lowerleg_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_L/lowerleg_L/foot_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_L/lowerleg_L/foot_L/toe_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_R/lowerleg_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_R/lowerleg_R/foot_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_R/lowerleg_R/foot_R/toe_R
+        weight: 1
+      - path: Armature_001/sheath
+        weight: 1
+      - path: Armature_001/sword
+        weight: 1
+      - path: Cube_000
+        weight: 1
+      - path: Cube_006
+        weight: 1
+      - path: Cylinder
+        weight: 1
+      - path: Cylinder_001
+        weight: 1
+      - path: Cylinder_004
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: wall_final
+      takeName: wall_final
+      firstFrame: -1
+      lastFrame: 14
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature_001
+        weight: 1
+      - path: Armature_001/footCtrl_L
+        weight: 1
+      - path: Armature_001/footCtrl_L/footRollCtrl_L
+        weight: 1
+      - path: Armature_001/footCtrl_L/heelRoll_L
+        weight: 1
+      - path: Armature_001/footCtrl_L/heelRoll_L/toeRoll_L
+        weight: 1
+      - path: Armature_001/footCtrl_L/heelRoll_L/toeRoll_L/footIK_L
+        weight: 1
+      - path: Armature_001/footCtrl_L/kneeCtrl_L
+        weight: 1
+      - path: Armature_001/footCtrl_R
+        weight: 1
+      - path: Armature_001/footCtrl_R/Bone_001
+        weight: 1
+      - path: Armature_001/footCtrl_R/Bone_001/toeRoll_R
+        weight: 1
+      - path: Armature_001/footCtrl_R/Bone_001/toeRoll_R/footIK_R
+        weight: 1
+      - path: Armature_001/footCtrl_R/footRollCtrl_R
+        weight: 1
+      - path: Armature_001/footCtrl_R/kneeCtrl_R
+        weight: 1
+      - path: Armature_001/gun
+        weight: 1
+      - path: Armature_001/hipsCtrl
+        weight: 1
+      - path: Armature_001/hipsCtrl/root
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/neck
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/neck/head
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L/upperarm_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L/upperarm_L/lowerarm_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L/upperarm_L/lowerarm_L/hand_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L/upperarm_L/lowerarm_L/hand_L/mid_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_L/upperarm_L/lowerarm_L/hand_L/thumb_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R/upperarm_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R/upperarm_R/lowerarm_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R/upperarm_R/lowerarm_R/hand_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R/upperarm_R/lowerarm_R/hand_R/mid_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/spine1/spine2/shoulder_R/upperarm_R/lowerarm_R/hand_R/thumb_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_L/lowerleg_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_L/lowerleg_L/foot_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_L/lowerleg_L/foot_L/toe_L
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_R/lowerleg_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_R/lowerleg_R/foot_R
+        weight: 1
+      - path: Armature_001/hipsCtrl/root/upperleg_R/lowerleg_R/foot_R/toe_R
+        weight: 1
+      - path: Armature_001/sheath
+        weight: 1
+      - path: Armature_001/sword
+        weight: 1
+      - path: Cube_000
+        weight: 1
+      - path: Cube_006
+        weight: 1
+      - path: Cylinder
+        weight: 1
+      - path: Cylinder_001
+        weight: 1
+      - path: Cylinder_004
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
