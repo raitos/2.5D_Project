@@ -73,7 +73,7 @@ public class Attacker : Enemy {
 
         if (!EditorApplication.isPlaying && Autoconfigure == true)
         {
-            EnemyList = GameObject.Find("Spawner").GetComponent<EnemySpawner>();
+            EnemyList = GameObject.Find("ATCSpawner").GetComponent<EnemySpawner>();
 
             TimeToTurn = 0.25f;
             TimeToFall = 1f;
