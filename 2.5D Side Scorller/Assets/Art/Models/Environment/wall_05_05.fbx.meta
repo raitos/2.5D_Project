@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 3d4b3663bbbb4674d9a0ca06eb4e5d22
-timeCreated: 1492676371
+guid: fb207511ebf0a6046bb214f17ff85858
+timeCreated: 1493966256
 licenseType: Pro
 ModelImporter:
   serializedVersion: 19
@@ -9,7 +9,7 @@ ModelImporter:
     400000: //RootNode
     2300000: //RootNode
     3300000: //RootNode
-    4300000: wall_corner_door
+    4300000: wall_dif_uv
   materials:
     importMaterials: 1
     materialName: 0

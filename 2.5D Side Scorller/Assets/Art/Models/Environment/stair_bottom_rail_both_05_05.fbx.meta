@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: b6ec18848a3a8164689e7c12faca1b7e
-timeCreated: 1492676372
+guid: ba76f65fa1114a54183fc68061b32ee0
+timeCreated: 1493976170
 licenseType: Pro
 ModelImporter:
   serializedVersion: 19
@@ -9,7 +9,7 @@ ModelImporter:
     400000: //RootNode
     2300000: //RootNode
     3300000: //RootNode
-    4300000: wall
+    4300000: stair_bottom_rail_both
   materials:
     importMaterials: 1
     materialName: 0
