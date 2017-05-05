@@ -46,7 +46,7 @@ namespace UnityChan
 				anim.SetBool ("Next", true);
 			}
 		
-			// ↓キーが押されたら、ステートを前に戻す処理
+			// ↓キーが押されたら、ステートをcに戻す処理
 			if (Input.GetKeyDown ("down")) {
 				// ブーリアンBackをtrueにする
 				anim.SetBool ("Back", true);

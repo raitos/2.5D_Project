@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Linq;
 using UnityEngine.UI;
-using System.Collections;
 
 [RequireComponent(typeof(PlayerPhysics))]
 public class Controller : MonoBehaviour {

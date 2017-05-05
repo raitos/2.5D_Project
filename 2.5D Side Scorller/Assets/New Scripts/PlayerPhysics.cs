@@ -19,7 +19,7 @@ public class PlayerPhysics : MonoBehaviour {
 
     Controller ctrl;
 
-    BoxCollider collider;
+    BoxCollider Collider;
     Vector2 ColSize;
     Vector3 ColHalf; //To reduce needles calultions
 
@@ -42,14 +42,14 @@ public class PlayerPhysics : MonoBehaviour {
 
     void Start()
     {
-        collider = GetComponent<BoxCollider>();
-        ColSize = collider.size;
+        Collider = GetComponent<BoxCollider>();
+        ColSize = Collider.size;
         ColHalf = transform.right / 2;
     }
 
     public void Move(Vector2 moveAmount)
     {
-
+        
         Grounded = false;
         FacingWall = false;
         Roofed = false;
