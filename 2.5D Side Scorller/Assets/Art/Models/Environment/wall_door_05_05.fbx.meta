@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: b6ec18848a3a8164689e7c12faca1b7e
-timeCreated: 1492676372
+guid: da19a13fdfd08074fbf92ff35cc7e321
+timeCreated: 1493964788
 licenseType: Pro
 ModelImporter:
   serializedVersion: 19
@@ -9,7 +9,7 @@ ModelImporter:
     400000: //RootNode
     2300000: //RootNode
     3300000: //RootNode
-    4300000: wall
+    4300000: wall_door
   materials:
     importMaterials: 1
     materialName: 0

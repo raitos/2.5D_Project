@@ -6,7 +6,6 @@ public class SlashAttack : MonoBehaviour {
 
 
     public GameObject Player;
-    public GameObject enemySpawner;
     public Animator Animator;
     GameObject[] TheEnemys;
 
@@ -15,6 +14,8 @@ public class SlashAttack : MonoBehaviour {
     public float Damage;
     public float TimeToStrike;
     public float ResetTime;
+    public int comboCount;
+
     GameObject DamageArea;
     float time;
     bool boxSet;
@@ -34,7 +35,7 @@ public class SlashAttack : MonoBehaviour {
     void Start ()
     {
 
-        TheEnemys = enemySpawner.GetComponent<EnemySpawner>().ListOfEnemies;
+        TheEnemys = GameObject.FindGameObjectsWithTag("Enemy");
         enemyCount = GameObject.FindGameObjectsWithTag("Enemy").Length;
         EnemyOnZone = false;
         boxSet = false;
@@ -47,6 +48,7 @@ public class SlashAttack : MonoBehaviour {
         DamageArea.transform.position = Player.transform.position + new Vector3(0,1,0);
         DamageArea.GetComponent<BoxCollider>().isTrigger = true;
         DamageArea.name = "Damage Area";
+        DamageArea.layer = 2; //sets the area to ignore raycasts so it doesn't f up jumping.
         Physics.IgnoreCollision(DamageArea.GetComponent<BoxCollider>(), this.gameObject.GetComponent<Collider>());
 
 
@@ -58,7 +60,7 @@ public class SlashAttack : MonoBehaviour {
     {
 
         //Let's Find objects from the boxcolliders area
-        if (Player.transform.rotation.y < 0)
+        /*if (Player.transform.rotation.y < 0)
         {
             RaycastHit[] hits = Physics.BoxCastAll(DamageArea.GetComponent<BoxCollider>().transform.position,
       new Vector3(DamageArea.GetComponent<BoxCollider>().size.x / 2, DamageArea.GetComponent<BoxCollider>().size.y / 2, DamageArea.GetComponent<BoxCollider>().size.z / 2), new Vector3(-1, 0, 0), DamageArea.transform.rotation, DamageArea.GetComponent<BoxCollider>().size.x / 2);
@@ -68,7 +70,7 @@ public class SlashAttack : MonoBehaviour {
             for (int i = 0; i < hits.Length; i++)
             {
                 FoundObjects[i] = hits[i].transform.gameObject;
-                Debug.Log("osuma: " + FoundObjects[i].name);
+                Debug.Log("Hit: " + FoundObjects[i].name);
             }
         }
         else if (Player.transform.rotation.y > 0)
@@ -82,7 +84,52 @@ public class SlashAttack : MonoBehaviour {
             for (int i = 0; i < hits.Length; i++)
             {
                 FoundObjects[i] = hits[i].transform.gameObject;
-                Debug.Log("osuma: " + FoundObjects[i].name);
+                Debug.Log("Hit: " + FoundObjects[i].name);
+            }
+
+        }
+
+        if (ObjectSend == false && FoundObjects != null && FoundObjects[0] != null)
+        {
+            enemyCount = TheEnemys.Length;
+            ObjectCount = FoundObjects.Length - 1;
+            CurrentObjects = FoundObjects;
+
+            ObjectSend = true;
+        }*/
+    }
+	
+	// Update is called once per frame
+	void Update ()
+    {
+        if (Player.GetComponent<PlayerPhysics>().Grounded) { }
+
+        //Let's Find objects from the boxcolliders area
+        if (Player.transform.rotation.y < 0)
+        {
+            RaycastHit[] hits = Physics.BoxCastAll(DamageArea.GetComponent<BoxCollider>().transform.position,
+      new Vector3(DamageArea.GetComponent<BoxCollider>().size.x / 2, DamageArea.GetComponent<BoxCollider>().size.y / 2, DamageArea.GetComponent<BoxCollider>().size.z / 2), new Vector3(-1, 0, 0), DamageArea.transform.rotation, DamageArea.GetComponent<BoxCollider>().size.x / 2);
+
+            FoundObjects = new GameObject[hits.Length];
+            Debug.Log("Hits Length: " + hits.Length);
+            for (int i = 0; i < hits.Length; i++)
+            {
+                FoundObjects[i] = hits[i].transform.gameObject;
+                Debug.Log("Hit: " + FoundObjects[i].name);
+            }
+        }
+        else if (Player.transform.rotation.y > 0)
+        {
+            RaycastHit[] hits = Physics.BoxCastAll(DamageArea.GetComponent<BoxCollider>().transform.position,
+      new Vector3(DamageArea.GetComponent<BoxCollider>().size.x / 2, DamageArea.GetComponent<BoxCollider>().size.y / 2, DamageArea.GetComponent<BoxCollider>().size.z / 2), new Vector3(1, 0, 0), DamageArea.transform.rotation, DamageArea.GetComponent<BoxCollider>().size.x / 2);
+
+            FoundObjects = new GameObject[hits.Length];
+            Debug.Log("Hits Length: " + hits.Length);
+
+            for (int i = 0; i < hits.Length; i++)
+            {
+                FoundObjects[i] = hits[i].transform.gameObject;
+                Debug.Log("Hit: " + FoundObjects[i].name);
             }
 
         }
@@ -96,51 +143,6 @@ public class SlashAttack : MonoBehaviour {
             ObjectSend = true;
         }
 
-        /*
-        //check area for the enemy
-        if (ObjectCount > -1)
-        {
-            enemyCount--;
-            Debug.Log("tänne päästiin");
-            Debug.Log("Vihollisten määrä: " + TheEnemys.Length);
-            if(enemyCount > -1)
-            {
-                if (FoundObjects != null && TheEnemys != null && FoundObjects[0] != null)
-                {
-                    Debug.Log("Palikoita etsitään");
-                    if (CurrentObjects[ObjectCount] == TheEnemys[enemyCount])
-                    {
-                        Debug.Log("Object Found on zone");
-                        chosenEnemy = enemyCount;
-                        EnemyOnZone = true;
-                        FoundObject = true;
-                    }
-                    else if (FoundObject == false)
-                    {
-                        Debug.Log("Object notFound");
-                        chosenEnemy = -1;
-                        EnemyOnZone = false;
-                    }
-                }
-            }
-            else
-            {
-                ObjectCount--;
-                enemyCount = TheEnemys.Length;
-            }
-        }
-        else
-        {
-            FoundObject = false;
-            ObjectSend = false;
-        }
-        */
-    }
-	
-	// Update is called once per frame
-	void Update ()
-    {
-        
         time = Time.deltaTime;
         TimeToStrike = TimeToStrike - time;
         Debug.DrawRay(DamageArea.GetComponent<BoxCollider>().transform.position, new Vector3(DamageArea.GetComponent<BoxCollider>().size.x / 2, 0, 0), Color.green);
@@ -173,13 +175,13 @@ public class SlashAttack : MonoBehaviour {
         if (ObjectCount > -1 && ObjectSend == true)
         {
             enemyCount--;
-            Debug.Log("tänne päästiin");
+            Debug.Log("we got here");
             
             if (enemyCount > -1)
             {
                 if (FoundObjects != null && TheEnemys != null && FoundObjects[0] != null)
                 {
-                    Debug.Log("Palikoita etsitään");
+                    Debug.Log("Looking for blocks");
                     for (int i = 0; i < CurrentObjects.Length; i++)
                     {
                         if (CurrentObjects[i] == TheEnemys[enemyCount])
@@ -213,18 +215,19 @@ public class SlashAttack : MonoBehaviour {
 
 
         //look for slash attack input
-        if (Input.GetAxis("SlashAtc") == 1)
+        if (Input.GetButtonDown("SlashAtc"))
         {
+            if (TimeToStrike < -1) comboCount = 1;
             if (TimeToStrike < 0)
             {
+                combo();
                 Animator.SetFloat("Slash", 2);
-
                 if (chosenEnemy != -1)
                 {
-                    Debug.Log("Lyötiin");
+                    Debug.Log("Hit");
                     if (TheEnemys[chosenEnemy] != null)
                     {
-                        Debug.Log("Lyötiin myös");
+                        Debug.Log("Another hit");
                         if (EnemyOnZone)
                         {
                             TheEnemys[chosenEnemy].GetComponent<Enemy>().Health = TheEnemys[chosenEnemy].GetComponent<Enemy>().Health - Damage;
@@ -233,6 +236,11 @@ public class SlashAttack : MonoBehaviour {
                 }
                 
                 TimeToStrike = ResetTime;
+                comboCount++;
+                if(comboCount > 3)
+                {
+                    comboCount = 1;
+                }
             }
             else
             {
@@ -247,5 +255,29 @@ public class SlashAttack : MonoBehaviour {
        
 
 	}
-    
+    void combo()
+    {
+        switch (comboCount)
+        {
+            case 0:
+                comboCount++;
+                goto case 1;
+            case 1:
+                ResetTime = 0.25F;
+                Damage = 1;
+                break;
+            case 2:
+                ResetTime = 0.4F;
+                Damage = 1;
+                break;
+            case 3:
+                ResetTime = 0.25F;
+                Damage = 2;
+                break;
+            default:
+                Debug.Log("This should not happen. But it should be fixed after this.");
+                comboCount = 1;
+                break;
+        }
+    }
 }

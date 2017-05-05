@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: c9bc66eb419e8f5489fecbbae6bc6ec2
-timeCreated: 1492676372
+guid: fb207511ebf0a6046bb214f17ff85858
+timeCreated: 1493966256
 licenseType: Pro
 ModelImporter:
   serializedVersion: 19
@@ -9,7 +9,7 @@ ModelImporter:
     400000: //RootNode
     2300000: //RootNode
     3300000: //RootNode
-    4300000: wall_window_square
+    4300000: wall_dif_uv
   materials:
     importMaterials: 1
     materialName: 0
