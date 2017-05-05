@@ -21,6 +21,7 @@ public class Controller : MonoBehaviour {
     private float tarSpeed;
     private Vector2 amountToMove;
 
+    ShootingTwo shoot;
 
     public float DashCoolDown = 1;
     bool DashCD = false;
@@ -30,6 +31,7 @@ public class Controller : MonoBehaviour {
 
     void Start()
     {
+        shoot = gameObject.GetComponent<ShootingTwo>();
         animatedObj = GameObject.Find("model_character_main_05_03_animation_all");
         playerPhysics = GetComponent<PlayerPhysics>();
         anim = animatedObj.GetComponent<Animator>();
@@ -37,40 +39,45 @@ public class Controller : MonoBehaviour {
 
     void Update()
     {
+        /*Animator bools:
+            anim.SetBool("IsWalk", false);
+            anim.SetBool("IsJump", false);
+            anim.SetBool("IsDash", false);
+            anim.SetBool("IsShoot", false);
+        */
         //Animator things and direction detection
         anim.SetFloat("WalkSpeed", Mathf.Abs(tarSpeed));
-        if (tarSpeed < 0)
+        if (tarSpeed < 0 && !playerPhysics.Dash)
         { // Left
             animatedObj.transform.rotation = Quaternion.Euler(new Vector3(0, transform.rotation.y - 90, 0));
             dir = -1;
-            if (playerPhysics.Grounded)
+            if (!playerPhysics.Dash && !shoot.shoot)
             {
-                anim.SetBool("IsWalk", true); //WAAAAAAAAAAALK
-            }
-            else
-            {
-                anim.SetBool("IsWalk", false);
+                anim.SetBool("IsWalk", true);
+                anim.SetBool("IsIdle", false);
             }
         }
-        else if (tarSpeed > 0)
+        else if (tarSpeed > 0 && !playerPhysics.Dash)
         { // Right
             animatedObj.transform.rotation = Quaternion.Euler(new Vector3(0, transform.rotation.y + 90, 0));
             dir = 1;
-            if (playerPhysics.Grounded)
+            if (!playerPhysics.Dash && !shoot.shoot)
             {
-                anim.SetBool("IsWalk", true); //WAAAAAAAAAAALK
-            }
-            else
-            {
-                anim.SetBool("IsWalk", false);
+                anim.SetBool("IsWalk", true);
+                anim.SetBool("IsIdle", false);
             }
         }
         else
         {
             anim.SetBool("IsWalk", false);
+            anim.SetBool("IsIdle", true);
         }
         //---------------
 
+        if (Input.GetKey(KeyCode.Z))
+        {
+            anim.SetBool("IsShoot", true);
+        }
 
         //Dash-------------
 
@@ -120,7 +127,6 @@ public class Controller : MonoBehaviour {
             amountToMove.y = -0.01F;
             if (Input.GetKeyDown(KeyCode.X) && !playerPhysics.Dash)
             {
-                anim.SetBool("IsJump", true);
                 transform.Translate(Vector2.up * 0.2F * playerPhysics.timeScale);
                 amountToMove.y = jumpHeight;
             }
@@ -128,6 +134,9 @@ public class Controller : MonoBehaviour {
         else if (!playerPhysics.Dash)
         {
             amountToMove.y -= gravity * Time.deltaTime;
+            anim.SetBool("IsJump", true);
+            anim.SetBool("IsWalk", false);
+            anim.SetBool("IsDash", false);
         }
         if (playerPhysics.FacingWall)
         {
@@ -174,6 +183,15 @@ public class Controller : MonoBehaviour {
             float dir = Mathf.Sign(target - n);
             n += a * Time.deltaTime * dir;
             return (dir == Mathf.Sign(target - n)) ? n : target;
+        }
+    }
+
+    void OnTriggerEnter(Collider col)
+    {
+        if (col.gameObject.tag == "Wall")
+        {
+            gameObject.transform.Translate(Vector3.up * 0.3F);
+            playerPhysics.Grounded = true;
         }
     }
 }

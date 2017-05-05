@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BossAI : MonoBehaviour {
 
@@ -35,6 +36,8 @@ public class BossAI : MonoBehaviour {
 
     //Timers--------------------------
     float Slash1Timer = 0;
+    float NextAttTimer = 0;
+    public float AttTime = 1;
     float IdleTimer;
 
     //Boss abilities------------------
@@ -43,6 +46,10 @@ public class BossAI : MonoBehaviour {
     bool SlashDash = false;
     bool SlashDash2 = false;
 
+    //Some variables------------------
+    public float BossHP = 100;
+    public TextMesh HPText;
+
     //Attack bools--------------------
     bool firstPoint = false;
     bool secondPoint = false;
@@ -50,6 +57,7 @@ public class BossAI : MonoBehaviour {
     //--------------------------------
     void Start ()
     {
+        HPText = GameObject.Find("txtBossHealth").GetComponent<TextMesh>();
         player = GameObject.Find("Player");
         bossArea = GameObject.Find("BossArea");
         rightSide = GameObject.Find("RightSide").transform.position;
@@ -92,42 +100,63 @@ public class BossAI : MonoBehaviour {
             bossRight = true;
         }
 
-        //Input for testing the abilities:
-        if (Input.GetKeyDown(KeyCode.O)) //For testing
+        //Health things:
+        if (BossHP < 1)
         {
-            ReflectShield.SetActive(false);
-            SlashActive = true;
+            Destroy(gameObject);
         }
-        else if (Input.GetKeyDown(KeyCode.I)) //For testing
+
+        //Randomly choosing the next ability:
+        System.Random rnd = new System.Random();
+        if (!SlashActive && !Slash2Active && !SlashDash && !SlashDash2)
         {
-            ReflectShield.SetActive(false);
-            Slash2Active = true;
-        }
-        else if (Input.GetKeyDown(KeyCode.P)) //For testing
-        {
-            ReflectShield.SetActive(false);
-            if (playerLeft)
+            if (NextAttTimer < AttTime)
             {
-                goalPos = leftBottom;
+                NextAttTimer += Time.deltaTime;
             }
             else
             {
-                goalPos = rightBottom;
+                int nextMove = rnd.Next(1, 4);
+                switch (nextMove)
+                {
+                    case 1:
+                        ReflectShield.SetActive(false);
+                        SlashActive = true;
+                        NextAttTimer = 0;
+                        break;
+                    case 2:
+                        ReflectShield.SetActive(false);
+                        Slash2Active = true;
+                        NextAttTimer = 0;
+                        break;
+                    case 3:
+                        ReflectShield.SetActive(false);
+                        if (playerLeft)
+                        {
+                            goalPos = leftBottom;
+                        }
+                        else
+                        {
+                            goalPos = rightBottom;
+                        }
+                        SlashDash = true;
+                        NextAttTimer = 0;
+                        break;
+                    case 4:
+                        ReflectShield.SetActive(false);
+                        if (playerLeft)
+                        {
+                            goalPos = leftBottom;
+                        }
+                        else
+                        {
+                            goalPos = rightBottom;
+                        }
+                        SlashDash2 = true;
+                        NextAttTimer = 0;
+                        break;
+                }
             }
-            SlashDash = true;
-        }
-        else if (Input.GetKeyDown(KeyCode.U)) //For testing
-        {
-            ReflectShield.SetActive(false);
-            if (playerLeft)
-            {
-                goalPos = leftBottom;
-            }
-            else
-            {
-                goalPos = rightBottom;
-            }
-            SlashDash2 = true;
         }
 
         //Check which ability is active:
@@ -153,6 +182,12 @@ public class BossAI : MonoBehaviour {
     }
 
     bool dashDown;
+
+    public void AddDmg(float dmg)
+    {
+        BossHP -= dmg;
+        HPText.text = BossHP.ToString();
+    }
 
     void SlashAtt()
     {

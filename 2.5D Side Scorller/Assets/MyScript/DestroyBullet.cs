@@ -10,11 +10,13 @@ public class DestroyBullet : MonoBehaviour {
     public float time;
     public bool isEnemyBullet;
     ShootingTwo shoot;
+    BossAI boss;
 
     // Use this for initialization
     void Start ()
     {
         shoot = GameObject.Find("Player").GetComponent<ShootingTwo>();
+        boss = GameObject.Find("Boss").GetComponent<BossAI>();
 
         Physics.IgnoreCollision(this.gameObject.GetComponent<Collider>(), thespawnpoint.GetComponent<Collider>(), true);
 
@@ -51,6 +53,12 @@ public class DestroyBullet : MonoBehaviour {
             {
                 gameObject.GetComponent<Rigidbody>().AddForce(Vector3.right * shoot.BulletSpeed + new Vector3(Random.Range(shoot.ReflectSpread, -shoot.ReflectSpread), Random.Range(shoot.ReflectSpread, -shoot.ReflectSpread), 0), ForceMode.VelocityChange);
             }
+        }
+        else if (col.gameObject.name == "Boss")
+        {
+            Debug.Log("Osui bossiin");
+            boss.AddDmg(10);
+            Destroy(this.gameObject);
         }
         else
         {

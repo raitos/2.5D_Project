@@ -73,6 +73,18 @@
     <Reference Include="UnityEditor">
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
     </Reference>
+    <Reference Include="Mono.Cecil">
+      <HintPath>Library\UnityAssemblies\Mono.Cecil.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.iOS.Extensions.Xcode">
+      <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.iOS.Extensions.Xcode">
+      <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.iOS.Extensions.Common">
+      <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Common.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\MyScript\ATCeditorSc.cs" />
@@ -99,6 +111,7 @@
     <Compile Include="Assets\New Scripts\BossRightDetect.cs" />
     <Compile Include="Assets\New Scripts\Controller.cs" />
     <Compile Include="Assets\New Scripts\MovingDoor.cs" />
+    <Compile Include="Assets\New Scripts\PlayerHP.cs" />
     <Compile Include="Assets\New Scripts\PlayerPhysics.cs" />
     <Compile Include="Assets\UnityChan\SplashScreen\Scripts\SplashScreen.cs" />
     <Compile Include="Assets\UnityChanToonShader_v1.0.1\Assets\UnityChan\Scripts\AutoBlink.cs" />
