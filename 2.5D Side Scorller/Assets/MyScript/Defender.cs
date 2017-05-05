@@ -14,7 +14,7 @@ public class Defender : Enemy {
     public GameObject ObstacleWall;
     public EnemySpawner EnemyList;
     GameObject[] TheListOfEnemies;
-
+    GameObject DamageArea;
 
 
 
@@ -45,21 +45,25 @@ public class Defender : Enemy {
     bool Hits1Run;
     bool Hits3Run;
     bool[] EnemiesDestroyed;
-
+    bool Strike;
+    bool setDamageBox;
 
 
     public float TimeToTurn;
     public float TimeToFall;
     public float TimeToShoot;
+    float TimeToUpdate;
     float ResetTurn;
     float ResetFall;
     float ResetShoot;
+    float ResetUpdate;
     float time;
     public float EnemySpeed;
     public float JumpSpeed;
     public float BulletSpeed;
     public float bulletLength;
     public float SpaceToFire;
+    public float StrikeDmgToPlayer;
     float[] Values;
     int hitCounter0;
     int hitCounter1;
@@ -95,6 +99,8 @@ public class Defender : Enemy {
         hitCounter0 = 0;
         hitCounter1 = 0;
         hitCounter3 = 0;
+        TimeToUpdate = 0.05f;
+        ResetUpdate = TimeToUpdate;
         SetDirectionHits = true;
         ValuesNotNull = false;
         TheListOfEnemies = EnemyList.ListOfEnemies;
@@ -118,273 +124,305 @@ public class Defender : Enemy {
 	
 	// Update is called once per frame
 	void Update () {
+
+        TimeToUpdate = TimeToUpdate - time;
+
         if (EditorApplication.isPlaying)
         {
-
-
-            
-            if (flipped == false)
+            if (TimeToUpdate < 0)
             {
-
-                Directions[0].origin = TheEnemy.transform.position;
-                Directions[0].direction = new Vector3(-1, 0, 0);
-                Directions[1].origin = TheEnemy.transform.position;
-                Directions[1].direction = new Vector3(1, 0, 0);
-                Directions[2].origin = new Vector3(TheEnemy.transform.position.x, TheEnemy.transform.position.y - TheEnemy.GetComponent<CapsuleCollider>().bounds.extents.y, TheEnemy.transform.position.z);
-                Directions[2].direction = new Vector3(0, -1, 0);
-                Directions[3].origin = TheEnemy.transform.position;
-                Directions[3].direction = (-TheEnemy.transform.position + Player.transform.position).normalized;
-
-            }
-            else if (flipped == true)
-            {
-                Directions[0].origin = TheEnemy.transform.position;
-                Directions[0].direction = new Vector3(1, 0, 0);
-                Directions[1].origin = TheEnemy.transform.position;
-                Directions[1].direction = new Vector3(-1, 0, 0);
-                Directions[2].origin = new Vector3(TheEnemy.transform.position.x, TheEnemy.transform.position.y - TheEnemy.GetComponent<CapsuleCollider>().bounds.extents.y, TheEnemy.transform.position.z);
-                Directions[2].direction = new Vector3(0, -1, 0);
-                Directions[3].origin = TheEnemy.transform.position;
-                Directions[3].direction = (-TheEnemy.transform.position + Player.transform.position).normalized;
-
-            }
-            Hits0 = Physics.RaycastAll(Directions[0], 2f);
-            Hits3 = Physics.RaycastAll(Directions[3], 5f);
-            Hits1 = Physics.RaycastAll(Directions[1], 1.5f);
-
-            if (SetDirectionHits)
-            {
-
-                CurrentHits0 = Hits0;
-                CurrentHits1 = Hits1;
-                CurrentHits3 = Hits3;
-                Hits0Run = false;
-                Hits1Run = false;
-                Hits3Run = false;
-                hitCounter0 = Hits0.Length;
-                hitCounter1 = Hits1.Length;
-                hitCounter3 = Hits3.Length;
-                SetDirectionHits = false;
-            }
-            if (SetDirectionHits == false && !Hits0Run && !Hits1Run && !Hits3Run)
-            {
-                //Hits Direction 0
-                Debug.Log(" Hits0: " + Hits0.Length);
-                hitCounter0--;
-
-                if (hitCounter0 > -1 && CurrentHits0 != null && TheEnemy != null )
+                if (setDamageBox)
                 {
 
-
-                    if (CurrentHits0[hitCounter0].transform.gameObject != null)
-                    {
-                        if (CurrentHits0[hitCounter0].transform.gameObject != TheEnemy)
-                        {
-
-                            if (CurrentHits0[hitCounter0].transform.gameObject == Player && flipped == false)
-                            {
-                                TheEnemy.transform.rotation = Quaternion.Euler(new Vector3(0, Player.transform.rotation.eulerAngles.y - 270, 0));
-                                flipped = true;
-                                move = false;
-                               
-
-                            }
-                            else if (CurrentHits0[hitCounter0].transform.gameObject == Player && flipped == true)
-                            {
-                                TheEnemy.transform.rotation = Quaternion.Euler(new Vector3(0, Player.transform.rotation.eulerAngles.y + 270, 0));
-                                flipped = false;
-                                move = false;
-                                
-
-                            }
-                           
-                        }
-                    }
-                    
+                    DamageArea = new GameObject();
+                    DamageArea.transform.position = TheEnemy.transform.position;
+                    DamageArea.AddComponent<BoxCollider>().size = new Vector3(0.5f, 1, 1);
+                    DamageArea.GetComponent<BoxCollider>().enabled = false;
+                    DamageArea.name = "Enemy Damage Area";
+                    setDamageBox = false;
                 }
-               
-
-
-
-                Debug.Log(" Hits3: " + CurrentHits3.Length);
-                //Hits Direction 3
-
-                hitCounter3--;
-                if (hitCounter3 > -1 && CurrentHits3 != null && TheEnemy != null)
+                if (DamageArea != null)
+                {
+                    DamageArea.transform.position = new Vector3(TheEnemy.transform.position.x, TheEnemy.transform.position.y, TheEnemy.transform.position.z);
+                }
+                if (flipped == false && Player != null)
                 {
 
+                    Directions[0].origin = TheEnemy.transform.position;
+                    Directions[0].direction = new Vector3(-1, 0, 0);
+                    Directions[1].origin = TheEnemy.transform.position;
+                    Directions[1].direction = new Vector3(1, 0, 0);
+                    Directions[2].origin = new Vector3(TheEnemy.transform.position.x, TheEnemy.transform.position.y - TheEnemy.GetComponent<CapsuleCollider>().bounds.extents.y, TheEnemy.transform.position.z);
+                    Directions[2].direction = new Vector3(0, -1, 0);
+                    Directions[3].origin = TheEnemy.transform.position;
+                    Directions[3].direction = (-TheEnemy.transform.position + Player.transform.position).normalized;
 
+                }
+                else if (flipped == true && Player != null)
+                {
+                    Directions[0].origin = TheEnemy.transform.position;
+                    Directions[0].direction = new Vector3(1, 0, 0);
+                    Directions[1].origin = TheEnemy.transform.position;
+                    Directions[1].direction = new Vector3(-1, 0, 0);
+                    Directions[2].origin = new Vector3(TheEnemy.transform.position.x, TheEnemy.transform.position.y - TheEnemy.GetComponent<CapsuleCollider>().bounds.extents.y, TheEnemy.transform.position.z);
+                    Directions[2].direction = new Vector3(0, -1, 0);
+                    Directions[3].origin = TheEnemy.transform.position;
+                    Directions[3].direction = (-TheEnemy.transform.position + Player.transform.position).normalized;
 
-                    if (Player.transform.position.x <= TheEnemy.transform.position.x + SpaceToFire && Player.transform.position.x >= TheEnemy.transform.position.x && flipped == false && TheEnemy != null)
+                }
+                Hits0 = Physics.RaycastAll(Directions[0], 2f);
+                Hits3 = Physics.RaycastAll(Directions[3], 5f);
+                Hits1 = Physics.RaycastAll(Directions[1], 1.5f);
+
+                if (SetDirectionHits)
+                {
+
+                    CurrentHits0 = Hits0;
+                    CurrentHits1 = Hits1;
+                    CurrentHits3 = Hits3;
+                    Hits0Run = false;
+                    Hits1Run = false;
+                    Hits3Run = false;
+                    hitCounter0 = Hits0.Length;
+                    hitCounter1 = Hits1.Length;
+                    hitCounter3 = Hits3.Length;
+                    SetDirectionHits = false;
+                }
+                if (SetDirectionHits == false && !Hits0Run && !Hits1Run && !Hits3Run)
+                {
+                    //Hits Direction 0
+                    Debug.Log(" Hits0: " + Hits0.Length);
+                    hitCounter0--;
+
+                    if (hitCounter0 > -1 && CurrentHits0 != null && TheEnemy != null)
                     {
-                        move = false;
-                        moveTowardsPlayerPos = false;
-                        PlayerLeft = false;
-                        PlayerRight = true;
-                        TimeToShoot = TimeToShoot - time;
 
-                        if (TimeToShoot < 0)
+
+                        if (CurrentHits0[hitCounter0].transform.gameObject != null)
                         {
-                            shoot = true;
-                            TimeToShoot = ResetShoot;
+                            if (CurrentHits0[hitCounter0].transform.gameObject != TheEnemy)
+                            {
+
+                                if (CurrentHits0[hitCounter0].transform.gameObject == Player && flipped == false)
+                                {
+                                    TheEnemy.transform.rotation = Quaternion.Euler(new Vector3(0, Player.transform.rotation.eulerAngles.y - 270, 0));
+                                    flipped = true;
+                                    move = false;
+
+
+                                }
+                                else if (CurrentHits0[hitCounter0].transform.gameObject == Player && flipped == true)
+                                {
+                                    TheEnemy.transform.rotation = Quaternion.Euler(new Vector3(0, Player.transform.rotation.eulerAngles.y + 270, 0));
+                                    flipped = false;
+                                    move = false;
+
+
+                                }
+
+                            }
                         }
-                        
+
                     }
-                    else if (Player.transform.position.x <= TheEnemy.transform.position.x && Player.transform.position.x >= TheEnemy.transform.position.x - SpaceToFire && flipped == true && TheEnemy != null)
-                    {
-                        move = false;
-                        moveTowardsPlayerNeg = false;
-                        PlayerRight = false;
-                        PlayerLeft = true;
-                        TimeToShoot = TimeToShoot - time;
 
-                        if (TimeToShoot < 0)
+
+
+
+                    Debug.Log(" Hits3: " + CurrentHits3.Length);
+                    //Hits Direction 3
+
+                    hitCounter3--;
+                    if (hitCounter3 > -1 && CurrentHits3 != null && TheEnemy != null)
+                    {
+
+
+
+                        if (Player.transform.position.x <= TheEnemy.transform.position.x + SpaceToFire && Player.transform.position.x >= TheEnemy.transform.position.x && flipped == false && TheEnemy != null)
                         {
-                            shoot = true;
-                            TimeToShoot = ResetShoot;
+                            move = false;
+                            moveTowardsPlayerPos = false;
+                            PlayerLeft = false;
+                            PlayerRight = true;
+                            TimeToShoot = TimeToShoot - time;
+
+                            if (TimeToShoot < 0)
+                            {
+                                if (Player.transform.position.x <= TheEnemy.transform.position.x + 1)
+                                {
+                                    Strike = true;
+                                }
+                                else
+                                {
+                                    shoot = true;
+                                }
+                                TimeToShoot = ResetShoot;
+                            }
+
                         }
-                        
+                        else if (Player.transform.position.x <= TheEnemy.transform.position.x && Player.transform.position.x >= TheEnemy.transform.position.x - SpaceToFire && flipped == true && TheEnemy != null)
+                        {
+                            move = false;
+                            moveTowardsPlayerNeg = false;
+                            PlayerRight = false;
+                            PlayerLeft = true;
+                            TimeToShoot = TimeToShoot - time;
+
+                            if (TimeToShoot < 0)
+                            {
+                                if (Player.transform.position.x >= TheEnemy.transform.position.x - 1)
+                                {
+                                    Strike = true;
+                                }
+                                else
+                                {
+                                    shoot = true;
+                                }
+                                TimeToShoot = ResetShoot;
+                            }
+
+                        }
+                        else
+                        {
+
+
+                            PlayerLeft = false;
+                            PlayerRight = false;
+                            moveTowardsPlayerNeg = false;
+                            moveTowardsPlayerPos = false;
+                            move = true;
+
+                        }
+
+
                     }
                     else
                     {
 
-                        
                         PlayerLeft = false;
                         PlayerRight = false;
                         moveTowardsPlayerNeg = false;
                         moveTowardsPlayerPos = false;
-                        move = true;
 
                     }
 
-
-                }
-                else
-                {
-                    
-                    PlayerLeft = false;
-                    PlayerRight = false;
-                    moveTowardsPlayerNeg = false;
-                    moveTowardsPlayerPos = false;
-
-                }
-
-                if (Physics.OverlapSphere(Directions[2].origin, 0.2f).Length > 1 && !jumpLeft && !jumpRight)
-                {
-
-                    grounded = true;
-
-                }
-                else
-                {
-                    Debug.Log("grounded False");
-                    grounded = false;
-                }
-
-                Debug.Log(" Hits1: " + CurrentHits1.Length);
-                //Hits direction 1
-                hitCounter1--;
-                if (hitCounter1 > -1 && CurrentHits1.Length != 0 && TheEnemy != null && ObstacleBox != null)
-                {
-                    if (Hits1 != null)
+                    if (Physics.OverlapSphere(Directions[2].origin, 0.2f).Length > 1 && !jumpLeft && !jumpRight)
                     {
-                        if (Hits1[hitCounter1].collider != null)
+
+                        grounded = true;
+
+                    }
+                    else
+                    {
+                        Debug.Log("grounded False");
+                        grounded = false;
+                    }
+
+                    Debug.Log(" Hits1: " + CurrentHits1.Length);
+                    //Hits direction 1
+                    hitCounter1--;
+                    if (hitCounter1 > -1 && CurrentHits1.Length != 0 && TheEnemy != null && ObstacleBox != null)
+                    {
+                        if (Hits1 != null)
                         {
-                            if (CurrentHits1[hitCounter1].transform.gameObject == ObstacleBox && !jumpLeft && !jumpRight)// && move == true)
+                            if (Hits1[hitCounter1].collider != null)
                             {
-                                Debug.Log("Boxi havaittu");
-                                if (flipped == true && grounded)
+                                if (CurrentHits1[hitCounter1].transform.gameObject == ObstacleBox && !jumpLeft && !jumpRight)// && move == true)
                                 {
-                                    Debug.Log("hypätty");
-                                    jumpLeft = true;
-                                    move = false;
-                                    moveTowardsPlayerNeg = false;
-                                    moveTowardsPlayerPos = false;
+                                    Debug.Log("Boxi havaittu");
+                                    if (flipped == true && grounded)
+                                    {
+                                        Debug.Log("hypätty");
+                                        jumpLeft = true;
+                                        move = false;
+                                        moveTowardsPlayerNeg = false;
+                                        moveTowardsPlayerPos = false;
+                                    }
+                                    else if (flipped == false && grounded)
+                                    {
+                                        jumpRight = true;
+                                        move = false;
+                                        moveTowardsPlayerNeg = false;
+                                        moveTowardsPlayerPos = false;
+                                    }
+
                                 }
-                                else if (flipped == false && grounded)
+
+
+
+
+
+                                GameObject[] findEnemy = GameObject.FindGameObjectsWithTag("Enemy");
+
+                                for (int j = 0; j < findEnemy.Length; j++)
                                 {
-                                    jumpRight = true;
-                                    move = false;
-                                    moveTowardsPlayerNeg = false;
-                                    moveTowardsPlayerPos = false;
+                                    if (CurrentHits1[hitCounter1].transform.gameObject == findEnemy[j] && findEnemy[j] != TheEnemy)
+                                    {
+                                        Debug.Log("Turn");
+                                        move = false;
+                                        turn = true;
+
+                                    }
                                 }
 
-                            }
 
 
-
-
-
-                            GameObject[] findEnemy = GameObject.FindGameObjectsWithTag("Enemy");
-
-                            for (int j = 0; j < findEnemy.Length; j++)
-                            {
-                                if (CurrentHits1[hitCounter1].transform.gameObject == findEnemy[j] && findEnemy[j] != TheEnemy)
+                                if (CurrentHits1[hitCounter1].transform.gameObject == ObstacleWall && flipped == true && ObstacleWall != null)
                                 {
-                                    Debug.Log("Turn");
                                     move = false;
                                     turn = true;
 
                                 }
-                            }
+                                else if ((PlayerLeft || PlayerRight) && grounded)
+                                {
+                                    move = false;
 
+                                }
+                                else
+                                {
+                                    move = true;
 
-
-                            if (CurrentHits1[hitCounter1].transform.gameObject == ObstacleWall && flipped == true && ObstacleWall != null)
-                            {
-                                move = false;
-                                turn = true;
-
-                            }
-                            else if ((PlayerLeft || PlayerRight) && grounded)
-                            {
-                                move = false;
-
-                            }
-                            else
-                            {
-                                move = true;
-
+                                }
                             }
                         }
+
                     }
 
-                }
-              
 
-                if (hitCounter0 < 0 && hitCounter1 < 0 && hitCounter3 < 0)
-                {
-                    Debug.Log("Directions reset");
-                    SetDirectionHits = true;
-                }
-
-                Debug.Log("Hitscount: " + hitCounter0 + " , " + hitCounter1 + " , " + hitCounter3);
-                Debug.Log("JR: " + jumpRight + " JL: " + jumpLeft + " GR: " + grounded + " PR: " + PlayerRight + " PL: " + PlayerLeft);
-                /* if (!jumpRight && !jumpLeft && grounded && !PlayerRight && !PlayerLeft && !turn)
-                 {
-
-                     Debug.Log("MovE");
-                     move = true;
-                 }*/
-
-
-                if (jumpRight || jumpLeft)
-                {
-                    TimeToFall = TimeToFall - time;
-                    if (TimeToFall < 0)
+                    if (hitCounter0 < 0 && hitCounter1 < 0 && hitCounter3 < 0)
                     {
-                        jumpLeft = false;
-                        jumpRight = false;
-                        TimeToFall = ResetFall;
+                        Debug.Log("Directions reset");
+                        SetDirectionHits = true;
                     }
-                    /* else if(grounded)
-                     {
-                         jumpRight = false;
-                         jumpLeft = false;
-                         TimeToFall = ResetFall;
 
+                    Debug.Log("Hitscount: " + hitCounter0 + " , " + hitCounter1 + " , " + hitCounter3);
+                    Debug.Log("JR: " + jumpRight + " JL: " + jumpLeft + " GR: " + grounded + " PR: " + PlayerRight + " PL: " + PlayerLeft);
+                    /* if (!jumpRight && !jumpLeft && grounded && !PlayerRight && !PlayerLeft && !turn)
+                     {
+
+                         Debug.Log("MovE");
+                         move = true;
                      }*/
+
+
+                    if (jumpRight || jumpLeft)
+                    {
+                        TimeToFall = TimeToFall - time;
+                        if (TimeToFall < 0)
+                        {
+                            jumpLeft = false;
+                            jumpRight = false;
+                            TimeToFall = ResetFall;
+                        }
+                        /* else if(grounded)
+                         {
+                             jumpRight = false;
+                             jumpLeft = false;
+                             TimeToFall = ResetFall;
+
+                         }*/
+                    }
                 }
+                TimeToUpdate = ResetUpdate;
             }
 
             //------------------------------ Execute Part ---------------------------------
@@ -418,7 +456,44 @@ public class Defender : Enemy {
 
                 shoot = false;
             }
+            if(Strike)
+            {
+                if (flipped == true)
+                {
+                    RaycastHit[] hits = Physics.BoxCastAll(DamageArea.GetComponent<BoxCollider>().transform.position - new Vector3(0.5f, 0, 0),
+              new Vector3(DamageArea.GetComponent<BoxCollider>().size.x / 2, DamageArea.GetComponent<BoxCollider>().size.y / 2, DamageArea.GetComponent<BoxCollider>().size.z / 2), new Vector3(-1, 0, 0), DamageArea.transform.rotation, DamageArea.GetComponent<BoxCollider>().size.x / 2);
 
+                    for (int i = 0; i < hits.Length; i++)
+                    {
+                        if (hits[i].collider != null)
+                        {
+                            if (hits[i].transform.gameObject == Player)
+                            {
+                                Player.GetComponent<PlayerHealth>().Health = Player.GetComponent<PlayerHealth>().Health - StrikeDmgToPlayer;
+                            }
+                        }
+                    }
+                }
+                else if (flipped == false)
+                {
+                    RaycastHit[] hits = Physics.BoxCastAll(DamageArea.GetComponent<BoxCollider>().transform.position + new Vector3(0.5f, 0, 0),
+              new Vector3(DamageArea.GetComponent<BoxCollider>().size.x / 2, DamageArea.GetComponent<BoxCollider>().size.y / 2, DamageArea.GetComponent<BoxCollider>().size.z / 2), new Vector3(1, 0, 0), DamageArea.transform.rotation, DamageArea.GetComponent<BoxCollider>().size.x / 2);
+
+                    for (int i = 0; i < hits.Length; i++)
+                    {
+                        if (hits[i].collider != null)
+                        {
+                            if (hits[i].transform.gameObject == Player)
+                            {
+                                Player.GetComponent<PlayerHealth>().Health = Player.GetComponent<PlayerHealth>().Health - StrikeDmgToPlayer;
+                            }
+                        }
+                    }
+
+                }
+
+                Strike = false;
+            }
             if (move)
             {
                 if (flipped == false)
