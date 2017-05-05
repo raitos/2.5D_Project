@@ -87,8 +87,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\MyScript\ATCeditorSc.cs" />
     <Compile Include="Assets\MyScript\Attacker.cs" />
     <Compile Include="Assets\MyScript\Boss.cs" />
+    <Compile Include="Assets\MyScript\DEFeditorSc.cs" />
     <Compile Include="Assets\MyScript\Defender.cs" />
     <Compile Include="Assets\MyScript\DestroyBullet.cs" />
     <Compile Include="Assets\MyScript\EditorScript.cs" />

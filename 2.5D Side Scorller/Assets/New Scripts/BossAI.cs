@@ -8,6 +8,7 @@ public class BossAI : MonoBehaviour {
     //Game objects--------------------
     GameObject player;
     GameObject bossArea;
+    GameObject ReflectShield;
 
     //Vectors-------------------------
     Vector3 playerPos;
@@ -53,6 +54,8 @@ public class BossAI : MonoBehaviour {
         bossArea = GameObject.Find("BossArea");
         rightSide = GameObject.Find("RightSide").transform.position;
         leftSide = GameObject.Find("LeftSide").transform.position;
+        ReflectShield = GameObject.Find("ReflectShield");
+        ReflectShield.SetActive(false);
         leftBottom.x = leftSide.x;
         leftBottom.y = leftSide.y - 4;
         rightBottom.x = rightSide.x;
@@ -92,14 +95,17 @@ public class BossAI : MonoBehaviour {
         //Input for testing the abilities:
         if (Input.GetKeyDown(KeyCode.O)) //For testing
         {
+            ReflectShield.SetActive(false);
             SlashActive = true;
         }
         else if (Input.GetKeyDown(KeyCode.I)) //For testing
         {
+            ReflectShield.SetActive(false);
             Slash2Active = true;
         }
         else if (Input.GetKeyDown(KeyCode.P)) //For testing
         {
+            ReflectShield.SetActive(false);
             if (playerLeft)
             {
                 goalPos = leftBottom;
@@ -112,6 +118,7 @@ public class BossAI : MonoBehaviour {
         }
         else if (Input.GetKeyDown(KeyCode.U)) //For testing
         {
+            ReflectShield.SetActive(false);
             if (playerLeft)
             {
                 goalPos = leftBottom;
@@ -208,6 +215,7 @@ public class BossAI : MonoBehaviour {
             firstPoint = false;
             dashDown = false;
             Slash1Timer = 0;
+            ReflectShield.SetActive(true);
         }
 
     }
@@ -235,6 +243,7 @@ public class BossAI : MonoBehaviour {
             transform.position = startPos;
             SlashDash = false;
             Slash1Timer = 0;
+            ReflectShield.SetActive(true);
         }
     }
 
@@ -332,6 +341,7 @@ public class BossAI : MonoBehaviour {
                 secondPoint = false;
                 thirdPoint = false;
                 Slash1Timer = 0;
+                ReflectShield.SetActive(true);
             }
         }
     }
@@ -389,6 +399,7 @@ public class BossAI : MonoBehaviour {
             transform.position = startPos;
             SlashDash2 = false;
             Slash1Timer = 0;
+            ReflectShield.SetActive(true);
         }
     }
 

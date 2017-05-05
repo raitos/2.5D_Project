@@ -19,10 +19,15 @@ public class ShootingTwo : MonoBehaviour {
     public float BulletSpreadLimit;
     Vector3 targetDir;
 
+
+    Controller ctrl;
+    public bool shotRight;
+    public float ReflectSpread;
+
     // Use this for initialization
     void Start ()
     {
-
+        ctrl = Player.GetComponent<Controller>();
         resetTime = timeToShoot;
         shoot = false;
         time = Time.deltaTime;
@@ -35,11 +40,11 @@ public class ShootingTwo : MonoBehaviour {
 
         timeToShoot = timeToShoot - time;
 
-        if (Player.transform.rotation.y > 0)
+        if (ctrl.dir < 0)
         {
             targetDir = new Vector3(-1, 0, 0);
         }
-        else if(Player.transform.rotation.y < 0)
+        else if(ctrl.dir > 0)
         {
             targetDir = new Vector3(1, 0, 0);
         }
@@ -60,9 +65,11 @@ public class ShootingTwo : MonoBehaviour {
 
         if(shoot)
         {
-
-            if (Player.transform.rotation.y > 0)
+            Debug.Log("shoot true");
+            if (ctrl.dir < 0)
             {
+                shotRight = false;
+                Debug.Log("ammuttiin");
                 BulletShot = Instantiate(bullet, new Vector3(Player.transform.position.x - ShootXOffset, Player.transform.position.y + ShootYOffset, Player.transform.position.z), Quaternion.Euler(0, 0, 90));
                 Physics.IgnoreCollision(Player.GetComponent<Collider>(), BulletShot.GetComponent<Collider>(), true);
                 BulletShot.GetComponent<MeshRenderer>().enabled = true;
@@ -71,8 +78,10 @@ public class ShootingTwo : MonoBehaviour {
                 BulletShot.GetComponent<DestroyBullet>().thespawnpoint = Player;
                 BulletShot.GetComponent<DestroyBullet>().isEnemyBullet = false;
             }
-            else if (Player.transform.rotation.y < 0)
+            else if (ctrl.dir > 0)
             {
+                shotRight = true;
+                Debug.Log("ammuttiin 2");
                 BulletShot = Instantiate(bullet, new Vector3(Player.transform.position.x + ShootXOffset, Player.transform.position.y + ShootYOffset, Player.transform.position.z), Quaternion.Euler(0, 0, 90));
                 Physics.IgnoreCollision(Player.GetComponent<Collider>(), BulletShot.GetComponent<Collider>(), true);
                 BulletShot.GetComponent<MeshRenderer>().enabled = true;

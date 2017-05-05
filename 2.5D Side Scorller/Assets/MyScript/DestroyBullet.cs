@@ -9,10 +9,12 @@ public class DestroyBullet : MonoBehaviour {
     
     public float time;
     public bool isEnemyBullet;
+    ShootingTwo shoot;
 
     // Use this for initialization
     void Start ()
     {
+        shoot = GameObject.Find("Player").GetComponent<ShootingTwo>();
 
         Physics.IgnoreCollision(this.gameObject.GetComponent<Collider>(), thespawnpoint.GetComponent<Collider>(), true);
 
@@ -32,6 +34,23 @@ public class DestroyBullet : MonoBehaviour {
         if(col.gameObject == thespawnpoint.gameObject)
         {
 
+        }
+        else if (col.gameObject.name == "Player")
+        {
+
+        }
+        else if (col.gameObject.name == "ReflectShield")
+        {
+            Debug.Log("osu kilpee");
+            if (shoot.shotRight)
+            {
+
+                gameObject.GetComponent<Rigidbody>().AddForce(Vector3.left * shoot.BulletSpeed + new Vector3(Random.Range(shoot.ReflectSpread, -shoot.ReflectSpread), Random.Range(shoot.ReflectSpread, -shoot.ReflectSpread), 0), ForceMode.VelocityChange);
+            }
+            else
+            {
+                gameObject.GetComponent<Rigidbody>().AddForce(Vector3.right * shoot.BulletSpeed + new Vector3(Random.Range(shoot.ReflectSpread, -shoot.ReflectSpread), Random.Range(shoot.ReflectSpread, -shoot.ReflectSpread), 0), ForceMode.VelocityChange);
+            }
         }
         else
         {
