@@ -128,14 +128,14 @@ public class Controller : MonoBehaviour {
             {
                 transform.Translate(Vector2.up * 0.2F * playerPhysics.timeScale);
                 amountToMove.y = jumpHeight;
+                anim.SetBool("IsJump", true);
+                anim.SetBool("IsWalk", false);
+                anim.SetBool("IsDash", false);
             }
         }
         else if (!playerPhysics.Dash)
         {
             amountToMove.y -= gravity * Time.deltaTime;
-            anim.SetBool("IsJump", true);
-            anim.SetBool("IsWalk", false);
-            anim.SetBool("IsDash", false);
         }
         if (playerPhysics.FacingWall)
         {
@@ -152,6 +152,9 @@ public class Controller : MonoBehaviour {
         }
         else if (playerPhysics.DashJumping)
         {
+            anim.SetBool("IsJump", true);
+            anim.SetBool("IsWalk", false);
+            anim.SetBool("IsDash", false);
             if (dir != playerPhysics.DashDirection)
             {
                 playerPhysics.DashJumping = false;
@@ -185,11 +188,11 @@ public class Controller : MonoBehaviour {
         }
     }
 
-    void OnTriggerEnter(Collider col)
+    void OnTriggerStay(Collider col)
     {
         if (col.gameObject.tag == "Wall")
         {
-            gameObject.transform.Translate(Vector3.up * 0.3F);
+            gameObject.transform.Translate(Vector3.up * 3 * Time.deltaTime);
             playerPhysics.Grounded = true;
         }
     }

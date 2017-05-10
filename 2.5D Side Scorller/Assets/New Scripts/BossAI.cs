@@ -9,7 +9,6 @@ public class BossAI : MonoBehaviour {
     //Game objects--------------------
     GameObject player;
     GameObject bossArea;
-    GameObject ReflectShield;
 
     //Vectors-------------------------
     Vector3 playerPos;
@@ -45,6 +44,10 @@ public class BossAI : MonoBehaviour {
     bool Slash2Active = false;
     bool SlashDash = false;
     bool SlashDash2 = false;
+    public bool Reflecting = false;
+    public bool BulletImmunity = true;
+    bool phase1 = false;
+    bool phase0 = true;
 
     //Some variables------------------
     public float BossHP = 100;
@@ -62,8 +65,7 @@ public class BossAI : MonoBehaviour {
         bossArea = GameObject.Find("BossArea");
         rightSide = GameObject.Find("RightSide").transform.position;
         leftSide = GameObject.Find("LeftSide").transform.position;
-        ReflectShield = GameObject.Find("ReflectShield");
-        ReflectShield.SetActive(false);
+        Reflecting = true;
         leftBottom.x = leftSide.x;
         leftBottom.y = leftSide.y - 4;
         rightBottom.x = rightSide.x;
@@ -100,11 +102,6 @@ public class BossAI : MonoBehaviour {
             bossRight = true;
         }
 
-        //Health things:
-        if (BossHP < 1)
-        {
-            Destroy(gameObject);
-        }
 
         //Randomly choosing the next ability:
         System.Random rnd = new System.Random();
@@ -113,37 +110,56 @@ public class BossAI : MonoBehaviour {
             if (NextAttTimer < AttTime)
             {
                 NextAttTimer += Time.deltaTime;
+                if (phase1)
+                {
+                    Reflecting = false;
+                }
+            }
+            else if (phase0)
+            {
+                Reflecting = false;
+                SlashActive = true;
+                NextAttTimer = 0;
+            }
+            else if (phase1)
+            {
+                Reflecting = false;
+                if (playerLeft)
+                {
+                    goalPos = rightBottom;
+                }
+                else
+                {
+                    goalPos = leftBottom;
+                }
+                SlashDash = true;
+                NextAttTimer = 0;
             }
             else
             {
-                int nextMove = rnd.Next(1, 4);
+                int nextMove = rnd.Next(1, 3);
                 switch (nextMove)
                 {
                     case 1:
-                        ReflectShield.SetActive(false);
-                        SlashActive = true;
-                        NextAttTimer = 0;
-                        break;
-                    case 2:
-                        ReflectShield.SetActive(false);
+                        Reflecting = false;
                         Slash2Active = true;
                         NextAttTimer = 0;
                         break;
-                    case 3:
-                        ReflectShield.SetActive(false);
+                    case 2:
+                        Reflecting = false;
                         if (playerLeft)
                         {
-                            goalPos = leftBottom;
+                            goalPos = rightBottom;
                         }
                         else
                         {
-                            goalPos = rightBottom;
+                            goalPos = leftBottom;
                         }
                         SlashDash = true;
                         NextAttTimer = 0;
                         break;
-                    case 4:
-                        ReflectShield.SetActive(false);
+                    case 3:
+                        Reflecting = false;
                         if (playerLeft)
                         {
                             goalPos = leftBottom;
@@ -187,6 +203,23 @@ public class BossAI : MonoBehaviour {
     {
         BossHP -= dmg;
         HPText.text = BossHP.ToString();
+        //Health things:
+        if (BossHP < 1)
+        {
+            Destroy(gameObject);
+        }
+        else if (BossHP < 41)
+        {
+            phase1 = false;
+            Reflecting = true;
+        }
+        else if (BossHP < 71)
+        {
+            BulletImmunity = false;
+            Reflecting = false;
+            phase0 = false;
+            phase1 = true;
+        }
     }
 
     void SlashAtt()
@@ -218,16 +251,21 @@ public class BossAI : MonoBehaviour {
                     goalPos = rightTop;
                     dashDown = true;
                 }
-                goalPos2 = goalPos;
-                goalPos2.y -= 2.5F;
+                goalPos2 = player.transform.position;
+                goalPos2.y += 1;
+                goalPos2.x += player.transform.position.x - goalPos.x;
                 firstPoint = true;
             }
             transform.position = goalPos;
             Slash1Timer += Time.deltaTime;
 
         }
+        else if (Slash1Timer < 0.9F)
+        {
+            Slash1Timer += Time.deltaTime;
+        }
 
-        else if (Slash1Timer < 2)
+        else if (Slash1Timer < 2F)
         {
             Slash1Timer += Time.deltaTime;
             if (dashDown && bossLeft)
@@ -238,9 +276,9 @@ public class BossAI : MonoBehaviour {
             {
                 transform.position = Vector3.MoveTowards(transform.position, rightBottom, 30 * Time.deltaTime);
             }
-            else if (transform.position.y > bossArea.transform.position.y -3.5F)
+            else
             {
-                transform.position = Vector3.MoveTowards(transform.position, goalPos2, 30 * Time.deltaTime);
+                transform.position = Vector3.MoveTowards(transform.position, goalPos2, 50 * Time.deltaTime);
             }
         }
         else
@@ -250,7 +288,7 @@ public class BossAI : MonoBehaviour {
             firstPoint = false;
             dashDown = false;
             Slash1Timer = 0;
-            ReflectShield.SetActive(true);
+            Reflecting = true;
         }
 
     }
@@ -263,12 +301,12 @@ public class BossAI : MonoBehaviour {
             Slash1Timer += Time.deltaTime;
 
         }
-        else if (Slash1Timer < 1.6F && goalPos == leftBottom)
+        else if (Slash1Timer < 2.5F && goalPos == leftBottom)
         {
             transform.position = Vector3.MoveTowards(transform.position, rightBottom, 60 * Time.deltaTime);
             Slash1Timer += Time.deltaTime;
         }
-        else if (Slash1Timer < 1.6F && goalPos == rightBottom)
+        else if (Slash1Timer < 2.5F && goalPos == rightBottom)
         {
             transform.position = Vector3.MoveTowards(transform.position, leftBottom, 60 * Time.deltaTime);
             Slash1Timer += Time.deltaTime;
@@ -278,7 +316,7 @@ public class BossAI : MonoBehaviour {
             transform.position = startPos;
             SlashDash = false;
             Slash1Timer = 0;
-            ReflectShield.SetActive(true);
+            Reflecting = true;
         }
     }
 
@@ -312,9 +350,24 @@ public class BossAI : MonoBehaviour {
                 }
                 transform.position = goalPos;
                 Slash1Timer += Time.deltaTime;
-
+                goalPos2 = player.transform.position;
+                goalPos2.y += 1;
+                goalPos2.x += 1 * Mathf.Sign(player.transform.position.x - goalPos.x);
             }
-            else if (Slash1Timer < 2)
+            else if (Slash1Timer < 1.2F)
+            {
+                Slash1Timer += Time.deltaTime;
+            }
+            else if (Slash1Timer < 1.3F)
+            {
+                transform.position = Vector3.MoveTowards(transform.position, goalPos2, 50 * Time.deltaTime);
+                Slash1Timer += Time.deltaTime;
+            }
+            else if (Slash1Timer < 2F)
+            {
+                Slash1Timer += Time.deltaTime;
+            }
+            else if (Slash1Timer < 2.5)
             {
                 if (!secondPoint)
                 {
@@ -339,7 +392,22 @@ public class BossAI : MonoBehaviour {
                 }
                 transform.position = goalPos;
                 Slash1Timer += Time.deltaTime;
-
+                goalPos2 = player.transform.position;
+                goalPos2.y += 1;
+                goalPos2.x += 1 * Mathf.Sign(player.transform.position.x - goalPos.x);
+            }
+            else if (Slash1Timer < 2.7F)
+            {
+                Slash1Timer += Time.deltaTime;
+            }
+            else if (Slash1Timer < 2.8F)
+            {
+                transform.position = Vector3.MoveTowards(transform.position, goalPos2, 50 * Time.deltaTime);
+                Slash1Timer += Time.deltaTime;
+            }
+            else if (Slash1Timer < 3.5F)
+            {
+                Slash1Timer += Time.deltaTime;
             }
             else if (Slash1Timer < 4)
             {
@@ -366,7 +434,22 @@ public class BossAI : MonoBehaviour {
                 }
                 transform.position = goalPos;
                 Slash1Timer += Time.deltaTime;
-
+                goalPos2 = player.transform.position;
+                goalPos2.y += 1;
+                goalPos2.x += 1 * Mathf.Sign(player.transform.position.x - goalPos.x);
+            }
+            else if (Slash1Timer < 4.2F)
+            {
+                Slash1Timer += Time.deltaTime;
+            }
+            else if (Slash1Timer < 4.3F)
+            {
+                transform.position = Vector3.MoveTowards(transform.position, goalPos2, 50 * Time.deltaTime);
+                Slash1Timer += Time.deltaTime;
+            }
+            else if (Slash1Timer < 5.3F)
+            {
+                Slash1Timer += Time.deltaTime;
             }
             else
             {
@@ -376,7 +459,7 @@ public class BossAI : MonoBehaviour {
                 secondPoint = false;
                 thirdPoint = false;
                 Slash1Timer = 0;
-                ReflectShield.SetActive(true);
+                Reflecting = true;
             }
         }
     }
@@ -434,7 +517,7 @@ public class BossAI : MonoBehaviour {
             transform.position = startPos;
             SlashDash2 = false;
             Slash1Timer = 0;
-            ReflectShield.SetActive(true);
+            Reflecting = true;
         }
     }
 

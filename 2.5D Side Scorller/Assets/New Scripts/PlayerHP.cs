@@ -6,6 +6,7 @@ public class PlayerHP : MonoBehaviour {
 
     public float Health = 100;
     public TextMesh HPText;
+    float InvulnerabilityTimer;
 
     // Use this for initialization
     void Start ()
@@ -13,6 +14,10 @@ public class PlayerHP : MonoBehaviour {
         HPText = GameObject.Find("txtPlayerHealth").GetComponent<TextMesh>();
     }
 
+    void Update()
+    {
+        InvulnerabilityTimer += Time.deltaTime;
+    }
 
 
     void OnTriggerEnter(Collider col)
@@ -30,7 +35,11 @@ public class PlayerHP : MonoBehaviour {
 
     public void AddDmg(float d)
     {
-        Health -= d;
+        if (InvulnerabilityTimer > 1)
+        {
+            Health -= d;
+            InvulnerabilityTimer = 0;
+        }
         if (Health < 1)
         {
             Destroy(gameObject);

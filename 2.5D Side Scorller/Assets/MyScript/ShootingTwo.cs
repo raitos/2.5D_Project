@@ -75,11 +75,9 @@ public class ShootingTwo : MonoBehaviour {
             anim.SetBool("IsWalk", false);
             anim.SetBool("IsJump", false);
             anim.SetBool("IsDash", false);
-            Debug.Log("shoot true");
             if (ctrl.dir < 0)
             {
                 shotRight = false;
-                Debug.Log("ammuttiin");
                 BulletShot = Instantiate(bullet, new Vector3(Player.transform.position.x - ShootXOffset, Player.transform.position.y + ShootYOffset, Player.transform.position.z), Quaternion.Euler(0, 0, 90));
                 Physics.IgnoreCollision(Player.GetComponent<Collider>(), BulletShot.GetComponent<Collider>(), true);
                 BulletShot.GetComponent<MeshRenderer>().enabled = true;
@@ -91,7 +89,6 @@ public class ShootingTwo : MonoBehaviour {
             else if (ctrl.dir > 0)
             {
                 shotRight = true;
-                Debug.Log("ammuttiin 2");
                 BulletShot = Instantiate(bullet, new Vector3(Player.transform.position.x + ShootXOffset, Player.transform.position.y + ShootYOffset, Player.transform.position.z), Quaternion.Euler(0, 0, 90));
                 Physics.IgnoreCollision(Player.GetComponent<Collider>(), BulletShot.GetComponent<Collider>(), true);
                 BulletShot.GetComponent<MeshRenderer>().enabled = true;

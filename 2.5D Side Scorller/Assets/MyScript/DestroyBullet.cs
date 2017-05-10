@@ -39,12 +39,21 @@ public class DestroyBullet : MonoBehaviour {
         }
         else if (col.gameObject.name == "Player")
         {
-
+            Debug.Log("Pelaajaan osu");
         }
-        else if (col.gameObject.name == "ReflectShield")
+        else if (col.gameObject.name == "Boss")
         {
-            Debug.Log("osu kilpee");
-            if (shoot.shotRight)
+            if (!boss.Reflecting)
+            {
+                boss.AddDmg(10);
+                Destroy(this.gameObject);
+            }
+            else if (boss.BulletImmunity)
+            {
+                Destroy(this.gameObject);
+            }
+
+            else if (shoot.shotRight)
             {
 
                 gameObject.GetComponent<Rigidbody>().AddForce(Vector3.left * shoot.BulletSpeed + new Vector3(Random.Range(shoot.ReflectSpread, -shoot.ReflectSpread), Random.Range(shoot.ReflectSpread, -shoot.ReflectSpread), 0), ForceMode.VelocityChange);
@@ -53,12 +62,6 @@ public class DestroyBullet : MonoBehaviour {
             {
                 gameObject.GetComponent<Rigidbody>().AddForce(Vector3.right * shoot.BulletSpeed + new Vector3(Random.Range(shoot.ReflectSpread, -shoot.ReflectSpread), Random.Range(shoot.ReflectSpread, -shoot.ReflectSpread), 0), ForceMode.VelocityChange);
             }
-        }
-        else if (col.gameObject.name == "Boss")
-        {
-            Debug.Log("Osui bossiin");
-            boss.AddDmg(10);
-            Destroy(this.gameObject);
         }
         else
         {
