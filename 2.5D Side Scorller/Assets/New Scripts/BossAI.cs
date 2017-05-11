@@ -40,9 +40,9 @@ public class BossAI : MonoBehaviour {
     float IdleTimer;
 
     //Boss abilities------------------
-    bool SlashActive = false;
-    bool Slash2Active = false;
-    bool SlashDash = false;
+    public bool SlashActive = false;
+    public bool Slash2Active = false;
+    public bool SlashDash = false;
     bool SlashDash2 = false;
     public bool Reflecting = false;
     public bool BulletImmunity = true;
@@ -103,7 +103,7 @@ public class BossAI : MonoBehaviour {
         }
 
 
-        //Randomly choosing the next ability:
+        //Randomly choosing the next ability according to which phase boss is on:
         System.Random rnd = new System.Random();
         if (!SlashActive && !Slash2Active && !SlashDash && !SlashDash2)
         {
@@ -222,6 +222,32 @@ public class BossAI : MonoBehaviour {
         }
     }
 
+
+
+    Vector3 nPoint; 
+    Vector3 CalcNextPoint() //Calculate the next movepoint for boss
+    {
+
+        if (playerLeft && (!playerRightWall && !playerLeftWall))
+        {
+            nPoint = playerPos;
+            nPoint.y += 1F;
+            nPoint.x = playerPos.x - 2.5F;
+        }
+        else if (playerRight && (!playerRightWall && !playerLeftWall))
+        {
+            nPoint = playerPos;
+            nPoint.y += 1F;
+            nPoint.x = playerPos.x + 2.5F;
+        }
+        else
+        {
+            nPoint.x = player.transform.position.x;
+            nPoint.y = playerPos.y + 2;
+        }
+        return nPoint;
+    }
+
     void SlashAtt()
     {
 
@@ -233,13 +259,13 @@ public class BossAI : MonoBehaviour {
                 {
                     goalPos = playerPos;
                     goalPos.y += 1F;
-                    goalPos.x = playerPos.x - 1.5F;
+                    goalPos.x = playerPos.x - 2.5F;
                 }
                 else if (playerRight && (!playerRightWall && !playerLeftWall))
                 {
                     goalPos = playerPos;
                     goalPos.y += 1F;
-                    goalPos.x = playerPos.x + 1.5F;
+                    goalPos.x = playerPos.x + 2.5F;
                 }
                 else if (playerLeftWall)
                 {
@@ -329,23 +355,7 @@ public class BossAI : MonoBehaviour {
             {
                 if (!firstPoint)
                 {
-                    if (playerLeft && (!playerRightWall && !playerLeftWall))
-                    {
-                        goalPos = playerPos;
-                        goalPos.y += 1F;
-                        goalPos.x = playerPos.x - 1.5F;
-                    }
-                    else if (playerRight && (!playerRightWall && !playerLeftWall))
-                    {
-                        goalPos = playerPos;
-                        goalPos.y += 1F;
-                        goalPos.x = playerPos.x + 1.5F;
-                    }
-                    else
-                    {
-                        goalPos.x = player.transform.position.x;
-                        goalPos.y = playerPos.y + 2;
-                    }
+                    goalPos = CalcNextPoint();
                     firstPoint = true;
                 }
                 transform.position = goalPos;
@@ -371,23 +381,7 @@ public class BossAI : MonoBehaviour {
             {
                 if (!secondPoint)
                 {
-                    if (playerLeft && (!playerRightWall && !playerLeftWall))
-                    {
-                        goalPos = playerPos;
-                        goalPos.y += 1F;
-                        goalPos.x = playerPos.x - 1.5F;
-                    }
-                    else if (playerRight && (!playerRightWall && !playerLeftWall))
-                    {
-                        goalPos = playerPos;
-                        goalPos.y += 1F;
-                        goalPos.x = playerPos.x + 1.5F;
-                    }
-                    else
-                    {
-                        goalPos.x = player.transform.position.x;
-                        goalPos.y = playerPos.y + 2;
-                    }
+                    goalPos = CalcNextPoint();
                     secondPoint = true;
                 }
                 transform.position = goalPos;
@@ -413,23 +407,7 @@ public class BossAI : MonoBehaviour {
             {
                 if (!thirdPoint)
                 {
-                    if (playerLeft && (!playerRightWall && !playerLeftWall))
-                    {
-                        goalPos = playerPos;
-                        goalPos.y += 1F;
-                        goalPos.x = playerPos.x - 1.5F;
-                    }
-                    else if (playerRight && (!playerRightWall && !playerLeftWall))
-                    {
-                        goalPos = playerPos;
-                        goalPos.y += 1F;
-                        goalPos.x = playerPos.x + 1.5F;
-                    }
-                    else
-                    {
-                        goalPos.x = player.transform.position.x;
-                        goalPos.y = playerPos.y + 2;
-                    }
+                    goalPos = CalcNextPoint();
                     thirdPoint = true;
                 }
                 transform.position = goalPos;

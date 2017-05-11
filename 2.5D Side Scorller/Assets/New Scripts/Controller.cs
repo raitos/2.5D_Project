@@ -188,7 +188,7 @@ public class Controller : MonoBehaviour {
         }
     }
 
-    void OnTriggerStay(Collider col)
+    void OnTriggerStay(Collider col) //fix the position if falling through ground
     {
         if (col.gameObject.tag == "Wall")
         {

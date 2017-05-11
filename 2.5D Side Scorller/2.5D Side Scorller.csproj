@@ -107,6 +107,7 @@
     <Compile Include="Assets\MyScript\WeakEnemy.cs" />
     <Compile Include="Assets\MyScript\ZeroMovement.cs" />
     <Compile Include="Assets\New Scripts\BossAI.cs" />
+    <Compile Include="Assets\New Scripts\BossAnimator.cs" />
     <Compile Include="Assets\New Scripts\BossLeftDetect.cs" />
     <Compile Include="Assets\New Scripts\BossRightDetect.cs" />
     <Compile Include="Assets\New Scripts\Controller.cs" />
