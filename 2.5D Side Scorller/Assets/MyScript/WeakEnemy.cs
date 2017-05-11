@@ -267,6 +267,7 @@ public class WeakEnemy : Enemy {
 
                             if (TimeToShoot < 0)
                             {
+                                EnemyAnimator.SetInteger("Attack", 1);
                                 shoot = true;
                                 TimeToShoot = ResetShoot;
                             }
@@ -283,6 +284,7 @@ public class WeakEnemy : Enemy {
 
                             if (TimeToShoot < 0)
                             {
+                                EnemyAnimator.SetInteger("Attack", 1);
                                 shoot = true;
                                 TimeToShoot = ResetShoot;
                             }
@@ -327,33 +329,35 @@ public class WeakEnemy : Enemy {
                     Debug.Log(" Hits1: " + CurrentHits1.Length);
                     //Hits direction 1
                     hitCounter1--;
-                    if (hitCounter1 > -1 && TheEnemy != null && ObstacleBox != null)
+                    if (hitCounter1 > -1 && TheEnemy != null)
                     {
                         if (Hits1.Length > 0 && hitCounter1 <= Hits1.Length -1)
                         {
                             if (Hits1[hitCounter1].collider != null)
                             {
-                                if (CurrentHits1[hitCounter1].transform.gameObject == ObstacleBox && !jumpLeft && !jumpRight)// && move == true)
+                                if (ObstacleBox != null)
                                 {
-                                    Debug.Log("Boxi havaittu");
-                                    if (flipped == true && grounded)
+                                    if (CurrentHits1[hitCounter1].transform.gameObject == ObstacleBox && !jumpLeft && !jumpRight)// && move == true)
                                     {
-                                        Debug.Log("hypätty");
-                                        jumpLeft = true;
-                                        move = false;
-                                        moveTowardsPlayerNeg = false;
-                                        moveTowardsPlayerPos = false;
-                                    }
-                                    else if (flipped == false && grounded)
-                                    {
-                                        jumpRight = true;
-                                        move = false;
-                                        moveTowardsPlayerNeg = false;
-                                        moveTowardsPlayerPos = false;
-                                    }
+                                        Debug.Log("Boxi havaittu");
+                                        if (flipped == true && grounded)
+                                        {
+                                            Debug.Log("hypätty");
+                                            jumpLeft = true;
+                                            move = false;
+                                            moveTowardsPlayerNeg = false;
+                                            moveTowardsPlayerPos = false;
+                                        }
+                                        else if (flipped == false && grounded)
+                                        {
+                                            jumpRight = true;
+                                            move = false;
+                                            moveTowardsPlayerNeg = false;
+                                            moveTowardsPlayerPos = false;
+                                        }
 
+                                    }
                                 }
-
 
 
 
@@ -450,7 +454,7 @@ public class WeakEnemy : Enemy {
             //------------------------------ Execute Part ---------------------------------
             if (shoot)
             {
-                EnemyAnimator.SetInteger("Attack", 1);
+                
                 if (flipped == true)
                 {
                     RaycastHit[] hits = Physics.BoxCastAll(DamageArea.GetComponent<BoxCollider>().transform.position - new Vector3(0.5f,0,0),
@@ -492,6 +496,7 @@ public class WeakEnemy : Enemy {
             if (move)
             {
                 EnemyAnimator.SetInteger("Movement",1);
+               
                 if (flipped == false)
                 {
                     TheEnemy.transform.position = new Vector3(TheEnemy.transform.position.x + EnemySpeed, TheEnemy.transform.position.y, TheEnemy.transform.position.z);

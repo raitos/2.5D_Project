@@ -60,8 +60,9 @@ public class EnemySpawner : MonoBehaviour {
 
                   once = true;
               }*/
-            
-            
+
+            if (ListOfEnemies != null)
+            {
                 for (int i = 0; i < ListOfEnemies.Length; i++)
                 {
                     if (ListOfEnemies[i] == null)
@@ -69,7 +70,7 @@ public class EnemySpawner : MonoBehaviour {
                         ListOfEnemies[i] = currentList[i];
                     }
                 }
-            
+            }
 
             if (AmountOfEnemies < ListOfEnemies.Length && (AmountOfEnemies != ListOfEnemies.Length || AmountOfEnemies != PositionsOfEnemies.Length))
             {
@@ -132,7 +133,7 @@ public class EnemySpawner : MonoBehaviour {
                         ListOfEnemies[i] = Instantiate(EnemyTemplate);
                         ListOfEnemies[i].transform.position = PositionsOfEnemies[i];
                         ListOfEnemies[i].GetComponent<CapsuleCollider>().enabled = true;
-                        ListOfEnemies[i].GetComponent<MeshRenderer>().enabled = true;
+                        ListOfEnemies[i].GetComponent<Collider>().enabled = true;
                         ListOfEnemies[i].GetComponent<Enemy>().enabled = true;
                         ListOfEnemies[i].GetComponent<Rigidbody>().isKinematic = false;
                         ListOfEnemies[i].gameObject.tag = "Enemy";
