@@ -314,35 +314,36 @@ public class Attacker : Enemy {
                     Debug.Log(" Hits1: " + CurrentHits1.Length);
                     //Hits direction 1
                     hitCounter1--;
-                    if (hitCounter1 > -1 && CurrentHits1.Length != 0 && TheEnemy != null && ObstacleBox != null)
+                    if (hitCounter1 > -1 && CurrentHits1.Length != 0 && TheEnemy != null)
                     {
-                        if (Hits1 != null)
+                        if (Hits1.Length > 0 && hitCounter1 <= Hits1.Length - 1)
                         {
                             if (Hits1[hitCounter1].collider != null)
                             {
-
-                                if (CurrentHits1[hitCounter1].transform.gameObject == ObstacleBox && !jumpLeft && !jumpRight)// && move == true)
+                                if (ObstacleBox != null)
                                 {
-                                    Debug.Log("Boxi havaittu");
-                                    if (flipped == true && grounded)
+                                    if (CurrentHits1[hitCounter1].transform.gameObject == ObstacleBox && !jumpLeft && !jumpRight)// && move == true)
                                     {
-                                        Debug.Log("hypätty");
-                                        jumpLeft = true;
-                                        move = false;
-                                        moveTowardsPlayerNeg = false;
-                                        moveTowardsPlayerPos = false;
-                                    }
-                                    else if (flipped == false && grounded)
-                                    {
-                                        jumpRight = true;
-                                        move = false;
-                                        moveTowardsPlayerNeg = false;
-                                        moveTowardsPlayerPos = false;
+                                        Debug.Log("Boxi havaittu");
+                                        if (flipped == true && grounded)
+                                        {
+                                            Debug.Log("hypätty");
+                                            jumpLeft = true;
+                                            move = false;
+                                            moveTowardsPlayerNeg = false;
+                                            moveTowardsPlayerPos = false;
+                                        }
+                                        else if (flipped == false && grounded)
+                                        {
+                                            jumpRight = true;
+                                            move = false;
+                                            moveTowardsPlayerNeg = false;
+                                            moveTowardsPlayerPos = false;
+                                        }
+
                                     }
 
                                 }
-
-
 
 
                                 GameObject[] findEnemy = GameObject.FindGameObjectsWithTag("Enemy");
