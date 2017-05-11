@@ -1,0 +1,196 @@
+fileFormatVersion: 2
+guid: 8953137bc8046cd48a6a7e4b414a7ea0
+timeCreated: 1494504451
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Arm_1
+    100002: Arm_1_002
+    100004: Arm_2
+    100006: Arm_2_001
+    100008: Arm_2_002
+    100010: Arm_2_003
+    100012: Armature
+    100014: //RootNode
+    100016: Bone
+    100018: Bone_014
+    100020: Foot_1
+    100022: Foot_1_002
+    100024: Head
+    100026: Hip
+    100028: Hip_L
+    100030: Hip_R
+    100032: Index_2_L
+    100034: Index_2_R
+    100036: Index_3_L
+    100038: Index_3_R
+    100040: Leg_1
+    100042: Leg_1_002
+    100044: leg_2
+    100046: leg_2_002
+    100048: Leg_3
+    100050: Leg_3_001
+    100052: Leg_3_002
+    100054: Leg_3_003
+    100056: Leg_IK_L
+    100058: Leg_IK_R
+    100060: Middle_1_L
+    100062: Middle_1_R
+    100064: Middle_2_L
+    100066: Middle_2_R
+    100068: Middle_3_L
+    100070: Middle_3_R
+    100072: Neck
+    100074: Ring_1_L
+    100076: Ring_1_R
+    100078: Ring_2_L
+    100080: Ring_2_R
+    100082: Ring_3_L
+    100084: Ring_3_R
+    100086: Sholder
+    100088: Sholder_002
+    100090: Sholder_Connection
+    100092: Sholder_Connection_002
+    100094: Spine_1
+    100096: Spine_2
+    100098: Spine_3
+    100100: Spine_4
+    100102: Spine_4_001
+    100104: Spine_5
+    100106: Sword
+    100108: Thumb_1_L
+    100110: Thumb_1_R
+    100112: Thumb_2_L
+    100114: Thumb_2_R
+    400000: Arm_1
+    400002: Arm_1_002
+    400004: Arm_2
+    400006: Arm_2_001
+    400008: Arm_2_002
+    400010: Arm_2_003
+    400012: Armature
+    400014: //RootNode
+    400016: Bone
+    400018: Bone_014
+    400020: Foot_1
+    400022: Foot_1_002
+    400024: Head
+    400026: Hip
+    400028: Hip_L
+    400030: Hip_R
+    400032: Index_2_L
+    400034: Index_2_R
+    400036: Index_3_L
+    400038: Index_3_R
+    400040: Leg_1
+    400042: Leg_1_002
+    400044: leg_2
+    400046: leg_2_002
+    400048: Leg_3
+    400050: Leg_3_001
+    400052: Leg_3_002
+    400054: Leg_3_003
+    400056: Leg_IK_L
+    400058: Leg_IK_R
+    400060: Middle_1_L
+    400062: Middle_1_R
+    400064: Middle_2_L
+    400066: Middle_2_R
+    400068: Middle_3_L
+    400070: Middle_3_R
+    400072: Neck
+    400074: Ring_1_L
+    400076: Ring_1_R
+    400078: Ring_2_L
+    400080: Ring_2_R
+    400082: Ring_3_L
+    400084: Ring_3_R
+    400086: Sholder
+    400088: Sholder_002
+    400090: Sholder_Connection
+    400092: Sholder_Connection_002
+    400094: Spine_1
+    400096: Spine_2
+    400098: Spine_3
+    400100: Spine_4
+    400102: Spine_4_001
+    400104: Spine_5
+    400106: Sword
+    400108: Thumb_1_L
+    400110: Thumb_1_R
+    400112: Thumb_2_L
+    400114: Thumb_2_R
+    4300000: Hip
+    7400000: Default Take
+    7400002: ArmatureAction
+    9500000: //RootNode
+    13700000: Hip
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
