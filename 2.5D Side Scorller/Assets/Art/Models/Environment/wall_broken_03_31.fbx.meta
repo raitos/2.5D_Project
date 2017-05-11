@@ -511,6 +511,106 @@ ModelImporter:
     4300194: Cube_001_cell_807
     4300196: Cube_001_cell_036
     4300198: Cube_001_cell_001
+    6400000: Cube_001_cell_001
+    6400002: Cube_001_cell_036
+    6400004: Cube_001_cell_807
+    6400006: Cube_001_cell_808
+    6400008: Cube_001_cell_809
+    6400010: Cube_001_cell_810
+    6400012: Cube_001_cell_811
+    6400014: Cube_001_cell_812
+    6400016: Cube_001_cell_813
+    6400018: Cube_001_cell_814
+    6400020: Cube_001_cell_815
+    6400022: Cube_001_cell_816
+    6400024: Cube_001_cell_817
+    6400026: Cube_001_cell_818
+    6400028: Cube_001_cell_819
+    6400030: Cube_001_cell_820
+    6400032: Cube_001_cell_821
+    6400034: Cube_001_cell_822
+    6400036: Cube_001_cell_823
+    6400038: Cube_001_cell_824
+    6400040: Cube_001_cell_825
+    6400042: Cube_001_cell_826
+    6400044: Cube_001_cell_827
+    6400046: Cube_001_cell_828
+    6400048: Cube_001_cell_829
+    6400050: Cube_001_cell_830
+    6400052: Cube_001_cell_831
+    6400054: Cube_001_cell_832
+    6400056: Cube_001_cell_833
+    6400058: Cube_001_cell_834
+    6400060: Cube_001_cell_835
+    6400062: Cube_001_cell_836
+    6400064: Cube_001_cell_837
+    6400066: Cube_001_cell_838
+    6400068: Cube_001_cell_839
+    6400070: Cube_001_cell_840
+    6400072: Cube_001_cell_841
+    6400074: Cube_001_cell_842
+    6400076: Cube_001_cell_843
+    6400078: Cube_001_cell_844
+    6400080: Cube_001_cell_845
+    6400082: Cube_001_cell_846
+    6400084: Cube_001_cell_847
+    6400086: Cube_001_cell_848
+    6400088: Cube_001_cell_849
+    6400090: Cube_001_cell_850
+    6400092: Cube_001_cell_851
+    6400094: Cube_001_cell_852
+    6400096: Cube_001_cell_853
+    6400098: Cube_001_cell_854
+    6400100: Cube_001_cell_855
+    6400102: Cube_001_cell_856
+    6400104: Cube_001_cell_857
+    6400106: Cube_001_cell_858
+    6400108: Cube_001_cell_859
+    6400110: Cube_001_cell_860
+    6400112: Cube_001_cell_861
+    6400114: Cube_001_cell_862
+    6400116: Cube_001_cell_863
+    6400118: Cube_001_cell_864
+    6400120: Cube_001_cell_865
+    6400122: Cube_001_cell_866
+    6400124: Cube_001_cell_867
+    6400126: Cube_001_cell_868
+    6400128: Cube_001_cell_869
+    6400130: Cube_001_cell_870
+    6400132: Cube_001_cell_871
+    6400134: Cube_001_cell_872
+    6400136: Cube_001_cell_873
+    6400138: Cube_001_cell_874
+    6400140: Cube_001_cell_875
+    6400142: Cube_001_cell_876
+    6400144: Cube_001_cell_877
+    6400146: Cube_001_cell_878
+    6400148: Cube_001_cell_879
+    6400150: Cube_001_cell_880
+    6400152: Cube_001_cell_881
+    6400154: Cube_001_cell_882
+    6400156: Cube_001_cell_883
+    6400158: Cube_001_cell_884
+    6400160: Cube_001_cell_885
+    6400162: Cube_001_cell_886
+    6400164: Cube_001_cell_887
+    6400166: Cube_001_cell_888
+    6400168: Cube_001_cell_889
+    6400170: Cube_001_cell_890
+    6400172: Cube_001_cell_891
+    6400174: Cube_001_cell_892
+    6400176: Cube_001_cell_893
+    6400178: Cube_001_cell_894
+    6400180: Cube_001_cell_895
+    6400182: Cube_001_cell_896
+    6400184: Cube_001_cell_897
+    6400186: Cube_001_cell_898
+    6400188: Cube_001_cell_899
+    6400190: Cube_001_cell_900
+    6400192: Cube_001_cell_901
+    6400194: Cube_001_cell_902
+    6400196: Cube_001_cell_903
+    6400198: Cube_001_cell_904
     7400000: Default Take
     9500000: //RootNode
   materials:
@@ -539,7 +639,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
     importBlendShapes: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
