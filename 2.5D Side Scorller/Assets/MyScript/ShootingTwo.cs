@@ -8,7 +8,7 @@ public class ShootingTwo : MonoBehaviour {
     public GameObject Player;
     GameObject BulletShot;
 
-    bool shoot;
+    public bool shoot;
     public float timeToShoot;
     float resetTime;
     public float ShootYOffset;
@@ -20,6 +20,8 @@ public class ShootingTwo : MonoBehaviour {
     Vector3 targetDir;
 
 
+    GameObject animatedObj;
+    public Animator anim;
     Controller ctrl;
     public bool shotRight;
     public float ReflectSpread;
@@ -31,6 +33,10 @@ public class ShootingTwo : MonoBehaviour {
         resetTime = timeToShoot;
         shoot = false;
         time = Time.deltaTime;
+
+        //Animations
+        animatedObj = GameObject.Find("model_character_main_05_03_animation_all");
+        anim = animatedObj.GetComponent<Animator>();
 
     }
 
@@ -65,11 +71,13 @@ public class ShootingTwo : MonoBehaviour {
 
         if(shoot)
         {
-            Debug.Log("shoot true");
+            anim.SetBool("IsShoot", true);
+            anim.SetBool("IsWalk", false);
+            anim.SetBool("IsJump", false);
+            anim.SetBool("IsDash", false);
             if (ctrl.dir < 0)
             {
                 shotRight = false;
-                Debug.Log("ammuttiin");
                 BulletShot = Instantiate(bullet, new Vector3(Player.transform.position.x - ShootXOffset, Player.transform.position.y + ShootYOffset, Player.transform.position.z), Quaternion.Euler(0, 0, 90));
                 Physics.IgnoreCollision(Player.GetComponent<Collider>(), BulletShot.GetComponent<Collider>(), true);
                 BulletShot.GetComponent<MeshRenderer>().enabled = true;
@@ -81,7 +89,6 @@ public class ShootingTwo : MonoBehaviour {
             else if (ctrl.dir > 0)
             {
                 shotRight = true;
-                Debug.Log("ammuttiin 2");
                 BulletShot = Instantiate(bullet, new Vector3(Player.transform.position.x + ShootXOffset, Player.transform.position.y + ShootYOffset, Player.transform.position.z), Quaternion.Euler(0, 0, 90));
                 Physics.IgnoreCollision(Player.GetComponent<Collider>(), BulletShot.GetComponent<Collider>(), true);
                 BulletShot.GetComponent<MeshRenderer>().enabled = true;
@@ -91,6 +98,10 @@ public class ShootingTwo : MonoBehaviour {
                 BulletShot.GetComponent<DestroyBullet>().isEnemyBullet = false;
             }
             shoot = false;
+        }
+        else
+        {
+            anim.SetBool("IsShoot", false);
         }
 
 
