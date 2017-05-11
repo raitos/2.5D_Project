@@ -10,7 +10,7 @@ public class FollowPlayer : MonoBehaviour {
     void Start()
     {
         //自分自身とtargetとの相対距離を求める
-        offset = GetComponent<Transform>().position - target.position;
+        //offset = GetComponent<Transform>().position - target.position;
     }
 
 // Update is called once per frame

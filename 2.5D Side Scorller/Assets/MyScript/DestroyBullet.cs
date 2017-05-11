@@ -16,7 +16,7 @@ public class DestroyBullet : MonoBehaviour {
     void Start ()
     {
         shoot = GameObject.Find("Player").GetComponent<ShootingTwo>();
-        boss = GameObject.Find("Boss").GetComponent<BossAI>();
+        //boss = GameObject.Find("Boss").GetComponent<BossAI>();
 
         Physics.IgnoreCollision(this.gameObject.GetComponent<Collider>(), thespawnpoint.GetComponent<Collider>(), true);
 
