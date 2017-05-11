@@ -1,4 +1,8 @@
 sceneSetups:
+<<<<<<< HEAD
 - path: Assets/Scene/Level - Yard.unity
+=======
+- path: Assets/Scene/Prototype - Factory 1.unity
+>>>>>>> origin/master
   isLoaded: 1
   isActive: 1

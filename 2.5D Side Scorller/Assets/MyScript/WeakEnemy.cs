@@ -76,7 +76,7 @@ public class WeakEnemy : Enemy {
 
         if (!EditorApplication.isPlaying && Autoconfigure == true)
         {
-            EnemyList = GameObject.Find("WESpawner").GetComponent<EnemySpawner>();
+            //EnemyList = GameObject.Find("WESpawner").GetComponent<EnemySpawner>();
 
             EnemyAnimator = this.gameObject.GetComponent<Animator>();
             TimeToTurn = 0.25f;
